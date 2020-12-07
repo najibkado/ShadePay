@@ -1,0 +1,131 @@
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff2") format("woff2"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+.fimanager:before {
+    display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.flaticon-001-book:before { content: "\f100"; }
+.flaticon-002-briefcase:before { content: "\f101"; }
+.flaticon-003-bar-chart:before { content: "\f102"; }
+.flaticon-004-average:before { content: "\f103"; }
+.flaticon-005-monitor:before { content: "\f104"; }
+.flaticon-006-wallet:before { content: "\f105"; }
+.flaticon-007-user:before { content: "\f106"; }
+.flaticon-2991840:before { content: "\f107"; }
+.flaticon-008-target:before { content: "\f108"; }
+.flaticon-009-percentage:before { content: "\f109"; }
+.flaticon-010-suitcase:before { content: "\f10a"; }
+.flaticon-011-share:before { content: "\f10b"; }
+.flaticon-012-presentation:before { content: "\f10c"; }
+.flaticon-013-pie-chart:before { content: "\f10d"; }
+.flaticon-014-announce:before { content: "\f10e"; }
+.flaticon-015-tie:before { content: "\f10f"; }
+.flaticon-016-organization:before { content: "\f110"; }
+.flaticon-017-contact-book:before { content: "\f111"; }
+.flaticon-018-business-card:before { content: "\f112"; }
+.flaticon-2991852:before { content: "\f113"; }
+.flaticon-019-mobile-analytics:before { content: "\f114"; }
+.flaticon-020-mail:before { content: "\f115"; }
+.flaticon-021-news:before { content: "\f116"; }
+.flaticon-022-list:before { content: "\f117"; }
+.flaticon-023-line-chart:before { content: "\f118"; }
+.flaticon-024-key:before { content: "\f119"; }
+.flaticon-025-id-card:before { content: "\f11a"; }
+.flaticon-026-hierarchy:before { content: "\f11b"; }
+.flaticon-2991861:before { content: "\f11c"; }
+.flaticon-2991862:before { content: "\f11d"; }
+.flaticon-2991863:before { content: "\f11e"; }
+.flaticon-027-credit-card:before { content: "\f11f"; }
+.flaticon-028-coins:before { content: "\f120"; }
+.flaticon-029-watch:before { content: "\f121"; }
+.flaticon-2991867:before { content: "\f122"; }
+.flaticon-030-carrier:before { content: "\f123"; }
+.flaticon-031-debit-card:before { content: "\f124"; }
+.flaticon-032-calendar:before { content: "\f125"; }
+.flaticon-2991871:before { content: "\f126"; }
+.flaticon-2991872:before { content: "\f127"; }
+.flaticon-033-business-center:before { content: "\f128"; }
+.flaticon-034-bank:before { content: "\f129"; }
+.flaticon-035-profit:before { content: "\f12a"; }
+.flaticon-036-profit-and-loss:before { content: "\f12b"; }
+.flaticon-2991877:before { content: "\f12c"; }
+.flaticon-037-give-money:before { content: "\f12d"; }
+.flaticon-038-agreement:before { content: "\f12e"; }
+.flaticon-2991880:before { content: "\f12f"; }
+
+$font-Flaticon-001-book: "\f100";
+$font-Flaticon-002-briefcase: "\f101";
+$font-Flaticon-003-bar-chart: "\f102";
+$font-Flaticon-004-average: "\f103";
+$font-Flaticon-005-monitor: "\f104";
+$font-Flaticon-006-wallet: "\f105";
+$font-Flaticon-007-user: "\f106";
+$font-Flaticon-2991840: "\f107";
+$font-Flaticon-008-target: "\f108";
+$font-Flaticon-009-percentage: "\f109";
+$font-Flaticon-010-suitcase: "\f10a";
+$font-Flaticon-011-share: "\f10b";
+$font-Flaticon-012-presentation: "\f10c";
+$font-Flaticon-013-pie-chart: "\f10d";
+$font-Flaticon-014-announce: "\f10e";
+$font-Flaticon-015-tie: "\f10f";
+$font-Flaticon-016-organization: "\f110";
+$font-Flaticon-017-contact-book: "\f111";
+$font-Flaticon-018-business-card: "\f112";
+$font-Flaticon-2991852: "\f113";
+$font-Flaticon-019-mobile-analytics: "\f114";
+$font-Flaticon-020-mail: "\f115";
+$font-Flaticon-021-news: "\f116";
+$font-Flaticon-022-list: "\f117";
+$font-Flaticon-023-line-chart: "\f118";
+$font-Flaticon-024-key: "\f119";
+$font-Flaticon-025-id-card: "\f11a";
+$font-Flaticon-026-hierarchy: "\f11b";
+$font-Flaticon-2991861: "\f11c";
+$font-Flaticon-2991862: "\f11d";
+$font-Flaticon-2991863: "\f11e";
+$font-Flaticon-027-credit-card: "\f11f";
+$font-Flaticon-028-coins: "\f120";
+$font-Flaticon-029-watch: "\f121";
+$font-Flaticon-2991867: "\f122";
+$font-Flaticon-030-carrier: "\f123";
+$font-Flaticon-031-debit-card: "\f124";
+$font-Flaticon-032-calendar: "\f125";
+$font-Flaticon-2991871: "\f126";
+$font-Flaticon-2991872: "\f127";
+$font-Flaticon-033-business-center: "\f128";
+$font-Flaticon-034-bank: "\f129";
+$font-Flaticon-035-profit: "\f12a";
+$font-Flaticon-036-profit-and-loss: "\f12b";
+$font-Flaticon-2991877: "\f12c";
+$font-Flaticon-037-give-money: "\f12d";
+$font-Flaticon-038-agreement: "\f12e";
+$font-Flaticon-2991880: "\f12f";

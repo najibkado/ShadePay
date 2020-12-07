@@ -1,0 +1,120 @@
+/*
+
+===============================
+Sidebar
+===============================
+
+*/
+
+.site-sidebar {
+    .single-sidebar {
+      div {
+        overflow: hidden;
+      }
+      margin-bottom: 40px;
+      padding: 30px;
+      color: $cl-white;
+      background: rgba($cl-white, $alpha: 0.07);
+      border: 2px solid rgba($cl-white, $alpha: 0.1);
+      &:last-child {
+        margin-bottom: 0;
+      }
+      h3 {
+        font-size: 24px;
+        font-weight: 600;
+        position: relative;
+        margin-bottom: 20px;
+        text-transform: capitalize;
+      }
+      form {
+        width: 100%;
+        position: relative;
+        height: 50px;
+        border-radius: 4px;
+        background: rgba($cl-white, $alpha: 0.05);
+        border-radius: 50px;
+        input {
+          width: 100%;
+          height: 100%;
+          transition: 0.4s;
+          padding: 0 15px;
+          border: 2px solid rgba($cl-white, $alpha: 0.05);
+          background: rgba($cl-white, $alpha: 0.05);
+          border-radius: 50px;
+          color: $cl-white;
+          &:focus {
+            border-color: rgba($cl-white, $alpha: 0.05);
+          }
+          &::placeholder {
+            color: rgba($cl-white, $alpha: 0.5);
+          }
+        }
+        button {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          color: rgba($cl-white, $alpha: 0.5);
+          height: 100%;
+          width: 50px;
+          border-radius: 0 50px 50px 0;
+          &:hover {
+            color: $cl-primary;
+          }
+        }
+      }
+      ul {
+        li {
+          margin-bottom: 20px;
+          position: relative;
+          transition: 0.4s;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          a {
+            color: #ffffff82;
+            display: inline-block;
+            text-transform: capitalize;
+            background: #ffffff17;
+            padding: 7px 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            &:hover {
+              color: $cl-primary;
+            }
+          }
+        }
+      }
+      .social-follow {
+        a {
+          border-radius: 4px;
+          color: #ffffff;
+          text-align: center;
+          display: inline-block;
+          font-family: "Sen", sans-serif;
+          margin: 5px;
+          height: 50px;
+          width: 50px;
+          line-height: 50px;
+          &:hover {
+            background: $cl-primary;
+          }
+          i {
+            font-size: 18px;
+            }
+          @media(max-width: 991px){
+            margin-bottom: 5px;
+          }
+          @media(max-width: 767px){
+            width: 100%;
+          }
+        }
+      }
+      a {
+        img {
+          width: 100%;
+        }
+      }
+    }
+}

@@ -1,0 +1,65 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <!--breadcrumb area-->
+    <section class="breadcrumb-area gradient-overlay" style="background: url('static/main/assets/images/banner/5.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="site-breadcrumb">
+                        <h2>About us</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/breadcrumb area-->
+
+    <!--About Section-->
+    <section class="section-padding-2 blue-bg-2 dots-before">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    <img src="{% static 'main/assets/images/world-map-3.png' %}" alt="">
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    <div class="about-content cl-white">
+                        <div class="section-title">
+                            <h4><span>Best</span>About us</h4>
+                            <h2>Explore us, know about us</h2>
+                        </div>
+                        <p>ShadePay will give you the ability to connect with your clients with peace of mind. This is done by providing both buyer and seller protection over their funds. For instance, Bar bought a mobile phone from Bazz, ShadePay will ensure the delivery of the mobile phone to Bar as well as the delivery of the funds to Bazz. Bars' money will be refunded fully except for ShadePay charges in case of no delivery or scam. ShadePay protects you and your funds.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 cl-white">
+                    <div class="about-content">
+                        <h5 class="mb-20">Mission</h5>
+                        <p class="mb-50">ShadePay is a Nigerian payment processing system, welcoming users worldwide to send money to Nigeria without getting scammed. We believe passionately in the power of technology to be used for good. ShadePay is building a financial tech ecosystem with its users' protection in mind all year long.</p>
+                        <h5 class="mb-20">Vission</h5>
+                        <p>The vision of ShadePay is to connect buyers and sellers with the ability to protect both parties. ShadePay aims to reduce online e-commerce fraud by 20 to 50 percent in Nigeria by 2025. and ShadePay seeks to be the number one way of sending payments to Nigeria from anywhere around the world with the cheapest service fee possible by 2030!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/About Section-->
+    
+
+    <!--User Signup Section-->
+    <section class="section-padding-2 blue-bg dots-after">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 centered">
+                    <div class="section-title">
+                        <h4><span>New</span>want to make purchases securely?</h4>
+                        <h2>Sign Up</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="bttn-mid btn-fill w-100 mt-20"><i class="ti-check"></i>Get started now</button>
+
+        </div>
+    </section><!--/User Signup Section-->  
+{% endblock %}

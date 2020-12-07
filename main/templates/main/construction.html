@@ -1,0 +1,36 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block body %}
+        <!--breadcrumb area-->
+        <section class="breadcrumb-area gradient-overlay" style="background: url('static/main/assets/images/banner/3.jpg');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="site-breadcrumb">
+                            <h2>Site under construction!</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--/breadcrumb area-->
+    
+    
+        <!--404 Section -->
+        <section class="section-padding blue-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="section-title cl-white">
+                            <h2 class="mb-20">Opps! Site under construction</h2>
+                            <p class="mb-30">Natus eum dolore consequuntur maiores beatae quibusdam vel quaerat eos adipisci animi nostrum, unde minus quo tempora quis repellat ut excepturi delectus.</p>
+                            <a href="{% url 'index' %}" class="bttn-small btn-fill">Back to home</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 centered">
+                        <img src="{% static 'main/assets/images/construction.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </section><!--/404 Section-->
+{% endblock %}

@@ -1,0 +1,413 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+    <!--Hero Area-->
+    <section class="hero-slider owl-carousel">
+        <div class="single-slide gradient-overlay" style="background: url('static/main/assets/images/banner/2.jpg') no-repeat center center;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 centered">
+                        <div class="hero-content">
+                            <h4>ShadePay</h4>
+                            <h1>Lets you pay for goods online without worries</h1>
+                            <div class="hero-btn">
+                                <a href="{% url 'about' %}" class="bttn-mid btn-fill mr-10">Learn more</a>
+                                <a href="{% url 'construction' %}" class="bttn-mid btn-blu">Get started now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-slide gradient-overlay" style="background: url('static/main/assets/images/banner/4.jpg') no-repeat center center;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 centered">
+                        <div class="hero-content">
+                            <h4>Secured nigerian payment system</h4>
+                            <h1>Send payments to nigeria from anywhere</h1>
+                            <div class="hero-btn">
+                                <a href="{% url 'about' %}" class="bttn-mid btn-fill mr-10">Learn more</a>
+                                <a href="{% url 'construction' %}" class="bttn-mid btn-blu">Get started now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-slide gradient-overlay" style="background: url('static/main/assets/images/banner/3.jpg') no-repeat center center;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 centered">
+                        <div class="hero-content">
+                            <h4>ShadePay for Individuals</h4>
+                            <h1>Make payments with customer protection</h1>
+                            <div class="hero-btn">
+                                <a href="{% url 'about' %}" class="bttn-mid btn-fill mr-10">Learn more</a>
+                                <a href="{% url 'construction' %}" class="bttn-mid btn-blu">Get started now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-slide gradient-overlay" style="background: url('static/main/assets/images/banner/1.jpg') no-repeat center center;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 centered">
+                        <div class="hero-content">
+                            <h4>ShadePay for Business</h4>
+                            <h1>Recieve payments online from anywhere</h1>
+                            <div class="hero-btn">
+                                <a href="{% url 'about' %}" class="bttn-mid btn-fill mr-10">Learn more</a>
+                                <a href="{% url 'construction' %}" class="bttn-mid btn-blu">Get started now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/Hero Area-->
+
+    <!--Why Choose Us-->
+    <section class="section-padding-3 blue-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 centered">
+                    <div class="section-title mb-60">
+                        <h4><span>New</span> Why Choose us</h4>
+                        <h2>We're Special</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-why-choose">
+                        <div class="icon">
+                            <i class="flaticon-007-user"></i>
+                        </div>
+                        <div class="title">
+                            <h3>Stable Usability</h3>
+                        </div>
+                        <p>ShadePay is fit for your online purchases</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-why-choose">
+                        <div class="icon">
+                            <i class="flaticon-006-wallet"></i>
+                        </div>
+                        <div class="title">
+                            <h3>Multiple Wallet</h3>
+                        </div>
+                        <p>ShadePay lets you create wallets for different needs</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-why-choose">
+                        <div class="icon">
+                            <i class="flaticon-2991852"></i>
+                        </div>
+                        <div class="title">
+                            <h3>Multiple Currency</h3>
+                        </div>
+                        <p>ShadePay lets you accept money from all currencies</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-why-choose">
+                        <div class="icon">
+                            <i class="flaticon-2991872"></i>
+                        </div>
+                        <div class="title">
+                            <h3>Low Rate</h3>
+                        </div>
+                        <p>ShadePay charges are remarkably low</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-why-choose">
+                        <div class="icon">
+                            <i class="flaticon-2991871"></i>
+                        </div>
+                        <div class="title">
+                            <h3>Diamond Security</h3>
+                        </div>
+                        <p>ShadePay provides you with the best security</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-why-choose">
+                        <div class="icon">
+                            <i class="flaticon-023-line-chart"></i>
+                        </div>
+                        <div class="title">
+                            <h3>Multiple Connections</h3>
+                        </div>
+                        <p>ShadePay keeps you up to date will all activites</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-why-choose">
+                        <div class="icon">
+                            <i class="flaticon-030-carrier"></i>
+                        </div>
+                        <div class="title">
+                            <h3>Rise Through</h3>
+                        </div>
+                        <p>ShadePay will support your business to rise</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/Why Choose Us-->
+
+
+    <!--About Area-->
+    <section class="section-padding-2 blue-bg-2 dots-after">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 cl-white mb-30">
+                    <div class="section-title">
+                        <h4><span>Top</span>What we do?</h4>
+                        <h2>There is what we do</h2>
+                    </div>
+                    <p class="cl-white-light">ShadePay will give you the ability to connect with your clients with peace of mind. This is done by providing both buyer and seller protection over their funds. For instance, Bar bought a mobile phone from Bazz, ShadePay will ensure the delivery of the mobile phone to Bar as well as the delivery of the funds to Bazz. Bars' money will be refunded fully except for ShadePay charges in case of no delivery or scam. ShadePay protects you and your funds. </p>
+                    <div class="row mb-20">
+                        <div class="col-xl-6 col-md-12">
+                            <h5 class="mb-10">Mission</h5>
+                            <p class="cl-white-light">ShadePay is a Nigerian payment processing system, welcoming users worldwide to send money to Nigeria without getting scammed. We believe passionately in the power of technology to be used for good. ShadePay is building a financial tech ecosystem with its users' protection in mind all year long. </p>
+                        </div>
+                        <div class="col-xl-6 col-md-12">
+                            <h5 class="mb-10">Vision</h5>
+                            <p class="cl-white-light">The vision of ShadePay is to connect buyers and sellers with the ability to protect both parties. ShadePay aims to reduce online e-commerce fraud by 20 to 50 percent in Nigeria by 2025. and ShadePay seeks to be the number one way of sending payments to Nigeria from anywhere around the world with the cheapest service fee possible by 2030!</p>
+                        </div>
+                    </div>
+                    
+                    <a href="{% url 'construction' %}" class="bttn-small btn-fill">Continue Reading</a>
+                </div>
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                    <div class="about-img">
+                        <img src="{% static 'main/assets/images/about.jpg' %}" alt="">
+                        <a href="#" class="video-popup"><i class="fa fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/About Area-->
+
+
+    <!--Solutions Section-->
+    <section class="section-padding-2 blue-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-md-12">
+                    <div class="section-title">
+                        <h4><span>new</span>Anyone can use</h4>
+                        <h2>Solutions for</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="single-product">
+                        <div class="product-pro-img">
+                            <img src="{% static 'main/assets/images/users/1.jpg' %}" alt="">
+                        </div>
+                        <div class="product-pro-title">
+                            <h3><a href="">Freelancer</a></h3>
+                            <p>Freelancers can use ShadePay to accept payments</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="single-product">
+                        <div class="product-pro-img">
+                            <img src="{% static 'main/assets/images/users/2.jpg' %}" alt="">
+                        </div>
+                        <div class="product-pro-title">
+                            <h3><a href="">Internet Retailer</a></h3>
+                            <p>Social media shop owners can use ShadePay to accept payments</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="single-product">
+                        <div class="product-pro-img">
+                            <img src="{% static 'main/assets/images/users/3.jpg' %}" alt="">
+                        </div>
+                        <div class="product-pro-title">
+                            <h3><a href="">Online Professional</a></h3>
+                            <p>Developers can integrate ShadePay to accept payments</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="single-product">
+                        <div class="product-pro-img">
+                            <img src="{% static 'main/assets/images/users/4.jpg' %}" alt="">
+                        </div>
+                        <div class="product-pro-title">
+                            <h3><a href="">Everyone</a></h3>
+                            <p>ShadePay can serve everyone with scam protections </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/Solutions Section-->
+    
+
+        <!-- What we do -->
+        <section class="section-padding-2 blue-bg-2">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-7 col-md-12 centered">
+                        <div class="section-title">
+                            <h4><span>new</span> What we're doing?</h4>
+                            <h2>Follow this stepts</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-what-we-do">
+                            <div class="icon">
+                                <i class="ti-wallet"></i>
+                            </div>
+                            <div class="title">
+                                <h3>Send Money</h3>
+                            </div>
+                            <p>ShadePay makes your transactions with a click of a button</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-what-we-do">
+                            <div class="icon">
+                                <i class="ti-id-badge"></i>
+                            </div>
+                            <div class="title">
+                                <h3>Identify Sellers</h3>
+                            </div>
+                            <p>ShadePay helps you identify who is recieving the funds</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-what-we-do">
+                            <div class="icon">
+                                <i class="ti-shield"></i>
+                            </div>
+                            <div class="title">
+                                <h3>Protection</h3>
+                            </div>
+                            <p>ShadePay protects your funds when making a purchase</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-what-we-do">
+                            <div class="icon">
+                                <i class="ti-package"></i>
+                            </div>
+                            <div class="title">
+                                <h3>Delivery</h3>
+                            </div>
+                            <p>ShadePay delivers your funds after ensuring both parties protection</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- /What we do --> 
+
+
+       <!--How It works-->
+    <section class="steps-area section-padding-2 blue-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 centered">
+                    <div class="section-title cl-white">
+                        <h4><span>Start</span>How It works?</h4>
+                        <h2>How It works</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-steps">
+                        <div class="step-number">1</div>
+                        <i class="flaticon-007-user"></i>
+                        <h4>Signin account</h4>
+                        <p>Sign in with your registered email and password</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-steps">
+                        <div class="step-number">2</div>
+                        <i class="flaticon-034-bank"></i>
+                        <h4>Start Transaction</h4>
+                        <p>Link a card or bank, and start transactions</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-steps">
+                        <div class="step-number">3</div>
+                        <i class="flaticon-038-agreement"></i>
+                        <h4>Happy Earnings</h4>
+                        <p>Share you email or business link with your customers to get paid</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/How It works-->    
+
+        <!--newslatter-->
+        <section class="section-padding blue-bg-2">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="call-to-action centered">
+                            <div class="section-title">
+                                <h4><span>Top</span>Stay updated</h4>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <div class="newslatter">
+                                        <form action="#">
+                                            <input type="email" placeholder="Email Address" required>
+                                            <button type="submit">Subscribe</button>
+                                        </form>
+                                        <div class="social">
+                                            <a href=""><i class="fa fa-facebook"></i></a>
+                                            <a href=""><i class="fa fa-instagram"></i></a>
+                                            <a href=""><i class="fa fa-twitter"></i></a>
+                                            <a href=""><i class="fa fa-pinterest"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--/newslatter-->
+    
+    <!--User Signup Section-->
+    <section class="section-padding-2 blue-bg dots-after">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 centered">
+                    <div class="section-title">
+                        <h4><span>New</span>want to make purchases securely?</h4>
+                        <h2>Sign Up</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="bttn-mid btn-fill w-100 mt-20"><i class="ti-check"></i>Get started now</button>
+
+        </div>
+    </section><!--/User Signup Section-->  
+
+    
+{% endblock %}

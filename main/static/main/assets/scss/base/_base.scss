@@ -1,0 +1,784 @@
+
+/*** 
+
+==================
+    Color Classes
+==================
+
+***/
+
+.cl-black {
+    color: $cl-black;
+}
+.cl-primary {
+    color: $cl-primary;
+}
+.cl-white {
+    color: $cl-white;
+}
+.cl-white-light {
+    color: rgba($cl-white, $alpha: 0.5);
+}
+.cl-blue {
+    color: $cl-blue;
+}
+.cl-blue-2 {
+    color: $cl-blue-2;
+}
+.cl-green {
+    color: $cl-green;
+}
+.cl-mint {
+    color: $cl-mint;
+}
+.cl-yellow {
+    color: $cl-yellow;
+}
+.cl-red {
+    color: $cl-red;
+}
+
+
+
+.cl-facebook {
+    color: $cl-facebook;
+}
+
+.cl-twitter {
+    color: $cl-twitter;
+}
+
+.cl-youtube {
+    color: $cl-youtube;
+}
+
+.cl-pinterest {
+    color: $cl-pinterest;
+}
+
+.cl-instagram {
+    color: $cl-instagram;
+}
+
+
+.facebook-bg {
+    background: $facebook-bg;
+}
+
+.twitter-bg {
+    background: $twitter-bg;
+}
+
+.youtube-bg {
+    background: $youtube-bg;
+}
+
+.pinterest-bg {
+    background: $pinterest-bg;
+}
+
+.google-plus-bg {
+    background: $google-plus-bg;
+}
+
+.linkedin-bg {
+    background: $linkedin-bg;
+}
+
+.instagram-bg {
+    background: $instagram-bg;
+}
+
+
+
+
+/*** 
+
+==================
+    Section Styles
+==================
+
+***/
+
+.container {
+    max-width: 1200px;
+}
+
+
+.container-fluid {
+    padding: 0 50px;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+.section-padding-2 {
+    padding-top: 100px;
+    padding-bottom: 70px;
+}
+
+.section-padding-3 {
+    padding-top: 100px;
+    padding-bottom: 40px;
+}
+
+.section-padding-sm {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.section-padding-sm-2 {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.section-title {
+    margin-bottom: 30px;
+    h4 {
+        color: rgba($cl-white, $alpha: 0.4);
+        margin-bottom: 10px;
+        font-size: 16px;
+        background: rgba($cl-white, $alpha: 0.1);
+        padding: 8px 16px;
+        display: inline-block;
+        border-radius: 40px;
+        span {
+            background: $cl-primary;
+            color: $cl-blue;
+            padding: 3px 10px;
+            border-radius: 40px;
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-right: 10px;
+        }
+    }
+    h2 {
+        position: relative;
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1.4;
+        z-index: 1;
+        text-transform: capitalize;
+        display: block;
+        color: $cl-white;
+    }
+}
+
+
+
+
+
+
+@media (max-width: 575px){
+    .section-title h2 {
+        font-size: 32px;
+    }
+}
+@media (max-width: 450px){
+    .section-title h2 {
+        font-size: 32px;
+    }
+}
+
+
+
+
+/*** 
+
+=======================
+    Margin and Padding
+=======================
+
+***/
+
+/* 
+    Margin Top styles
+*/
+
+.mar-0 {
+    margin: 0;
+}
+.mt-10 {
+    margin-top: 10px;
+}
+.mt-20 {
+    margin-top: 20px;
+}
+.mt-30 {
+    margin-top: 30px;
+}
+.mt-40 {
+    margin-top: 40px;
+}
+.mt-50 {
+    margin-top: 50px;
+}
+.mt-60 {
+    margin-top: 60px;
+}
+
+
+/* 
+    Margin Bottom Styles
+*/
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+.mb-20 {
+    margin-bottom: 20px;
+}
+.mb-30 {
+    margin-bottom: 30px;
+}
+.mb-40 {
+    margin-bottom: 40px;
+}
+.mb-50 {
+    margin-bottom: 50px;
+}
+.mb-60 {
+    margin-bottom: 60px;
+}
+
+
+
+/* 
+    Margin Right Styles
+*/
+
+.mr-10 {
+    margin-right: 10px;
+}
+.mr-20 {
+    margin-right: 20px;
+}
+.mr-30 {
+    margin-right: 30px;
+}
+.mr-40 {
+    margin-right: 40px;
+}
+.mr-50 {
+    margin-right: 50px;
+}
+.mr-60 {
+    margin-right: 60px;
+}
+
+
+/* 
+    Padding Top Styles
+*/
+
+.pad-0 {
+    padding: 0;
+}
+.pt-10 {
+    padding-top: 10px;
+}
+.pt-20 {
+    padding-top: 20px;
+}
+.pt-30 {
+    padding-top: 30px;
+}
+.pt-40 {
+    padding-top: 40px;
+}
+.pt-50 {
+    padding-top: 50px;
+}
+.pt-60 {
+    padding-top: 60px;
+}
+
+
+/* 
+    Padding Bottom Styles
+*/
+
+.pb-10 {
+    padding-bottom: 10px;
+}
+.pb-20 {
+    padding-bottom: 20px;
+}
+.pb-30 {
+    padding-bottom: 30px;
+}
+.pb-40 {
+    padding-bottom: 40px;
+}
+.pb-50 {
+    padding-bottom: 50px;
+}
+.pb-60 {
+    padding-bottom: 60px;
+}
+
+
+
+
+/*** 
+
+============================
+    Background and Overlay
+============================
+
+***/
+
+.gray-bg {
+    background: #F9F9F9;
+}
+
+.black-bg {
+    background: #292929;
+}
+
+.black-bg-2 {
+    background: #555555;
+}
+
+.primary-bg {
+    background: $cl-primary;
+}
+
+.primary-light-bg {
+    background: #00C9B72c;
+}
+
+.primary-bg-dark {
+    background: #037EBD;
+}
+
+.white-bg {
+    background: #ffffff;
+}
+
+
+.blue-bg {
+    background: $cl-blue;
+}
+
+.light-blue-bg {
+    background: #234BA5;
+}
+
+.green-bg {
+    background: $cl-green;
+}
+
+.blue-bg-2 {
+    background: $cl-blue-2;
+}
+
+.red-bg {
+    background: $cl-red;
+}
+
+.yellow-bg {
+    background: $cl-yellow;
+}
+
+.yellow-light-bg {
+    background: #e9eef7;
+}
+
+.purple-bg {
+    background: #8E0EF0;
+}
+
+.purple-light-bg {
+    background: #E8CFFC;
+}
+
+.mint-bg {
+    background: $cl-mint;
+}
+
+.transparent-bg {
+    background: transparent;
+}
+
+
+
+
+.dark-overlay {
+    background-size: cover !important;
+    position: relative;
+    z-index: 1;
+}
+
+.dark-overlay:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #111;
+    content: "";
+    z-index: -1;
+    opacity: .6;
+}
+
+
+
+.blue-overlay {
+    background-size: cover !important;
+    position: relative;
+    z-index: 1;
+}
+
+.blue-overlay:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: $cl-blue-2;
+    content: "";
+    z-index: -1;
+    opacity: .9;
+}
+
+
+.gradient-overlay {
+    background-size: cover !important;
+    position: relative;
+    z-index: 1;
+}
+
+.gradient-overlay:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: -webkit-linear-gradient(left, #193ea7 0%, #1d734b 100%);
+    content: "";
+    z-index: -1;
+    opacity: .9;
+}
+
+
+
+
+/* Dots */
+
+.dots-before {
+    position: relative;
+    &::before {
+      position: absolute;
+      content:"";
+      height: 486px;
+      width: 487px;
+      left: 0px;
+      top: 0px;
+      background: url('../images/dots-3.png') no-repeat;
+      @media(max-width: 991px){
+            display: none;
+        }
+    }
+}
+  
+  
+.dots-after {
+    position: relative;
+    &::before {
+        position: absolute;
+        content:"";
+        height: 300px;
+        width: 300px;
+        right: 50px;
+        top: -50px;
+        background: url('../images/dots.png') no-repeat;
+        @media(max-width: 991px){
+            display: none;
+        }
+    }
+}
+
+
+/*** 
+
+===================
+    Buttons Style
+===================
+
+***/
+
+
+.bttn-mid {
+    position: relative;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 40px;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.4s;
+    font-family: $headding-font;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
+
+
+.bttn-small {
+    position: relative;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 28px;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.4s;
+    font-family: $headding-font;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
+
+.bttn-mid i, .bttn-small i {
+    margin-right: 7px;
+}
+
+.btn-fill {
+    background: $cl-primary;
+    color: $cl-black-2;
+    &:hover {
+        background: $cl-yellow;
+        color: $cl-black-2;
+    }
+}
+
+.bttn-mid.btn-emt {
+    padding: 12px 41px;
+}
+
+.btn-emt {
+    background: transparent;
+    color: $cl-white;
+    border: 2px solid $cl-white;
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.05);
+    &:hover {
+        color: $cl-white;
+        box-shadow: none;
+        background: $cl-primary;
+        border: 2px solid transparent;
+    }
+}
+
+.btn-wht {
+    background: $cl-white;
+    color: $cl-primary;
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.05);
+    &:hover {
+        background: $cl-primary;
+        color: $cl-white;
+    }
+}
+
+.btn-blu {
+    background: $cl-blue;
+    color: $cl-white;
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.05);
+    &:hover {
+        background: $cl-primary;
+        color: $cl-blue;
+    }
+}
+
+
+
+
+
+/* ==============================
+    Preloader
+    ============================== */
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    background: $cl-blue;
+}
+
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    margin: -4px 0 0 -4px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+  }
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
+
+/* 
+==============================
+    ScrollUp Button 
+============================== 
+*/
+
+a#scrollUp {
+    background: $cl-primary;
+    color: $cl-blue-2;
+    right: 30px;
+    bottom: 0px;
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    font-size: 16px;
+    &:hover {
+        background: $cl-yellow;
+        color: $cl-blue;
+    }
+}
+
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes shape_1 {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/* Standard syntax */
+@keyframes shape_1 {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes shape_2 {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/* Standard syntax */
+@keyframes shape_2 {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes shape_3 {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/* Standard syntax */
+@keyframes shape_3 {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+  

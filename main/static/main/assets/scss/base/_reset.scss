@@ -1,0 +1,297 @@
+/* ---------------------------------------
+
+[Main Stylesheet]
+
+Project:    	  Paylo - Send Money, Pay Online Worldwide HTML Template
+Version:    	  1.0
+Primary Use:      Send Money, Pay Online Worldwide HTML Template
+
+------------------------------------------
+
+[Table of contents]
+
+1. Fonts
+2. Reset Css
+3. Global Settings
+4. Section Styles
+5. Colors
+6. Margin and Padding
+7. Background Overlay
+8. Buttons Style
+9. Preloader
+10. ScrollUp Button
+11. Main Header style
+12. Hero Area
+13. Features Area
+14. Custom Hero
+15. Promo Area
+16. Our Partners
+17. Pricing Table
+18. Why Choose us
+19. Parallax Area
+20. Testimonial Area
+21. Counter Area
+22. App Area
+23. Blog Area
+24. Footer Area
+25. Custom Banner
+
+-------------------------------------------*/
+
+/*** 
+
+================
+	Fonts
+================
+
+
+font-family: 'Jost', sans-serif;
+
+ ***/
+
+ @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap');
+
+
+/*
+  Flaticon icon font: Flaticon
+*/
+
+@font-face {
+	font-family: "Flaticon";
+	src: url("../fonts/Flaticon.eot");
+	src: url("../fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+		  url("../fonts/Flaticon.woff") format("woff"),
+		  url("../fonts/Flaticon.ttf") format("truetype"),
+		  url("../fonts/Flaticon.svg#Flaticon") format("svg");
+	font-weight: normal;
+	font-style: normal;
+  }
+  
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+	@font-face {
+	  font-family: "Flaticon";
+	  src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
+	}
+  }
+  
+  [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+  [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+	font-family: Flaticon;
+	font-style: normal;
+  }
+  
+  .flaticon-001-book:before { content: "\f100"; }
+  .flaticon-002-briefcase:before { content: "\f101"; }
+  .flaticon-003-bar-chart:before { content: "\f102"; }
+  .flaticon-004-average:before { content: "\f103"; }
+  .flaticon-005-monitor:before { content: "\f104"; }
+  .flaticon-006-wallet:before { content: "\f105"; }
+  .flaticon-007-user:before { content: "\f106"; }
+  .flaticon-2991840:before { content: "\f107"; }
+  .flaticon-008-target:before { content: "\f108"; }
+  .flaticon-009-percentage:before { content: "\f109"; }
+  .flaticon-010-suitcase:before { content: "\f10a"; }
+  .flaticon-011-share:before { content: "\f10b"; }
+  .flaticon-012-presentation:before { content: "\f10c"; }
+  .flaticon-013-pie-chart:before { content: "\f10d"; }
+  .flaticon-014-announce:before { content: "\f10e"; }
+  .flaticon-015-tie:before { content: "\f10f"; }
+  .flaticon-016-organization:before { content: "\f110"; }
+  .flaticon-017-contact-book:before { content: "\f111"; }
+  .flaticon-018-business-card:before { content: "\f112"; }
+  .flaticon-2991852:before { content: "\f113"; }
+  .flaticon-019-mobile-analytics:before { content: "\f114"; }
+  .flaticon-020-mail:before { content: "\f115"; }
+  .flaticon-021-news:before { content: "\f116"; }
+  .flaticon-022-list:before { content: "\f117"; }
+  .flaticon-023-line-chart:before { content: "\f118"; }
+  .flaticon-024-key:before { content: "\f119"; }
+  .flaticon-025-id-card:before { content: "\f11a"; }
+  .flaticon-026-hierarchy:before { content: "\f11b"; }
+  .flaticon-2991861:before { content: "\f11c"; }
+  .flaticon-2991862:before { content: "\f11d"; }
+  .flaticon-2991863:before { content: "\f11e"; }
+  .flaticon-027-credit-card:before { content: "\f11f"; }
+  .flaticon-028-coins:before { content: "\f120"; }
+  .flaticon-029-watch:before { content: "\f121"; }
+  .flaticon-2991867:before { content: "\f122"; }
+  .flaticon-030-carrier:before { content: "\f123"; }
+  .flaticon-031-debit-card:before { content: "\f124"; }
+  .flaticon-032-calendar:before { content: "\f125"; }
+  .flaticon-2991871:before { content: "\f126"; }
+  .flaticon-2991872:before { content: "\f127"; }
+  .flaticon-033-business-center:before { content: "\f128"; }
+  .flaticon-034-bank:before { content: "\f129"; }
+  .flaticon-035-profit:before { content: "\f12a"; }
+  .flaticon-036-profit-and-loss:before { content: "\f12b"; }
+  .flaticon-2991877:before { content: "\f12c"; }
+  .flaticon-037-give-money:before { content: "\f12d"; }
+  .flaticon-038-agreement:before { content: "\f12e"; }
+  .flaticon-2991880:before { content: "\f12f"; }
+  
+  
+
+
+/*** 
+
+===============
+	Reset Css
+===============
+
+ ***/
+ 
+ * {
+	margin:0px;
+	padding:0px;
+	border:none;
+	outline:none;
+}
+
+
+
+
+/*** 
+
+===================
+	Global Settings
+===================
+
+ ***/
+ body {
+	font-size:16px;
+	color: $cl-black;
+	line-height:1.7em;
+	font-weight:400;
+	background: $cl-white;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	font-family: $main-font;
+}
+
+a{
+	text-decoration:none;
+	cursor: pointer;
+	transition: .3s;
+	color:$cl-black;
+}
+
+button,
+a:hover,a:focus,a:visited{
+	text-decoration:none;
+	outline:none !important;	
+	transition: .3s;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	position:relative;
+	font-weight: 700;
+	margin:0px;
+	background:none;
+	line-height:1.2em;
+	font-family: $headding-font;
+}
+
+h1{
+  font-size: 52px;
+}
+
+h2{
+  font-size:40px;
+}
+
+h3{
+  font-size:30px;
+}
+
+h4{
+  font-size:24px;
+}
+
+h5{
+  font-size:20px;
+}
+
+h6{
+  font-size:18px;
+}
+
+input,button,select,textarea{
+  outline: none;
+}
+
+textarea{
+  overflow:hidden;
+}
+
+p{
+  position:relative;
+  font-family: $main-font;
+}
+
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+
+  display:inline-block;
+  max-width:100%;
+}
+
+ul,li{
+	list-style:none;
+	padding:0px;
+	margin:0px;	
+}
+
+img{
+	display:inline-block;
+	max-width:100%;
+}
+
+
+::selection {
+	background-color: #0E8A701a;
+	color: $cl-primary;
+}
+
+-moz-::selection {
+	background-color: #0E8A701a;
+	color: $cl-primary;
+}
+
+-webkit-::selection {
+	background-color: #0E8A701a;
+	color: $cl-primary;
+}
+
+-o-::selection {
+	background-color: #0E8A701a;
+	color: $cl-primary;
+}
+
+
+.page-wrapper {
+  position:relative;
+  margin:0 auto;
+  width:100%;
+  min-width:300px;
+  overflow: hidden;
+}
+
+.btn.focus, .btn:focus {
+	box-shadow: none;
+}
+
+.border-0 {
+	border: 0px;
+}
+
+.radius-50 {
+	border-radius: 50px !important;
+}
+
+.centered{
+	text-align:center;
+}
