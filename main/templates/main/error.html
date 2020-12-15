@@ -1,0 +1,39 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+ 
+    <!--breadcrumb area-->
+    <section class="breadcrumb-area gradient-overlay" style="background: url('/static/main/assets/images/banner/5.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="site-breadcrumb">
+                        <h2>Error Page</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/breadcrumb area-->
+
+
+    <!--404 Section -->
+    <section class="section-padding blue-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="section-title cl-white">
+                        <h2 class="mb-20">Opps! Page not found</h2>
+                        <p class="mb-30">The page you are looking for has been moved to another directory, or does not exist.</p>
+                        <a href="{% url 'index' %}" class="bttn-small btn-fill">Back to home</a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 centered">
+                    <img src="{% static '/main/assets/images/404.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </section><!--/404 Section-->
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <!--breadcrumb area-->
+    <section class="breadcrumb-area gradient-overlay" style="background: url('/static/main/assets/images/banner/5.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="site-breadcrumb">
+                        <h2>Login Account</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/breadcrumb area-->
+
+    <!--Login Section -->
+    <section class="section-padding blue-bg shaded-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 centered">
+                    <div class="section-title cl-white">
+                        <h4><span>New</span>Login account</h4>
+                        {% if message %}
+                            <h4>{{ message }}</h4>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12">
+                    <div class="site-form mb-30">
+                        <form action="{% url 'login' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                    <input type="text" name="username" placeholder="Username" required>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                    <input type="password" name="password" placeholder="Password" required>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                    <button type="submit" class="bttn-mid btn-fill w-100">Login Account</button>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                    <div class="extra-links">
+                                        <a href="{% url 'register' %}" class="cl-white">Create new account</a>
+                                        <a href="{% url 'recover' %}" class="cl-white">Forget Password?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/Login Section-->
+{% endblock %}

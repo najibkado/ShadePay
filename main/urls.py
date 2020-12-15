@@ -11,5 +11,14 @@ urlpatterns = [
     path("terms", views.terms, name="terms"),
     path("protection", views.protection, name="protection"),
     path("overview", views.overview, name="overview"),
-    path("construction", views.construction, name="construction")
+    path("construction", views.construction, name="construction"),
+    path("register", views.register, name="register"),
+    path("login", views.login_view, name="login"),
+    path("recover_password", views.recover, name="recover"),
+    path("verify/<str:uuid>/<str:token>", views.verify, name="verify"),
+    path("password-reset/<str:uuid>/<str:token>", views.password_reset, name="password-reset"),
+    path("dashboard", views.dashboard, name="dashboard"),
+    path("logout", views.logout_view, name="logout"),
+    path("input-validator", views.input_validator, name="input-validator"),
+    path("<str:notfound>", views.notfound, name="notfound")
 ]
