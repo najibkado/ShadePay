@@ -1,5 +1,4 @@
 from django.urls import path
-from . import views
 from main.views import transactions, dashboard, support, auth, index, construction, about, fees, how, contact, privacy, terms, protection, overview, notfound
 
 urlpatterns = [
