@@ -60,7 +60,7 @@ font-family: 'Jost', sans-serif;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  @    font-face {
+  @font-face {
         font-family: "Flaticon";
         src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
     }
@@ -1693,6 +1693,7 @@ Footer Area
 */
 .footer-area {
     position: relative;
+    bottom: 0;
     overflow: hidden;
     z-index: 1;
 }

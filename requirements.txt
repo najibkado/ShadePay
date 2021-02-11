@@ -1,2 +1,7 @@
 python-decouple
 six
+djangorestframework
+markdown
+django-filter
+requests
+pycrypto

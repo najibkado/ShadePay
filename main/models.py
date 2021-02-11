@@ -8,12 +8,12 @@ class User(AbstractUser):
 class AdditionalInformation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profile")
     BVN = models.IntegerField(unique=True)
-    DOB = models.CharField(max_length=255, blank=True)
-    mobile = models.CharField(max_length=255, blank=True)
+    DOB = models.CharField(max_length=255)
+    mobile = models.CharField(max_length=255)
     is_verified = models.BooleanField(default=False)
     billing_address = models.CharField(max_length=255)
     shipping_address = models.CharField(max_length=255) 
-    state = models.CharField(max_length=255, blank=True)
+    state = models.CharField(max_length=255)
     country = models.CharField(max_length=255, default='Nigeria')
     is_deleted = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now=True)
@@ -73,21 +73,44 @@ class Transaction(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender_transactions")
     reciever = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reciever_transactions")
     transaction_code = models.IntegerField()
-    amount = models.DecimalField(max_digits=255, decimal_places=3)
-    sender_individual_wallet = models.ForeignKey(IndividualWallet, blank=True, on_delete=models.CASCADE, related_name="source_individual_wallet")
-    sender_saving_wallet = models.ForeignKey(SavingWallet, blank=True, on_delete=models.CASCADE, related_name="source_saving_wallet")
-    sender_business_wallet = models.ForeignKey(BusinessWallet, blank=True, on_delete=models.CASCADE, related_name="source_business_wallet")
-    reciever_individual_wallet = models.ForeignKey(IndividualWallet, blank=True, on_delete=models.CASCADE, related_name="destination_individual_wallet")
-    reciever_saving_wallet = models.ForeignKey(SavingWallet, blank=True, on_delete=models.CASCADE, related_name="destination_saving_wallet")
-    reciever_business_wallet = models.ForeignKey(BusinessWallet, blank=True, on_delete=models.CASCADE, related_name="destination_business_wallet")
-    sender_card = models.ForeignKey(Card, on_delete=models.CASCADE, blank=True, related_name="source_card")
-    sender_bank = models.ForeignKey(Bank, on_delete=models.CASCADE, blank=True, related_name="source_bank")
-    reciever_bank = models.ForeignKey(Bank, on_delete=models.CASCADE, blank=True, related_name="destination_bank")
+    amount = models.DecimalField(max_digits=255, decimal_places=2)
+    sender_individual_wallet = models.ForeignKey(IndividualWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="source_individual_wallet")
+    sender_saving_wallet = models.ForeignKey(SavingWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="source_saving_wallet")
+    sender_business_wallet = models.ForeignKey(BusinessWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="source_business_wallet")
+    reciever_individual_wallet = models.ForeignKey(IndividualWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="destination_individual_wallet")
+    reciever_saving_wallet = models.ForeignKey(SavingWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="destination_saving_wallet")
+    reciever_business_wallet = models.ForeignKey(BusinessWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="destination_business_wallet")
+    sender_card = models.ForeignKey(Card, on_delete=models.CASCADE, null=True, blank=True, related_name="source_card")
+    sender_bank = models.ForeignKey(Bank, on_delete=models.CASCADE, null=True, blank=True, related_name="source_bank")
+    reciever_bank = models.ForeignKey(Bank, on_delete=models.CASCADE, null=True, blank=True, related_name="destination_bank")
     currency = models.CharField(max_length=255)
     status_code = models.IntegerField()
     status = models.CharField(max_length=255)
     date = models.DateTimeField(auto_now=True)
 
+    def serialize(self):
+        """
+        Returns serializable transaction data
+        """
+        return {
+            "transaction_id" : self.id,
+            "sender_id" : self.sender.id,
+            "sender" : self.sender.first_name + " " + self.sender.last_name,
+            "reciever" : self.reciever.first_name + " " + self.reciever.last_name,
+            "status_code" : self.status_code,
+            "amount" : self.amount,
+            "currency" : self.currency,
+            "date" : self.date,
+            "status" : self.status
+        }
+
+class ContactUs(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    message = models.CharField(max_length=255)
+    date = models.DateTimeField(auto_now=True)
 
 class Argument(models.Model):
     pass

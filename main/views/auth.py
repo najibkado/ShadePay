@@ -3,8 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.db import IntegrityError
 from django.core.mail import EmailMessage
 from django.urls import reverse
-from .models import User, IndividualWallet, SavingWallet, BusinessWallet, Card, Bank, AdditionalInformation, Developer, Transaction, Logs
-from .utils import email_token_generator
+from main.models import User, IndividualWallet, SavingWallet, BusinessWallet, Card, Bank, AdditionalInformation, Developer, Transaction, Logs
+from main.utils import email_token_generator
 from django.contrib.auth import authenticate, login, logout
 from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
@@ -15,30 +15,9 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 import threading
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.core.paginator import Paginator
 
-"""
-Transaction Codes
-01 = Send Internal With Individual Wallet
-02 = Request Internal with Individual Wallet
-03 = Pay With Card
-04 = Pay With Bank
-05 = Deposit To Individual Wallet
-06 = Deposit To Saving Wallet
-07 = Deposit To Business Wallet
-08 = Pay With Individual Wallet
-09 = Pay With Business Wallet
-10 = Withdraw From Saving Wallet
-11 = Withdraw From Business Wallet
-"""
 
-"""
-Transaction Status Codes
-01 = Success
-02 = Canceled 
-03 = Refund
-04 = Hold
-05 = Review
-"""
 
 class EmailThread(threading.Thread):
     """
@@ -57,74 +36,6 @@ class EmailThread(threading.Thread):
         """
         self.email.send(fail_silently=False)
 
-
-
-# Create your views here.
-def index(request):
-    """
-    Index page
-    """
-    return render(request, "main/index.html")
-
-def construction(request):
-    """
-    Site under construction page
-    """
-    return render(request, "main/construction.html")
-
-def about(request):
-    """
-    About us page
-    """
-    return render(request, "main/about.html")
-
-def fees(request):
-    """
-    Fees and pricing page
-    """
-    return render(request, "main/fees.html")
-
-def how(request):
-    """
-    How it works page
-    """
-    return render(request, "main/how.html")
-
-def contact(request):
-    """
-    Contact page
-    """
-    return render(request, "main/contact.html")
-
-def privacy(request):
-    """
-    Privacy policy page
-    """
-    return render(request, "main/privacy.html")
-
-def terms(request):
-    """
-    Terms and Services Page
-    """
-    return render(request, "main/terms.html")
-
-def protection(request):
-    """
-    Customer protection policy page
-    """
-    return render(request, "main/protection.html")
-
-def overview(request):
-    """
-    Developer overview page
-    """
-    return render(request, "main/overview.html")
-
-def notfound(request, notfound):
-    """
-    Error 404! page
-    """
-    return render(request, "main/error.html")
 
 def register(request):
     """
@@ -297,7 +208,7 @@ def logout_view(request):
 def recover(request):
     """
     Recover password page. This loads the forget.html page
-    And generates a reset password and send to user email
+    And generates a reset password link and send to user email
     """
     if request.method == "GET":
         return render(request, "main/forget.html")
@@ -420,111 +331,3 @@ def password_reset(request, uuid, token):
             return render(request, "main/reset.html", {
                 "message": "Unable to reset your password. Try again!"
             })
-
-@csrf_exempt
-def input_validator(request):
-    """
-    Username and Email validator when registering a user
-    It returns a JSON response
-    """
-    if request.method == "POST":
-
-        #Load json data
-        data = json.loads(request.body)
-
-        #Get data type
-        input_type = str(data.get("type")).lower()     
-
-        #Check if data type is username
-        if input_type == "username":
-
-            username = data.get("username")
-
-            if username.isalnum():
-
-                if User.objects.filter(username=username).exists():
-                    return JsonResponse({
-                        "message": "Invalid username"
-                        })
-                else:
-                    return JsonResponse({
-                        "message":"Valid username"
-                    })
-            else:
-
-                return JsonResponse({
-                    "message": "Invalid username"
-                })
-            
-        
-        #Check if data type is email
-        if input_type == "email":
-            
-            email = data.get("email")
-
-            try:
-
-                User.objects.get(email=email)
-                
-                return JsonResponse({
-                    "message": "Invalid email"
-                })      
-                
-            except User.DoesNotExist:
-
-                return JsonResponse({
-                    "message": "Valid email"
-                })
-
-    #Exit
-    return JsonResponse({
-        "message": "Invalid username"
-    })
-
-
-@login_required
-def dashboard(request):
-    """
-    User dashboard
-    """
-    #Get logged in User
-    loggedin_user = request.user
-
-    #Get available wallets
-
-    #Check if individual wallet exist
-    try:
-        individual_wallet = IndividualWallet.objects.get(user=loggedin_user)
-    except IndividualWallet.DoesNotExist:
-        individual_wallet = None
-
-    #Check if saving wallet exist
-    try:
-        saving_wallet = SavingWallet.objects.get(user=loggedin_user)
-    except SavingWallet.DoesNotExist:
-        saving_wallet = None
-
-    #Check if business wallet exist
-    try:
-        business_wallet = BusinessWallet.objects.get(user=loggedin_user)
-    except BusinessWallet.DoesNotExist:
-        business_wallet = None
-
-    if individual_wallet is not None and saving_wallet is not None and business_wallet is not None:
-        contex = {
-            "name" : loggedin_user.first_name + " " + loggedin_user.last_name,
-            "individual_wallet" : individual_wallet,
-            "saving_wallet" : saving_wallet,
-            "business_wallet" : business_wallet
-        }
-    else:
-        contex = {
-            "name" : loggedin_user.first_name + " " + loggedin_user.last_name,
-            "individual_wallet" : individual_wallet,
-            "saving_wallet" : saving_wallet,
-            "business_wallet" : business_wallet
-        }
-    
-
-
-    return render(request, "main/dashboard.html", contex)
