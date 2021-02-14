@@ -57,7 +57,7 @@ def contact(request):
             
             #Send User Email Verification Mail
             subject = 'ShadePay Contact Services'
-            body = 'Your message has been recieved! \n You will get a response from one of our team members shortly! \n Kind regards'
+            body = 'Your message has been recieved! \nYou will get a response from one of our team members shortly! \n\nKind regards\nShadePay Team'
             sender_email = 'services@shadepay.com'
             
             new_email = EmailMessage(

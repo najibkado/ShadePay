@@ -112,7 +112,7 @@ def register(request):
 
             #Send User Email Verification Mail
             subject = 'ShadePay Account Activation'
-            body = 'Hello ' + new_user.username + ', Please click on the link below to verify your account.\n' + verification_url + '\n' + '\n' + '\n' + 'Thankyou for choosing ShadePay'
+            body = 'Hello ' + new_user.username + ', Please click on the link below to verify your account.\n'+verification_url+'\n' + '\n' + '\n'+'Thankyou for choosing ShadePay'
             sender_email = 'services@shadepay.com'
             
             new_email = EmailMessage(
@@ -238,7 +238,7 @@ def recover(request):
 
             #Send User Email Verification Mail
             subject = 'Password reset'
-            body = 'Hello ' + user.username + '\n Please click on the link below to reset your password.\n' + reset_url + '\n' + '\n' + '\n' + 'Thankyou for choosing ShadePay'
+            body = 'Hello ' + user.username + '\nPlease click on the link below to reset your password.\n' + reset_url +'\n' + '\n' + '\n'+'Thankyou for choosing ShadePay'
             sender_email = 'services@shadepay.com'
             
             reset_email = EmailMessage(
