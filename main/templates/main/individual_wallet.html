@@ -1,0 +1,61 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+
+  <!--Dashboard top-->  
+  <section class="section-padding-sm-2 blue-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-20">
+                <div class="card">
+                    <div class="card-header">
+                        Individual Wallet
+                    </div>
+                    <div class="card-body">
+                        <p>Address: <strong>{{address}}</strong></p>
+                        <p>Name: <strong>{{name}}</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6 mb-20">
+                <div class="card">
+                    <div class="card-header">
+                        Balance
+                    </div>
+                    <div class="card-body">
+                        <p>Amount: <strong>{{balance}}</strong></p>
+                        <p>Currency: <strong>NGN</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--Dashboard top-->  
+
+
+<section class="section-padding-sm-2 blue-bg-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-20">
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 from decouple import config
 import os
+from django.contrib import messages
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,6 +29,15 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['www.shadepay.com', '127.0.0.1']
+SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', cast=bool)
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', cast=bool)
+SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', cast=int)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', cast=bool)
+SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', cast=bool)
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', cast=bool)
+SECURE_REFERRER_POLICY = config('SECURE_REFERRER_POLICY')
+SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', cast=bool)
+
 
 
 # Application definition
@@ -35,6 +45,7 @@ ALLOWED_HOSTS = ['www.shadepay.com', '127.0.0.1']
 INSTALLED_APPS = [
     'api',
     'main',
+    'shadeboard',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -135,3 +146,20 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = config('EMAIL_BACKEND')
+
+#Messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
+
+#DRF
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES' : ('api.views.backends.JWTAuth', )
+}
+
+#Geopath
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
+
+#Login
+LOGIN_REDIRECT_URL = '/login'
+LOGIN_URL = '/login/'

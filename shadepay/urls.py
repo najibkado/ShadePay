@@ -19,5 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('shadeadmin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('shadeboard/', include('shadeboard.urls')),
     path('', include('main.urls')),   
 ]

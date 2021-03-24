@@ -3,73 +3,60 @@
 
 {% block body %}
 
-    <!--Hero Area-->
-    <section class="hero-slider owl-carousel">
-        <div class="single-slide gradient-overlay" style="background: url('/static/main/assets/images/banner/2.jpg') no-repeat center center;">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 centered">
-                        <div class="hero-content">
-                            <h4>ShadePay</h4>
-                            <h1>Lets you pay for goods online without worries</h1>
-                            <div class="hero-btn">
-                                <a href="{% url 'about' %}" class="bttn-mid btn-fill mr-10">Learn more</a>
-                                <!-- <a href="{% url 'register' %}" class="bttn-mid btn-blu">Get started now</a> -->
-                            </div>
-                        </div>
+ <!--Hero Area-->
+ <section class="hero-area gradient-overlay" style="background: url('/static/main/assets/images/banner/2.jpg') no-repeat center center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                <div class="hero-content">
+                    <h4><span>Shadepay</span> supports online businesses</h4>
+                    <h1>Receive Payments With Shadepay </h1>
+                    <ul>
+                        <li>Let's you pay for goods online</li>
+                        <li>Let's you have multiple wallets</li>
+                        <li>Let's you make payments with customer protection</li>
+                        <li>Let's you receive payments to nigeria from anywhere around the world</li>
+                    </ul>
+                    <div class="hero-btn">
+                        <a href="{% url 'about' %}" class="bttn-mid btn-fill"><i class="ti-crown"></i> Learn More</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="single-slide gradient-overlay" style="background: url('/static/main/assets/images/banner/4.jpg') no-repeat center center;">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 centered">
-                        <div class="hero-content">
-                            <h4>Secured nigerian payment system</h4>
-                            <h1>Send payments to nigeria from anywhere</h1>
-                            <div class="hero-btn">
-                                <a href="{% url 'about' %}" class="bttn-mid btn-fill mr-10">Learn more</a>
-                                <!-- <a href="{% url 'register' %}" class="bttn-mid btn-blu">Get started now</a> -->
-                            </div>
+            <div class="col-xl-4 col-lg-6 col-md-5 col-sm-12">
+                <form action="#" class="hero-form">
+                    <h4>Quote your payments</h4>
+                    <label for="quoteAmount">Your Buyer Pays</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroupPrepend">NGN</span>
                         </div>
+                        <input type="text" class="form-control" id="quoteAmount" aria-describedby="inputGroupPrepend" required>
                     </div>
-                </div>
+                    <label for="quoteAmountReceive">You Receive</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroupPrepend2">NGN</span>
+                        </div>
+                        <input type="text" class="form-control" id="quoteAmountReceive" aria-describedby="inputGroupPrepend2" required>
+                    </div>
+                    <p id="Quotefees"></p> <p>The current fee is 1.25% + NGN 20</p>
+                    <p>All fees are capped at NGN 3,500</p>
+                    <button class="bttn-mid btn-fill w-100 mt-20"><i class="ti-check"></i>Continue</button>
+                </form>
             </div>
         </div>
-        <div class="single-slide gradient-overlay" style="background: url('/static/main/assets/images/banner/3.jpg') no-repeat center center;">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 centered">
-                        <div class="hero-content">
-                            <h4>ShadePay for Individuals</h4>
-                            <h1>Make payments with customer protection</h1>
-                            <div class="hero-btn">
-                                <a href="{% url 'about' %}" class="bttn-mid btn-fill mr-10">Learn more</a>
-                                <!-- <a href="{% url 'register' %}" class="bttn-mid btn-blu">Get started now</a> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="single-slide gradient-overlay" style="background: url('/static/main/assets/images/banner/1.jpg') no-repeat center center;">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 centered">
-                        <div class="hero-content">
-                            <h4>ShadePay for Business</h4>
-                            <h1>Recieve payments online from anywhere</h1>
-                            <div class="hero-btn">
-                                <a href="{% url 'about' %}" class="bttn-mid btn-fill mr-10">Learn more</a>
-                                <!-- <a href="{% url 'register' %}" class="bttn-mid btn-blu">Get started now</a> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!--/Hero Area-->
+    </div>
+    <div class="hero-bg-alimation">
+        <ul class="box">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</section><!--/Hero Area-->
 
     <!--Why Choose Us-->
     <section class="section-padding-3 blue-bg">
@@ -361,6 +348,45 @@
         </div>
     </section><!--/How It works-->    
 
+
+<section class="section-padding-3 blue-bg-2 dots-after">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <div class="single-payments">
+                    <a href=""><img src="{% static '/main/assets/images/payments/verve-logo.png' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <div class="single-payments">
+                    <a href=""><img src="{% static '/main/assets/images/payments/master-visa.png' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <div class="single-payments">
+                    <a href=""><img src="{% static '/main/assets/images/payments/verified.png' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <div class="single-payments">
+                    <a href=""><img src="{% static '/main/assets/images/payattitude/1.png' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <div class="single-payments">
+                    <a href=""><img src="{% static '/main/assets/images/payments/shadepay_b.png' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <div class="single-payments">
+                    <a href=""><img src="assets/images/payments/shadepay_b.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--/Payments Area-->
+
+
         <!--newslatter-->
         <section class="section-padding blue-bg-2">
             <div class="container">
@@ -373,8 +399,9 @@
                             <div class="row justify-content-center">
                                 <div class="col-xl-6 col-lg-6 col-sm-12">
                                     <div class="newslatter">
-                                        <form action="#">
-                                            <input type="email" placeholder="Email Address" required>
+                                        <form action="{% url 'newsletter' %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="email" name="email" placeholder="Email Address" required>
                                             <button type="submit">Subscribe</button>
                                         </form>
                                         <div class="social">
@@ -409,6 +436,8 @@
 
         </div>
     </section><!--/User Signup Section-->  
+
+    <script src="{% static '/main/assets/js/page/index.js' %}"></script>
 
     
 {% endblock %}

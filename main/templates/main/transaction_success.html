@@ -1,0 +1,37 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+  <!--Dashboard Bottom-->  
+  <section class="section-padding-sm-2 blue-bg-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                <div class="card">
+                    <div class="card-header">
+                        Topup
+                    </div>
+                    <div class="card-body">
+                        <div class="sent-success">
+                            <div class="icon">
+                                <i class="ti-check"></i>
+                            </div>
+                            <h3>Topup Successfull</h3>
+                            <p>You've Successfully topped money to your wallet</p>
+                            <a href="{% url 'dashboard' %}" class="bttn-small btn-fill">Back to dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</section><!--Dashboard Bottom-->
+{% endblock %}

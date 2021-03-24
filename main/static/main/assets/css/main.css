@@ -3487,6 +3487,7 @@ call-to-action
     color: #28df99;
 }
 
+
 .last-winners .single-winner .content {
     float: left;
     width: calc(100% - 60px);
@@ -4557,6 +4558,20 @@ Dashboard Profile
     color: #28df99;
 }
 
+.thumb {
+    height: 100px;
+    width: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    margin-right: 24px;
+    float: left;
+    color: #28df99;
+    margin-bottom: 20px;
+}
+
 /*
 
 ===============================
@@ -4905,3 +4920,50 @@ Sidebar
 .site-sidebar .single-sidebar a img {
     width: 100%;
 }
+
+/*
+
+===============================
+Form Check
+===============================
+
+*/
+
+.form-check{
+    color: #ffffff;
+}
+
+/*
+
+===============================
+Pay Attitude Input Field
+===============================
+
+*/
+
+.payattitude-input { 
+    position: relative; 
+}
+
+.payattitude-input input { 
+    border:none; 
+    background-color: #f1f1f1;
+    display:block; 
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.payattitude-input img { 
+    position: absolute; 
+    top: 1rem; 
+    right: 1.5rem;
+    height: 1.5em;
+}
+
+/*
+
+===============================
+Modal Header Images
+===============================
+
+*/

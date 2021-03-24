@@ -1,0 +1,89 @@
+{% extends "shadeboard/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- Page-Title -->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">Admin portal</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Shadepay</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">admin</a></li>
+                                    <li class="breadcrumb-item active">{{request.user}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Recipts</h4>
+                        <p class="text-muted mb-0">All recipts </p>
+                    </div><!--end card-header-->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0 table-centered">
+                                <thead>
+                                <tr>
+                                    <th>Recipt ID</th>
+                                    <th>recipt for</th>
+                                    <th>reference</th>
+                                    <th>transaction id</th>
+                                    <th>Amount</th>
+                                    <th>Transaction Status</th>
+                                    <th class="text-right">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for r in recipts %}
+                                <tr>
+                                    <td>{{r.id}}</td>
+                                    <td>{{r.email_for}}</td>
+                                    <td>{{r.trx_ref}}</td>
+                                    <td>{{r.trx_id}}</td>
+                                    <td>NGN {{r.amount}}</td>
+                                    {% if r.status == "APPROVED" %}
+                                    <td><span class="badge badge-soft-success">{{r.status}}</span></td>
+                                    {% elif r.status == "Declined" %}
+                                    <td><span class="badge badge-soft-danger">{{r.status}}</span></td>
+                                    {% elif r.status == "Initiated" %}
+                                    <td><span class="badge badge-soft-primary">{{r.status}}</span></td>
+                                    {% else %}
+                                    <td><span class="badge badge-soft-warning">{{r.status}}</span></td>
+                                    {% endif %}
+                                    <td class="text-right">
+                                        <div class="dropdown d-inline-block">
+                                            <a class="dropdown-toggle arrow-none" id="dLabel11" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                                <i class="las la-ellipsis-v font-20 text-muted"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel11">
+                                                <a class="dropdown-item" href="{% url 'shadeboard:recipt' r.id %}">View Details</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table><!--end /table-->
+                        </div><!--end /tableresponsive-->
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div> <!-- end col -->
+            </div> <!-- end row -->
+    </div>
+</div>
+   
+{% endblock %}

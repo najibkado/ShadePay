@@ -111,6 +111,22 @@ def dashboard(request):
 
         transactions.sort(key=key, reverse=True)
 
+    #Remove duplicates using set function
+    t = set()
+    for i in transactions:
+        t.add(i)
+
+    transactions = list(t)
+
+    def key(tran):
+            """
+            Returns sorting key
+            """
+            return tran.date
+
+    transactions.sort(key=key, reverse=True)
+
+    transactions = transactions[0:10] if len(transactions) >= 10 else transactions
 
     """
     Wallet status availability codes

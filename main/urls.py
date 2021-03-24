@@ -1,5 +1,7 @@
-from django.urls import path
-from main.views import transactions, dashboard, support, auth, index, construction, about, fees, how, contact, privacy, terms, protection, overview, notfound
+from django.urls import path, include
+from main.views import transactions, dashboard, support, auth, index, construction, about, fees, how, contact, profile
+from main.views import products, usage, privacy, terms, protection, overview, notfound, additional, wallet, news, checkout
+from main.views import individual_wallet, saving_wallet
 
 urlpatterns = [
     path("", index.index, name="index"),
@@ -10,17 +12,41 @@ urlpatterns = [
     path("privacy", privacy.privacy, name="privacy"),
     path("terms", terms.terms, name="terms"),
     path("protection", protection.protection, name="protection"),
+    path("products/<str:id>", products.products_view, name="products"),
+    path("usage/<str:id>", usage.usage_view, name="usage"),
+    path("news", news.newsletter, name="newsletter"),
     path("overview", overview.overview, name="overview"),
     path("construction", construction.construction, name="construction"),
     path("register", auth.register, name="register"),
-    path("login", auth.login_view, name="login"),
+    path("login/", auth.login_view, name="login"),
     path("recover_password", auth.recover, name="recover"),
     path("verify/<str:uuid>/<str:token>", auth.verify, name="verify"),
     path("password-reset/<str:uuid>/<str:token>", auth.password_reset, name="password-reset"),
-    path("dashboard", dashboard.dashboard, name="dashboard"),
-    path("transactions", transactions.transactions, name="transactions"),
     path("logout", auth.logout_view, name="logout"),
+    path("unverified", auth.unverified, name="unverified"),
+    path("dashboard", dashboard.dashboard, name="dashboard"),
+    path("profile", profile.profile_view, name="profile"),
+    path("profile/deactivate", profile.deactivate_account, name="deactivate-account"),
+    path("profile/update/<str:id>", profile.update_profile, name="update-profile"),
+    path("topup", transactions.topUp, name="topup"),
+    path("topup/return/<int:id>", transactions.returnTopUpUrl, name="returnUrl"),
+    path("transactions", transactions.transactions, name="transactions"),
+    path("transactions/error", transactions.transaction_error, name="error"),
+    path("transactions/success", transactions.transaction_success, name="success"),
+    path("transactions/update/<int:id>/<int:rtype>", transactions.update_transaction, name="update_transaction"),
+    path("request-funds", transactions.request_funds, name="request_funds"),
+    path("cardless", transactions.cardless, name="cardless"),
+    path("cardless/return/<int:id>", transactions.returnCardlessUrl, name="cardlessReturn"),
+    path("send", transactions.send, name="send"),
+    path("merchant/c/checkout/<int:id>", checkout.card_checkout, name="card_checkout"),
+    path("additional_information", additional.additional_information, name="additional_information"),
+    path("wallet/create", wallet.create_wallet, name="new-wallet"),
+    path("wallet/create/business", wallet.create_business_wallet, name="create-business-wallet"),
+    path("wallets", wallet.wallets_view, name="wallets"),
+    path("wallets/individual-wallet", individual_wallet.individual_wallet, name="individual-wallet"),
+    path("wallets/saving-wallet", saving_wallet.saving_wallet, name="saving-wallet"),
     path("input-validator", support.input_validator, name="input-validator"),
     path("transaction_details/<int:id>", support.transaction_details, name="transaction_details"),
+    path("wallet/name/<int:wallet_type>", support.wallet_name, name="wallet_name"),
     path("<str:notfound>", notfound.notfound, name="notfound")
 ]

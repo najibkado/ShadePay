@@ -16,8 +16,13 @@ import threading
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
+from django.contrib import messages
+from main.utils import validate
+from main.utils import get_geol, get_client, get_ip
+from geopy.geocoders import Nominatim
 
 
+geolocator = Nominatim(user_agent="shadepay")
 
 class EmailThread(threading.Thread):
     """
@@ -58,34 +63,35 @@ def register(request):
 
         #Verify User Data
         if first_name == "" or last_name == "" or email == "" or username == "" or password == "" or re_password == "":
-            return render(request, "main/register.html", {
-                "message": "Fields can't be empty!"
-            })
+            messages.error(request, "Fields can't be empty")
+            return HttpResponseRedirect(reverse("register"))
+
+        if validate(email):
+            pass
+        else:
+            messages.error(request, "Please enter a correct email")
+            return HttpResponseRedirect(reverse("register"))
 
         #Verify User Password
         if password != re_password:
-            return render(request, "main/register.html", {
-                "message": "Password did not match!"
-            })
+            messages.error(request, "Passworrd did not match")
+            return HttpResponseRedirect(reverse("register"))
 
         #Verify Password Length
         if len(password) < 6:
-            return render(request, "main/register.html", {
-                "message": "Passowrd too short!"
-            })
+            messages.error(request, "Password too short")
+            return HttpResponseRedirect(reverse("register"))
 
         #Ensure User Email Does not Exist
         if User.objects.filter(email=email).exists():
 
-            return render(request, "main/register.html", {
-                "message": "Unable to create your account. Try again later!"
-            })
+            messages.error(request, "Unable to create account, please try again")
+            return HttpResponseRedirect(reverse("register"))
 
         elif User.objects.filter(username=username).exists():
             
-            return render(request, "main/register.html", {
-                "message": "Unable to create your account. Try again later!"
-            })
+            messages.error(request, "Unable to create account, please try again")
+            return HttpResponseRedirect(reverse("register"))
 
         else:
             #Create New User
@@ -99,9 +105,8 @@ def register(request):
                 )
                 new_user.save()
             except IntegrityError:
-                return render(request, "main/register.html", {
-                    "message": "Unable to create your account. Try again later!"
-                })
+                messages.error(request, "Unable to create account, please try again")
+                return HttpResponseRedirect(reverse("register"))
 
             #Generate verification link
             uuid = urlsafe_base64_encode(force_bytes(new_user.pk))
@@ -127,6 +132,38 @@ def register(request):
             #Login User
             login(request, new_user)
 
+            ip = get_ip(request)
+            lon, lat, city, country = get_geol(ip)
+
+            try:
+                location = geolocator.geocode(city)
+            except:
+                location = "unknown"
+
+            client=get_client(request)
+
+            try:
+                log = Logs(
+                    user=new_user,
+                    ip_address=ip,
+                    login_location=location,
+                    lon=lon,
+                    lat=lat,
+                    login_device=client
+                )
+
+                log.save()
+            except IntegrityError:
+                log = Logs(
+                    user=new_user,
+                    ip_address="unknown",
+                    login_location="unknown",
+                    lon="unknown",
+                    lat="unknown",
+                    login_device=client
+                )
+                log.save()
+
             #Redirect User To Dashboard
 
             return HttpResponseRedirect(reverse("dashboard"))
@@ -148,13 +185,16 @@ def verify(request, uuid, token):
             user.is_active = True
             user.save()
 
+
             return HttpResponseRedirect(reverse('login'))
 
     except User.DoesNotExist: #Will be able crash the system if it gets a different exception
-        return render(request, "main/register.html", {
-            "message": "User not found, register as a new user please"
-        })
-    
+        messages.error(request, "User not found, register as a new user please")
+        return HttpResponseRedirect(reverse("register"))
+
+@login_required
+def unverified(request):
+    return render(request, "main/unverified.html")
 
 def login_view(request):
     """
@@ -162,6 +202,7 @@ def login_view(request):
     """
 
     if request.method == "GET":
+
         return render(request, "main/login.html")
 
     if request.method == "POST":
@@ -174,9 +215,8 @@ def login_view(request):
         if username == "" or password == "":
 
             #Return an error message if not verified
-            return render(request, "main/login.html", {
-                "message": "Fields can't be empty!"
-            })
+            messages.error(request, "Enter username and password")
+            return HttpResponseRedirect(reverse("login"))
 
          #Authenticate user
         authenticated_user = authenticate(request, username=username, password=password)
@@ -187,15 +227,47 @@ def login_view(request):
             #login user
             login(request, authenticated_user)
 
+            #Log User Session
+            ip = get_ip(request)
+            lon, lat, city, country = get_geol(ip)
+
+            try:
+                location = geolocator.geocode(city)
+            except:
+                location = "unknown"
+
+            client=get_client(request)
+
+            try:
+                log = Logs(
+                    user=authenticated_user,
+                    ip_address=ip,
+                    login_location=location,
+                    lon=lon,
+                    lat=lat,
+                    login_device=client
+                )
+
+                log.save()
+            except IntegrityError:
+                log = Logs(
+                    user=authenticated_user,
+                    ip_address="unknown",
+                    login_location="unknown",
+                    lon="unknown",
+                    lat="unknown",
+                    login_device=client
+                )
+                log.save()
+
             #Redirect user to dashboard
             return HttpResponseRedirect(reverse("dashboard"))
 
         else:
 
             #Return an error message if not verified
-            return render(request, "main/login.html", {
-                "message": "Invalid user credentials!"
-            })
+            messages.error(request, "Invalid user credentials")
+            return HttpResponseRedirect(reverse("login"))
             
 @login_required
 def logout_view(request):
@@ -225,9 +297,8 @@ def recover(request):
             try:
                 user = User.objects.get(email=email)
             except User.DoesNotExist:
-                return render(request, "main/forget.html", {
-                    "message": "Recovery link has been sent to your email "
-                })
+                messages.success(request, "Recovery link has been sent to your email.")
+                return HttpResponseRedirect(reverse("recover"))
 
             #Generate verification link
             uuid = urlsafe_base64_encode(force_bytes(user.pk))
@@ -250,15 +321,13 @@ def recover(request):
 
             EmailThread(reset_email).start()
 
-            return render(request, "main/forget.html", {
-                "message": "Email sent successfully"
-            })
+            messages.success(request, "Recovery link has been sent to your email.")
+            return HttpResponseRedirect(reverse("recover"))
 
         else:
 
-            return render(request, "main/forget.html", {
-                "message": "Enter a valid email!"
-            })
+            messages.error(request, "Enter a valid email.")
+            return HttpResponseRedirect(reverse("recover"))
 
 def password_reset(request, uuid, token):
     """
@@ -323,11 +392,9 @@ def password_reset(request, uuid, token):
 
             user.save()
 
-            return render(request, "main/login.html", {
-                "message": "Password reset successful. Login now!"
-            })
+            messages.success(request, "Password reset successful, Login")
+            return HttpResponseRedirect(reverse("login"))
 
         except User.DoesNotExist: #Will be able crash the system if it gets a different exception
-            return render(request, "main/reset.html", {
-                "message": "Unable to reset your password. Try again!"
-            })
+            messages.error(request, "Unable to reset your password, Get a recovery link again.")
+            return HttpResponseRedirect(reverse("recover"))

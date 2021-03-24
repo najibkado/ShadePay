@@ -1,0 +1,69 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<section class="section-padding-sm-2 blue-bg-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                <div class="card">
+                    <div class="card-header">
+                        New Wallet
+                    </div>
+                    <div class="card-body">
+                        <div class="site-form mb-30">
+                            <form action="{% url 'new-wallet' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-sm-12 mb-10">
+                                        <label for="wallet_selector">Select Wallet</label>
+                                        <select name="wallet-type" class="custom-select" id="wallet_selector">
+                                            <option value="">Select Wallet</option>
+                                            {% if status == 0 %}
+                                            <option value="001">Individual Wallet</option>
+                                            <option value="002">Saving Wallet</option>
+                                            <option value="003">Business Wallet</option>
+                                            {% elif status == 1 %}
+                                            {% elif status == 2 %}
+                                            <option value="002">Saving Wallet</option>
+                                            <option value="003">Business Wallet</option>
+                                            {% elif status == 3 %}
+                                            <option value="003">Business Wallet</option>
+                                            {% elif status == 4 %}
+                                            <option value="002">Saving Wallet</option>
+                                            {% elif status == 5 %}
+                                            <option value="001">Individual Wallet</option>
+                                            <option value="002">Saving Wallet</option>
+                                            {% elif status == 6 %}
+                                            <option value="001">Individual Wallet</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-sm-12 mb-10">
+                                        <label for="fee-generate">Note</label>
+                                        <div class="card text-white bg-secondary mb-3" style="max-width: 100%;">
+                                            <div class="card-body">
+                                              <h5 id="wallet-note-title" class="card-title">Additional Information</h5>
+                                              <p id="wallet_note" class="card-text">Goto <a href="{% url 'wallets' %}">wallets</a> to find additional information regarding the type of wallet you want to create.</p>
+                                            </div>
+                                          </div>
+                                        <!-- <label for="fee-generate">Note</label>
+                                        <input type="text" id="wallet_note" readonly="readonly" value="12" id="fee-generate" required> -->
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-sm-12">
+                                        <button type="submit" class="bttn-mid btn-fill">Create Wallet</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{% static '/main/assets/js/page/wallet.js' %}"></script>
+
+{% endblock %}

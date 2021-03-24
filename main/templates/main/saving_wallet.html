@@ -1,0 +1,90 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+
+  <!--Dashboard top-->  
+  <section class="section-padding-sm-2 blue-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-20">
+                <div class="card">
+                    <div class="card-header">
+                        Saving Wallet
+                    </div>
+                    <div class="card-body">
+                        <p>Address: <strong>{{address}}</strong></p>
+                        <p>Name: <strong>{{name}}</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6 mb-20">
+                <div class="card">
+                    <div class="card-header">
+                        Balance
+                    </div>
+                    <div class="card-body">
+                        <p>Amount: <strong>{{balance}}</strong></p>
+                        <p>Currency: <strong>NGN</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--Dashboard top-->  
+
+
+<section class="section-padding-sm-2 blue-bg-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-20">
+                <div class="card">
+                    <div class="card-header">
+                        Saving Plan
+                    </div>
+                    <div class="card-body">
+                        <p>Active: <strong>{{is_active}}</strong></p>
+                        <p>Withdrawal Date: <strong>{{date}}</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6 mb-20">
+                <div class="card">
+                    <div class="card-header">
+                        Set Plan Date
+                    </div>
+                    <div class="card-body">
+                        <div class="site-form ">
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-sm-12">
+                                        <input type="text" id="datepicker" placeholder="1/31/2020" required>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-sm-12">
+                                        <button type="submit" class="bttn-mid btn-fill">Save date</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

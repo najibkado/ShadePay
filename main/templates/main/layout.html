@@ -63,16 +63,42 @@
                     {% if user.is_authenticated %}
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto">
-                            <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="{% url 'construction' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wallet</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{% url 'construction' %}">Individual</a></li>
+                                    {% if status %}
+                                        {% if status == 1 %}
+                                        <li><a class="dropdown-item" href="{% url 'individual-wallet' %}">Individual</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'saving-wallet' %}">Savings</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'shadeboard:index' %}">Business</a></li>
+                                        {% elif status == 2 %}
+                                        <li><a class="dropdown-item" href="{% url 'individual-wallet' %}">Individual</a></li>
+                                        {% elif status == 3 %}
+                                        <li><a class="dropdown-item" href="{% url 'individual-wallet' %}">Individual</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'saving-wallet' %}">Savings</a></li>
+                                        {% elif status == 4 %}
+                                        <li><a class="dropdown-item" href="{% url 'individual-wallet' %}">Individual</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'shadeboard:index' %}">Business</a></li>
+                                        {% elif status == 5 %}
+                                        <li><a class="dropdown-item" href="{% url 'shadeboard:index' %}">Business</a></li>
+                                        {% elif status == 6 %}
+                                        <li><a class="dropdown-item" href="{% url 'saving-wallet' %}">Savings</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'shadeboard:index' %}">Business</a></li>
+                                        {% endif %}
+                                    {% else %}
+                                        <li><a class="dropdown-item" href="{% url 'additional_information' %}">Create a new wallet</a></li>
+                                    {% endif %}
                                 </ul>
                             </li>
 
                             <li class="nav-item"><a class="nav-link" href="{% url 'transactions' %}">Transactions</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'cardless' %}">Cardless topup</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+                            {% if user.is_staff %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:adminportal' %}">Admin</a></li>
+                            {% endif %}
                         </ul>
                         <div class="header-btn justify-content-end">
                             <a href="{% url 'logout' %}" class="bttn-small btn-fill">Logout</a>
@@ -82,15 +108,35 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto">
                             <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Why ShadePay</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'fees' %}">Fees & Pricing</a></li>
-        
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'products' 1 %}">Shadepay Payments</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' 2 %}">Card Payments</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' 3 %}">Shadepay Billing</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' 4 %}">Card Billing</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' 5 %}">Shadepay Integrate</a></li>
+                                </ul>
+                            </li>
                             
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="{% url 'construction' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Developers</a>
+                                <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usage</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'usage' 1 %}">Savings</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'usage' 2 %}">Online Business</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'usage' 3 %}">E-commerce</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'usage' 4 %}">Platform</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'usage' 5 %}">Software as a Service</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'usage' 6 %}">Financial Technology</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'usage' 7 %}">Others</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Developers</a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{% url 'overview' %}">Overview</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'construction' %}">Documentation</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'api:index' %}">Documentation</a></li>
                                 </ul>
                             </li>
 
@@ -101,15 +147,21 @@
                                     <li><a class="dropdown-item" href="{% url 'contact' %}">Contact</a></li>
                                 </ul>
                             </li>
+
+                            <li class="nav-item"><a class="nav-link" href="{% url 'wallets' %}">Wallets</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'fees' %}">Pricing</a></li>
+
                         </ul>
                         <div class="header-btn justify-content-end">
-                            <!-- <a href="{% url 'login' %}" class="bttn-small btn-fill">Account Login</a> -->
+                            <a href="{% url 'login' %}" class="bttn-small btn-fill">Account Login</a>
                         </div>
                     </div>
                     {% endif %}
                 </div>
             </nav>
         </header><!--/Header Area-->
+
+    {% include "main/partials/messages.html" %}
     
     {% block body %}
 

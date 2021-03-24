@@ -1,0 +1,269 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block body %}
+    <!--Dashboard top-->  
+    <section class="section-padding-sm-2 blue-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                    <div class="card mb-30">
+                        <div class="card-header">
+                            Profile Info 
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-card-body">
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <div class="thumb">{{initials}}</div>
+                                    </div> 
+                                    <div class="col-sm-9">
+                                        <div class="row">
+                                            <div class="col-sm-3 col-3">
+                                                <div class="left-info text-right">
+                                                    <p>Name</p>
+                                                    <p>Username</p>
+                                                    <p>Address</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9 col-9">
+                                                <div class="right-info">
+                                                    <p>{{name}}</p>
+                                                    <p>{{username}}</p>
+                                                    <p>{{address}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--Dashboard top-->  
+
+     <!--Dashboard Bottom-->  
+     <section class="section-padding-sm-2 blue-bg-2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                    <div class="card mb-30">
+                        <div class="card-header">
+                            Wallets Info 
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-card-body">
+                                <div class="row">
+                                    <div class="col-sm-3 col-3">
+                                        <div class="left-info text-right">
+                                            <p>Individual Wallet</p>
+                                            <p>Business Wallet</p>
+                                            <p>Saving Wallet</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 col-9">
+                                        <div class="right-info">
+                                            <p>{{individual_wallet}}</p>
+                                            <p>{{business_wallet}}</p>
+                                            <p>{{saving_wallet}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-30">
+                        <div class="card-header">
+                            Contact Info <a href="{% url 'update-profile' 1 %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Contact info"><i class="ti-pencil"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-card-body">
+                                <div class="row">
+                                    <div class="col-sm-3 col-3">
+                                        <div class="left-info text-right">
+                                            <p>Primary Email</p>
+                                            <p>Mobile Number</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 col-9">
+                                        <div class="right-info">
+                                            <p>{{email}}</p>
+                                            <p>{{mobile}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-30">
+                        <div class="card-header">
+                            Shipping Info<a href="{% url 'update-profile' 2 %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Shipping info"><i class="ti-pencil"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-card-body">
+                                <div class="row">
+                                    <div class="col-sm-3 col-3">
+                                        <div class="left-info text-right">
+                                            <p>Shipping Address</p>
+                                            <p>Billing Address</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 col-9">
+                                        <div class="right-info">
+                                            <p>{{address}}</p>
+                                            <p>{{billing_address}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-30">
+                        <div class="card-header">
+                            User Verification Info<a href="{% url 'update-profile' 3 %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Verification info"><i class="ti-pencil"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-card-body">
+                                <div class="row">
+                                    <div class="col-sm-3 col-3">
+                                        <div class="left-info text-right">
+                                            <p>National ID</p>
+                                            <p>Verification Status</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 col-9">
+                                        <div class="right-info">
+                                            {% if nin == "" %}
+                                                <p><i class="ti-close cl-red"></i> {{nin}}</p>
+                                            {% else %}
+                                                <p>{{nin}}</p>
+                                            {% endif %}
+
+                                            {% if is_nin_verified == "Verified" %}
+                                                <p><i class="ti-heart cl-primary"></i> {{is_nin_verified}}</p>
+                                            {% else %}
+                                                <p><i class="ti-close cl-red"></i> {{is_nin_verified}}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-30">
+                        <div class="card-header">
+                            Account Settings
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-card-body">
+                                <div class="row">
+                                    <div class="col-sm-3 col-3">
+                                        <div class="left-info text-right">
+                                            <p>Account Status</p>
+                                            <p>Language</p>
+                                            <!-- <p>Time Zone</p>
+                                            <p>Account Type</p> -->
+                                            <!-- <p>Logged In Devices</p> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 col-9">
+                                        <div class="right-info">
+                                            {% if activation_status == "Active" %}
+                                            <p><i class="ti-heart cl-primary"></i> {{activation_status}}</p>
+                                            {% else %}
+                                            <p><i class="ti-close cl-red"></i> {{activation_status}}</p>
+                                            {% endif %}
+                                            <p>English</p>
+                                            <!-- <p>(GMT-04: 00) Washington, DC</p>
+                                            <p>Personal</p> -->
+                                            <!-- <p>Desktop Chrome Windows 10</p>
+                                            <p>iPhone X</p>
+                                            <p>Mozila Firefox</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            Account Deactivation
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-card-body">
+                                <div class="row">
+                                    <div class="col-sm-3 col-3">
+                                        <div class="left-info text-right">
+                                            <p>Want to Deactivate?</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 col-9">
+                                        <div class="right-info">
+                                            <a data-toggle="modal" data-target="#deactivateModalCenter" href=""><i class="ti-close cl-red"></i> Deactivate Account</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--Dashboard Bottom-->
+
+
+            <!-- Request Funds Modal -->
+            <div class="modal fade" id="deactivateModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="row no-gutters">
+                            <div class="col-sm-12 d-flex justify-content-center border blue-bg-2 py-4">
+        
+                                <div class="row justify-content-center">
+                                    <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                                        <div class="card">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Deactivate Account</h5>
+                                                <button style="color: #ffffff;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="site-form mb-30">
+                                                    <form action="{% url 'deactivate-account' %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <div class="row">
+                                                            <div class="col-xl-12 col-lg-12 col-sm-12 mb-10">
+                                                                <label for="deactivate-account">To confirm the deactivation of your account, please enter your username <strong> <span style="color: red;">{{request.user}}</span></strong></label>
+                                                                <input type="text" name="username" placeholder="username" id="deactivate-account" required>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-sm-12 mb-10">
+                                                                <label for="">By deactivating your account, you will not be able to access any of shadepay services. We are sad to see you go.</label>
+                                                                <input type="hidden" value="{{request.user}}" id="username">
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-sm-12 mb-10">
+                                                                <label id="username-message" for="" style="color: red;"></label>
+                                                            </div>
+        
+                                                            <div class="col-xl-9 col-lg-9 col-sm-12">
+                                                                <button type="submit" id="btn-deactivate" class="bttn-mid btn-fill">Deactivate</button>
+                                                                <a id="request-error" class="link ml-4"></a>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /Request Funds Modal -->
+
+    <script src="{% static '/main/assets/js/page/profile.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+
+    <!-- Affiliate Area -->
+    <section class="section-padding blue-bg ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                    <div class="site-form mb-30">
+                        <div class="section-title centered">
+                            <h4><span>Business Information</span>Submit the following information before you can create a business wallet</h4>
+                        </div>
+                        <form action="{% url 'create-business-wallet' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                    <input type="text" name="b-name" placeholder="Business Name" required>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <input type="email" name="b-email" placeholder="Business Email" required>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <input type="phone" name="b-phone" placeholder="Business Phone" required>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                    <input type="text" name="b-addr" placeholder="Business Address" required>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                    <input type="text" name="b-nature" placeholder="Nature of Business">
+                                </div>
+                                
+                                <div class="col-xl-12 col-lg-12 col-sm-12 form-check">
+                                    <br>
+                                    <input class="form-check-input" name="agree" type="checkbox" value="1" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        I accept your terms and conditions
+                                    </label>
+                                    <p style="color: #ffffff;">By checking the above button, it means you have read and accept our terms and conditions of services.</p>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <button type="submit" class="bttn-small btn-fill">Create Business Wallet</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /Affiliate Area -->
+
+{% endblock %}

@@ -3,6 +3,9 @@ from main.models import ContactUs
 from django.db import IntegrityError
 from django.core.mail import EmailMessage
 import threading
+from django.contrib import messages
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 class EmailThread(threading.Thread):
     """
@@ -50,9 +53,8 @@ def contact(request):
 
             except IntegrityError:
 
-                return render(request, "main/contact.html", {
-                    "message" : "failed to send your please try again"
-                })
+                messages.error(request, "failed to send your please try again")
+                return HttpResponseRedirect(reverse("contact"))
 
             
             #Send User Email Verification Mail
@@ -69,9 +71,9 @@ def contact(request):
 
             EmailThread(new_email).start()
 
-            return render(request, "main/contact.html", {
-                "message" : "Message sent!"
-            })
+            messages.success(request, "Your message has been sent successfully")
+            return HttpResponseRedirect(reverse("contact"))
+
            
 
     return render(request, "main/contact.html")

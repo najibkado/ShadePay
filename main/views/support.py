@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.db import IntegrityError
 from django.core.mail import EmailMessage
 from django.urls import reverse
-from main.models import User, IndividualWallet, SavingWallet, BusinessWallet, Card, Bank, AdditionalInformation, Developer, Transaction, Logs
+from main.models import User, IndividualWallet, SavingWallet, BusinessWallet, Card, Bank, AdditionalInformation, Developer, Transaction, DeveloperInformation, Logs
 from main.utils import email_token_generator
 from django.contrib.auth import authenticate, login, logout
 from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
@@ -100,3 +100,42 @@ def transaction_details(request, id):
         return JsonResponse({
             "message": "failed"
         })
+
+def wallet_name(request, wallet_type):
+
+    addr = request.GET["addr"]
+
+    if wallet_type == 1:
+        try:
+            wallet = IndividualWallet.objects.get(address=addr)
+        except IndividualWallet.DoesNotExist:
+            wallet = None
+    elif wallet_type == 2:
+        try:
+            wallet = SavingWallet.objects.get(address=addr)
+        except SavingWallet.DoesNotExist:
+            wallet = None
+    elif wallet_type == 3:
+        try:
+            wallet = BusinessWallet.objects.get(address=addr)
+            try:
+                dev = Developer.objects.get(wallet=wallet)
+                try:
+                    info = DeveloperInformation.objects.get(developer=dev)
+                except DeveloperInformation.DoesNotExist:
+                    wallet = None
+                return JsonResponse({"name": info.business_name })
+            except Developer.DoesNotExist:
+                wallet = None
+        except BusinessWallet.DoesNotExist:
+            wallet = None
+    else:
+        wallet = None
+
+    if wallet is not None:
+        name = wallet.user.first_name + " " + wallet.user.last_name
+        print(wallet.address)
+    else:
+        name = "Unverified, Please write a correct recipient address"
+
+    return JsonResponse({"name": name})

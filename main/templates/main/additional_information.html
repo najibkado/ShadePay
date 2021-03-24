@@ -1,0 +1,96 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+
+    <!-- Affiliate Area -->
+    <section class="section-padding blue-bg ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                    <div class="site-form mb-30">
+                        <div class="section-title centered">
+                            <h4><span>Additional Information</span>Submit the following information before you can create a wallet</h4>
+                        </div>
+                        <form action="{% url 'additional_information' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <input type="text" name="nin" placeholder="National ID Number" required>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <input type="phone" name="phone" placeholder="Phone" required>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                    <input type="text" name="billing-addr" placeholder="Billing Address" required>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                    <input type="text" name="shipping-addr" placeholder="Shipping Address">
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <select name="state" class="custom-select" id="country">
+                                        <option value="Abuja">Abuja</option>
+                                        <option value="Abia">Abia</option>
+                                        <option value="Adamawa">Adamawa</option>
+                                        <option value="Akwa Ibom">Akwa Ibom</option>
+                                        <option value="Anambra">Anambra</option>
+                                        <option value="Bauchi">Bauchi</option>
+                                        <option value="Bayelsa">Bayelsa</option>
+                                        <option value="Benue">Benue</option>
+                                        <option value="Borno">Borno</option>
+                                        <option value="Cross River">Cross River</option>
+                                        <option value="Delta">Delta</option>
+                                        <option value="Ebonyi">Ebonyi</option>
+                                        <option value="Edo">Edo</option>
+                                        <option value="Ekiti">Ekiti</option>
+                                        <option value="Enugu">Enugu</option>
+                                        <option value="Gombe">Gombe</option>
+                                        <option value="Imo">Imo</option>
+                                        <option value="Jigawa">Jigawa</option>
+                                        <option value="Kaduna">Kaduna</option>
+                                        <option value="Kano">Kano</option>
+                                        <option value="Katsina">Katsina</option>
+                                        <option value="Kebbi">Kebbi</option>
+                                        <option value="Kogi">Kogi</option>
+                                        <option value="Kwara">Kwara</option>
+                                        <option value="Lagos">Lagos</option>
+                                        <option value="Nassarawa">Nassarawa</option>
+                                        <option value="Niger">Niger</option>
+                                        <option value="Ogun">Ogun</option>
+                                        <option value="Ondo">Ondo</option>
+                                        <option value="Osun">Osun</option>
+                                        <option value="Oyo">Oyo</option>
+                                        <option value="Plateau">Plateau</option>
+                                        <option value="Rivers">Rivers</option>
+                                        <option value="Sokoto">Sokoto</option>
+                                        <option value="Taraba">Taraba</option>
+                                        <option value="Yobe">Yobe</option>
+                                        <option value="Zamfara">Zamfara</option>
+                                    </select>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <select name="country" class="custom-select" id="country">
+                                        <option value="">Nigeria</option>
+                                    </select>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-sm-12 form-check">
+                                    <br>
+                                    <input class="form-check-input" name="agree" type="checkbox" value="1" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        I accept your terms and conditions
+                                    </label>
+                                    <p style="color: #ffffff;">By checking the above button, it means you have read and accept our terms and conditions of services.</p>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <button type="submit" class="bttn-small btn-fill">Submit information</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /Affiliate Area -->
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<section class="section-padding-sm-2 blue-bg-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                <label for="fee-generate">Note</label>
+                <div class="card text-white mb-3" style="max-width: 100%; background-color: #28df99;">
+                    <div class="card-body">
+                      <h5 id="wallet-note-title" class="card-title">Shadepay cardless topup is powered by PayAttitude</h5>
+                      <p id="wallet_note" class="card-text">If you don't have a PayAttitude account, please go to <a style="color: blue;" href="https://payattitude.com/" target="_blank">payattitude site</a> to create an account, and come back to use this service </p>
+                    </div>
+                  </div>
+                <!-- <label for="fee-generate">Note</label>
+                <input type="text" id="wallet_note" readonly="readonly" value="12" id="fee-generate" required> -->
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                <div class="card">
+                    <div class="card-header">
+                        Cardless Top Up 
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="site-form mb-30">
+                            <form action="{% url 'cardless' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-sm-12 mb-10">
+                                        <label for="deposit-amount">Amount</label>
+                                        <input type="text" name="amount" id="deposit-amount" required>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-sm-12 mb-10">
+                                        <label for="deposit-currency">Wallet</label>
+                                        <select name="wallet" class="custom-select" id="deposit-currency">
+                                            {% if status == 0 %}
+                                            {% elif status == 1 %}
+                                            <option value="1">Individual Wallet</option>
+                                            <option value="2">Saving Wallet</option>
+                                            <option value="3">Business Wallet</option>
+                                            {% elif status == 2 %}
+                                            <option value="1">Individual Wallet</option>
+                                            {% elif status == 3 %}
+                                            <option value="1">Individual Wallet</option>
+                                            <option value="2">Saving Wallet</option>
+                                            {% elif status == 4 %}
+                                            <option value="1">Individual Wallet</option>
+                                            <option value="3">Business Wallet</option>
+                                            {% elif status == 5 %}
+                                            <option value="3">Business Wallet</option>
+                                            {% elif status == 6 %}
+                                            <option value="2">Saving Wallet</option>
+                                            <option value="3">Business Wallet</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-sm-12 mb-10 payattitude-input">
+                                        <label for="deposit-currency">PayAttitude Mobile</label>
+                                    </div>
+                                    
+                                    <div class="col-xl-12 col-lg-12 col-sm-12 mb-10 payattitude-input">
+                                        <input type="text" name="mobile" id="fee-generate" required>
+                                        <img src="{% static '/main/assets/images/payattitude/1.png' %}" alt="Topup with PayAttitude">
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-sm-12">
+                                        <button type="submit" class="bttn-mid btn-fill" alt="Topup with PayAttitude" srcset="">Top Up</button>
+                                        <!-- <button type="submit" class="bttn-mid btn-fill" style="background-color: white;"><img src="{% static '/main/assets/images/payattitude/1.png' %}" alt="Topup with PayAttitude" srcset=""></button> -->
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</section>
+
+{% endblock %}
