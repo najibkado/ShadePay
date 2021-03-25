@@ -32,6 +32,29 @@ def index(request):
     })
 
 @login_required
+def apidetails(request):
+    loggedin_user = request.user 
+    try:
+        wallet = BusinessWallet.objects.get(user=loggedin_user)
+    except:
+        pass
+    
+    try:
+        dev = Developer.objects.get(wallet=wallet)
+    except Developer.DoesNotExist:
+        pass
+
+    try: 
+        dev_info = DeveloperInformation.objects.get(developer=dev)
+    except DeveloperInformation.DoesNotExist:
+        pass
+
+    return render(request, "shadeboard/apidetails.html", {
+        "dev": dev
+    })
+
+
+@login_required
 def admin(request):
     loggedin_user = request.user
 

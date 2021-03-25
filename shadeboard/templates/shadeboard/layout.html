@@ -54,6 +54,20 @@
                         </ul>
                     </li> 
                 </ul>
+
+                <hr>
+                
+                <ul class="metismenu left-sidenav-menu">
+                    <li class="menu-label mt-0">Main</li>
+                    <li>
+                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Business Wallet</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:index' %}"><i class="ti-control-record"></i>Overview</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:apidetails' %}"><i class="ti-control-record"></i>API</a></li>
+                        </ul>
+                    </li>    
+                </ul>
+
             </div>
             {% else %}
             <div class="menu-content h-100" data-simplebar>
@@ -63,6 +77,7 @@
                         <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Business Wallet</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
                             <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:index' %}"><i class="ti-control-record"></i>Overview</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:apidetails' %}"><i class="ti-control-record"></i>API</a></li>
                         </ul>
                     </li>    
                 </ul>
@@ -133,10 +148,13 @@
 
         <script src="{% static '/shadeboard/assets/plugins/apex-charts/apexcharts.min.js' %}"></script>
         <script src="{% static '/shadeboard/assets/pages/jquery.analytics_dashboard.init.js' %}"></script>
+        <script src="{% static '/shadeboard/assets/plugins/clipboard/clipboard.min.js' %}"></script>
+        <script src="{% static '/shadeboard/assets/pages/jquery.clipboard.init.js' %}"></script>
 
         <!-- App js -->
         <script src="{% static '/shadeboard/assets/js/app.js' %}"></script>
-        
+
+
     </body>
 
 </html>

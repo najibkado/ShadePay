@@ -3,6 +3,7 @@ from . import views
 app_name = "shadeboard"
 urlpatterns = [
     path('', views.index, name="index"),
+    path('apidetails', views.apidetails, name="apidetails"),
     path('adminportal', views.admin, name="adminportal"),
     path('adminportal/card-requests', views.card_requests, name="card-requests"),
     path('adminportal/card-requests/<int:id>', views.card_request, name="card-request"),

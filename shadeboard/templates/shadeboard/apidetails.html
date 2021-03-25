@@ -1,0 +1,64 @@
+{% extends 'shadeboard/layout.html' %}
+
+{% block body %}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- Page-Title -->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">Business Wallet</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Shadepay</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">shadeboard</a></li>
+                                    <li class="breadcrumb-item active">{{request.user}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <h5 class="mt-0 font-14"> Use your API key to request for payments. Don't share your API key with anyone.</h5>
+                        </li>
+                    </ul>
+                </div><!--end col-->
+            </div><!--end row-->
+
+
+        <div class="row">
+            <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">API KEY</h4>
+                    <p class="text-muted mb-0">Authorization: Bearer API KEY</p>
+                </div><!--end card-header-->
+                <div class="card-body">
+                    <p id="clipboardParagraph" class="border p-3">
+                        {{dev.secrete_key}}
+                    </p>
+                    <div class="mt-3">
+                            <button type="button" class="btn btn-secondary btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboardParagraph"><i class="far fa-copy mr-2"></i>Copy</button>
+                    </div>
+                </div><!--end card-body-->
+            </div><!--end card-->                          
+        </div> <!-- end col -->
+
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
