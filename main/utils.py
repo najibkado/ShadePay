@@ -15,7 +15,7 @@ class EmailVerificationTokenGenerator(PasswordResetTokenGenerator):
 email_token_generator = EmailVerificationTokenGenerator()
 
 def get_domain(request):
-    return "http://" + get_current_site(request).domain
+    return "https://" + get_current_site(request).domain
 
 def validate(e):
     try:
