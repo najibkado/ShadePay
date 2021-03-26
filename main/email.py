@@ -173,7 +173,7 @@ class EmailSender:
                 trx_id = "",
                 trx_date = context['trx_date'],
                 amount = decimal.Decimal(context['amount']),
-                charges = decimal.Decimal(context['charges']),
+                charges = 0,
                 reciever_wallet = context['reciever_wallet'],
                 reciever_amount = context['recieve_amount'],
                 status = context['status'],

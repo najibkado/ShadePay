@@ -273,8 +273,7 @@ def update_transaction(request, id, rtype):
                         )
                         missing_wallet_transaction.save()
                         messages.error(request, "Unable to find receiving wallet, Please contact us")
-                        return HttpResponseRedirect(reverse("error"))
-                    
+                        return HttpResponseRedirect(reverse("error"))  
                 else:
                     
                     #Save approved and unstored transactions for later process
@@ -826,7 +825,6 @@ def returnTopUpUrl(request, id):
 
         if requested_card_process.transaction_code == 25:
             #TODO: Review the implementation
-            print("Coming Here!")
             merchant_request = requested_card_process.merchant_request
             merchant_request.status = "failed"
             merchant_request.save()
