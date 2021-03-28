@@ -1984,9 +1984,30 @@ def request_funds(request):
                 status_code=1,
                 status="Success"
             )
-            if send_request.request_internal_indiv_to_indiv():
+            request_data = send_request.request_internal_indiv_to_indiv()
+            if request_data:
+                #Send email to request reciever 
+                request_email_body = {
+                    "sender": send_request.sender.first_name + " " + send_request.sender.last_name,
+                    "reciever": send_request.reciever.first_name + " " + send_request.reciever.last_name,
+                    "trx_date": request_data.date,
+                    "amount": request_data.amount,
+                    "reciever_wallet": sender_wallet.address,
+                    "recieve_amount": request_data.amount,
+                    "email_for": send_request.reciever.first_name + " " + send_request.reciever.last_name
+                }
+
+                n = EmailSender(
+                    "Request Alert",
+                    send_request.reciever.email,
+                    request_email_body
+                )
+
+                n.email_request()
+
                 messages.success(request, "Fund Request Sent Successfully")
                 return HttpResponseRedirect(reverse("dashboard"))
+
             else:
                 messages.error(request, "Unable to send your request at the moment, try again later")
                 return HttpResponseRedirect(reverse("dashboard"))
@@ -2003,7 +2024,26 @@ def request_funds(request):
                 status_code=1,
                 status="Success"
             )
-            if send_request.request_indiv_to_biz():
+            request_data = send_request.request_indiv_to_biz()
+            if request_data:
+                #Send email to request reciever 
+                request_email_body = {
+                    "sender": send_request.sender.first_name + " " + send_request.sender.last_name,
+                    "reciever": send_request.reciever.first_name + " " + send_request.reciever.last_name,
+                    "trx_date": request_data.date,
+                    "amount": request_data.amount,
+                    "reciever_wallet": sender_wallet.address,
+                    "recieve_amount": request_data.amount,
+                    "email_for": send_request.reciever.first_name + " " + send_request.reciever.last_name
+                }
+
+                n = EmailSender(
+                    "Request Alert",
+                    send_request.reciever.email,
+                    request_email_body
+                )
+
+                n.email_request()
                 messages.success(request, "Fund Request Sent Successfully")
                 return HttpResponseRedirect(reverse("dashboard"))
             else:
@@ -2022,7 +2062,26 @@ def request_funds(request):
                 status_code=1,
                 status="Success"
             )
-            if send_request.request_indiv_to_savin():
+            request_data = send_request.request_indiv_to_savin()
+            if request_data:
+                #Send email to request reciever 
+                request_email_body = {
+                    "sender": send_request.sender.first_name + " " + send_request.sender.last_name,
+                    "reciever": send_request.reciever.first_name + " " + send_request.reciever.last_name,
+                    "trx_date": request_data.date,
+                    "amount": request_data.amount,
+                    "reciever_wallet": sender_wallet.address,
+                    "recieve_amount": request_data.amount,
+                    "email_for": send_request.reciever.first_name + " " + send_request.reciever.last_name
+                }
+
+                n = EmailSender(
+                    "Request Alert",
+                    send_request.reciever.email,
+                    request_email_body
+                )
+
+                n.email_request()
                 messages.success(request, "Fund Request Sent Successfully")
                 return HttpResponseRedirect(reverse("dashboard"))
             else:
@@ -2041,7 +2100,26 @@ def request_funds(request):
                 status_code=1,
                 status="Success"
             )
-            if send_request.request_biz_to_biz():
+            request_data = send_request.request_biz_to_biz()
+            if request_data:
+                #Send email to request reciever 
+                request_email_body = {
+                    "sender": send_request.sender.first_name + " " + send_request.sender.last_name,
+                    "reciever": send_request.reciever.first_name + " " + send_request.reciever.last_name,
+                    "trx_date": request_data.date,
+                    "amount": request_data.amount,
+                    "reciever_wallet": sender_wallet.address,
+                    "recieve_amount": request_data.amount,
+                    "email_for": send_request.reciever.first_name + " " + send_request.reciever.last_name
+                }
+
+                n = EmailSender(
+                    "Request Alert",
+                    send_request.reciever.email,
+                    request_email_body
+                )
+
+                n.email_request()
                 messages.success(request, "Fund Request Sent Successfully")
                 return HttpResponseRedirect(reverse("dashboard"))
             else:
@@ -2061,7 +2139,26 @@ def request_funds(request):
                 status_code=1,
                 status="Success"
             )
-            if send_request.request_biz_to_savin():
+            request_data = send_request.request_biz_to_savin()
+            if request_data:
+                #Send email to request reciever 
+                request_email_body = {
+                    "sender": send_request.sender.first_name + " " + send_request.sender.last_name,
+                    "reciever": send_request.reciever.first_name + " " + send_request.reciever.last_name,
+                    "trx_date": request_data.date,
+                    "amount": request_data.amount,
+                    "reciever_wallet": sender_wallet.address,
+                    "recieve_amount": request_data.amount,
+                    "email_for": send_request.reciever.first_name + " " + send_request.reciever.last_name
+                }
+
+                n = EmailSender(
+                    "Request Alert",
+                    send_request.reciever.email,
+                    request_email_body
+                )
+
+                n.email_request()
                 messages.success(request, "Fund Request Sent Successfully")
                 return HttpResponseRedirect(reverse("dashboard"))
             else:
@@ -2080,7 +2177,26 @@ def request_funds(request):
                 status_code=1,
                 status="Success"
             )
-            if send_request.request_biz_to_indiv():
+            request_data = send_request.request_biz_to_indiv()
+            if request_data:
+                #Send email to request reciever 
+                request_email_body = {
+                    "sender": send_request.sender.first_name + " " + send_request.sender.last_name,
+                    "reciever": send_request.reciever.first_name + " " + send_request.reciever.last_name,
+                    "trx_date": request_data.date,
+                    "amount": request_data.amount,
+                    "reciever_wallet": sender_wallet.address,
+                    "recieve_amount": request_data.amount,
+                    "email_for": send_request.reciever.first_name + " " + send_request.reciever.last_name
+                }
+
+                n = EmailSender(
+                    "Request Alert",
+                    send_request.reciever.email,
+                    request_email_body
+                )
+
+                n.email_request()
                 messages.success(request, "Fund Request Sent Successfully")
                 return HttpResponseRedirect(reverse("dashboard"))
             else:
@@ -2099,7 +2215,26 @@ def request_funds(request):
                 status_code=1,
                 status="Success"
             )
-            if send_request.request_savin_to_indiv():
+            request_data = send_request.request_savin_to_indiv()
+            if request_data:
+                #Send email to request reciever 
+                request_email_body = {
+                    "sender": send_request.sender.first_name + " " + send_request.sender.last_name,
+                    "reciever": send_request.reciever.first_name + " " + send_request.reciever.last_name,
+                    "trx_date": request_data.date,
+                    "amount": request_data.amount,
+                    "reciever_wallet": sender_wallet.address,
+                    "recieve_amount": request_data.amount,
+                    "email_for": send_request.reciever.first_name + " " + send_request.reciever.last_name
+                }
+
+                n = EmailSender(
+                    "Request Alert",
+                    send_request.reciever.email,
+                    request_email_body
+                )
+
+                n.email_request()
                 messages.success(request, "Fund Request Sent Successfully")
                 return HttpResponseRedirect(reverse("dashboard"))
             else:
@@ -2118,7 +2253,26 @@ def request_funds(request):
                 status_code=1,
                 status="Success"
             )
-            if send_request.request_savin_to_biz():
+            request_data = send_request.request_savin_to_biz()
+            if request_data:
+                #Send email to request reciever 
+                request_email_body = {
+                    "sender": send_request.sender.first_name + " " + send_request.sender.last_name,
+                    "reciever": send_request.reciever.first_name + " " + send_request.reciever.last_name,
+                    "trx_date": request_data.date,
+                    "amount": request_data.amount,
+                    "reciever_wallet": sender_wallet.address,
+                    "recieve_amount": request_data.amount,
+                    "email_for": send_request.reciever.first_name + " " + send_request.reciever.last_name
+                }
+
+                n = EmailSender(
+                    "Request Alert",
+                    send_request.reciever.email,
+                    request_email_body
+                )
+
+                n.email_request()
                 messages.success(request, "Fund Request Sent Successfully")
                 return HttpResponseRedirect(reverse("dashboard"))
             else:
@@ -2137,7 +2291,26 @@ def request_funds(request):
                 status_code=1,
                 status="Success"
             )
-            if send_request.request_savin_to_savin():
+            request_data = send_request.request_savin_to_savin()
+            if request_data:
+                #Send email to request reciever 
+                request_email_body = {
+                    "sender": send_request.sender.first_name + " " + send_request.sender.last_name,
+                    "reciever": send_request.reciever.first_name + " " + send_request.reciever.last_name,
+                    "trx_date": request_data.date,
+                    "amount": request_data.amount,
+                    "reciever_wallet": sender_wallet.address,
+                    "recieve_amount": request_data.amount,
+                    "email_for": send_request.reciever.first_name + " " + send_request.reciever.last_name
+                }
+
+                n = EmailSender(
+                    "Request Alert",
+                    send_request.reciever.email,
+                    request_email_body
+                )
+
+                n.email_request()
                 messages.success(request, "Fund Request Sent Successfully")
                 return HttpResponseRedirect(reverse("dashboard"))
             else:

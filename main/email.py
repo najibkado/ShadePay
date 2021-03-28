@@ -188,3 +188,51 @@ class EmailSender:
             pass
 
         EmailThread(new_email).start()
+
+    def email_request(self):
+
+        self.subject = "Request Alert"
+
+        context = {
+            "sender": self.body['sender'],
+            "reciever": self.body['reciever'],
+            "trx_date": self.body['trx_date'],
+            "amount": self.body['amount'],
+            "reciever_wallet": self.body['reciever_wallet'],
+            "recieve_amount": self.body['recieve_amount'],
+            "email_for": self.body['email_for']
+        }
+
+        body = render_to_string('main/email/request.html', context)
+        
+        new_email = EmailMessage(
+            self.subject,
+            body,
+            self.email,
+            [self.reciever],
+        )
+        new_email.content_subtype = 'html'
+
+        try:
+            generate_recipt = Recipt(
+                sender = context['sender'],
+                reciever = context['reciever'],
+                trx_id = "",
+                trx_date = context['trx_date'],
+                amount = decimal.Decimal(context['amount']),
+                charges = 0,
+                reciever_wallet = context['reciever_wallet'],
+                reciever_amount = context['recieve_amount'],
+                status = "",
+                email_for = context['email_for'],
+                channel = "",
+                card = "",
+                mobile = "",
+                trx_ref = ""
+            )
+            generate_recipt.save()
+        except IntegrityError:
+            pass
+
+        EmailThread(new_email).start()
+

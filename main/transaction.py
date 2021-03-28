@@ -243,10 +243,14 @@ class Transaction:
                 reciever_individual_wallet = self.reciever_individual_wallet,
                 status_code = self.status_code,
                 status = self.status,
-                reference = self.ref
+                reference = self.ref,
+                rate_of_cost_of_transaction = "",
+                cost_of_transaction = 0,
+                rate_of_transaction_charges = 0,
+                transaction_charges = 0
             )
             new_request.save()
-            return True
+            return new_request
         except IntegrityError:
             return False
 
@@ -528,10 +532,14 @@ class Transaction:
                 reciever_business_wallet = self.reciever_business_wallet,
                 status_code = self.status_code,
                 status = self.status,
-                reference = self.ref
+                reference = self.ref,
+                rate_of_cost_of_transaction = "",
+                cost_of_transaction = 0,
+                rate_of_transaction_charges = 0,
+                transaction_charges = 0
             )
             new_request.save()
-            return True
+            return new_request
         except IntegrityError:
             return False
 
@@ -549,10 +557,14 @@ class Transaction:
                 reciever_business_wallet = self.reciever_business_wallet,
                 status_code = self.status_code,
                 status = self.status,
-                reference = self.ref
+                reference = self.ref,
+                rate_of_cost_of_transaction = "",
+                cost_of_transaction = 0,
+                rate_of_transaction_charges = 0,
+                transaction_charges = 0
             )
             new_request.save()
-            return True
+            return new_request
         except IntegrityError:
             return False
 
@@ -570,10 +582,14 @@ class Transaction:
                 reciever_individual_wallet = self.reciever_individual_wallet,
                 status_code = self.status_code,
                 status = self.status,
-                reference = self.ref
+                reference = self.ref,
+                rate_of_cost_of_transaction = "",
+                cost_of_transaction = 0,
+                rate_of_transaction_charges = 0,
+                transaction_charges = 0
             )
             new_request.save()
-            return True
+            return new_request
         except IntegrityError:
             return False
 
@@ -744,10 +760,14 @@ class Transaction:
                 reciever_saving_wallet = self.reciever_saving_wallet,
                 status_code = self.status_code,
                 status = self.status,
-                reference = self.ref
+                reference = self.ref,
+                rate_of_cost_of_transaction = "",
+                cost_of_transaction = 0,
+                rate_of_transaction_charges = 0,
+                transaction_charges = 0
             )
             new_request.save()
-            return True
+            return new_request
         except IntegrityError:
             return False
 
@@ -765,10 +785,14 @@ class Transaction:
                 reciever_saving_wallet = self.reciever_saving_wallet,
                 status_code = self.status_code,
                 status = self.status,
-                reference = self.ref
+                reference = self.ref,
+                rate_of_cost_of_transaction = "",
+                cost_of_transaction = 0,
+                rate_of_transaction_charges = 0,
+                transaction_charges = 0
             )
             new_request.save()
-            return True
+            return new_request
         except IntegrityError:
             return False
 
@@ -786,10 +810,14 @@ class Transaction:
                 reciever_individual_wallet = self.reciever_individual_wallet,
                 status_code = self.status_code,
                 status = self.status,
-                reference = self.ref
+                reference = self.ref,
+                rate_of_cost_of_transaction = "",
+                cost_of_transaction = 0,
+                rate_of_transaction_charges = 0,
+                transaction_charges = 0
             )
             new_request.save()
-            return True
+            return new_request
         except IntegrityError:
             return False
 
@@ -807,10 +835,14 @@ class Transaction:
                 reciever_business_wallet = self.reciever_business_wallet,
                 status_code = self.status_code,
                 status = self.status,
-                reference = self.ref
+                reference = self.ref,
+                rate_of_cost_of_transaction = "",
+                cost_of_transaction = 0,
+                rate_of_transaction_charges = 0,
+                transaction_charges = 0
             )
             new_request.save()
-            return True
+            return new_request
         except IntegrityError:
             return False
 
@@ -828,10 +860,14 @@ class Transaction:
                 reciever_saving_wallet = self.reciever_saving_wallet,
                 status_code = self.status_code,
                 status = self.status,
-                reference = self.ref
+                reference = self.ref,
+                rate_of_cost_of_transaction = "",
+                cost_of_transaction = 0,
+                rate_of_transaction_charges = 0,
+                transaction_charges = 0
             )
             new_request.save()
-            return True
+            return new_request
         except IntegrityError:
             return False
 
