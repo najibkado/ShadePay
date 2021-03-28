@@ -166,8 +166,6 @@ def transactions(request):
 
         page = int(requested_transaction_page)
 
-        print(paginated_transactions.page_range)
-
         #if requested page exceeds number of pages
         if page <= paginated_transactions.num_pages:
 
@@ -195,7 +193,6 @@ def update_transaction(request, id, rtype):
         response = requests.get(f"https://test.payarena.com/Status/{ref}")
         if response.status_code == 200:
             response = response.json()
-            print(response['Status'])
             if response['Status'] == "Approved" or response['Status'] == "approved" or response['Status'] == "APPROVED":
                 return True
 

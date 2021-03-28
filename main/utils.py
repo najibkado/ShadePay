@@ -28,8 +28,11 @@ def get_ip(req):
     
     try:
         x_http = req.META.get('HTTP_X_FORWARDER_FOR') 
+        j = req.META.get('HTTP_X_REAL_IP')
 
-        if x_http:
+        if j:
+            ip = j
+        elif x_http:
             ip = x_http.split(",")[0]
         else:
             ip = req.META.get('REMOTE_ADDR')
