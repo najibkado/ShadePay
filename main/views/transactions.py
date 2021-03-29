@@ -834,6 +834,7 @@ def returnTopUpUrl(request, id):
             response = requests.post(merchant_request.returnUrl, data=data)
             return response
         else:
+            print("Here rn")
             messages.error(request, "Unable to process your transaction at the moment")
             return HttpResponseRedirect(reverse("error"))
     

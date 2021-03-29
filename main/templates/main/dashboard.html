@@ -39,20 +39,8 @@
         <section class="section-padding-sm-2 blue-bg-2">
             <div class="container">
                 <div class="row justify-content-center">
-
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-20">
-                        <div class="card mb-30">
-                            <div class="card-header">
-                                Cards and Banks
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><i class="ti-check cl-primary"></i>Cards and Banks here!</li>
-                                <li class="list-group-item"><a href="{% url 'construction' %}"><i class="ti-plus"></i> Link a Card or an Account</a></li>
-                            </ul>
-                        </div>
-                    </div>
                     
-                    <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-20">
                         <div class="transaction-list table-responsive">
                             <h3> <span style="color: aliceblue; margin: 15%;"> Your recent transactions will show here!</span> </h3>
                             </div>
@@ -119,49 +107,7 @@
           <section class="section-padding-sm-2 blue-bg-2">
             <div class="container">
                 <div class="row justify-content-center">
-
-                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-20">
-                        <div class="card mb-30">
-                            <div class="card-header">
-                                Banks
-                            </div>
-                            <ul class="list-group list-group-flush">
-
-                                {% if cardsAndBanksStatus == 0 %}
-
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i>Cards and Banks here!</li>
-
-                                {% elif cardsAndBanksStatus == 1 %}
-
-                                    {% for bank in banks %}
-                                        <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 2 %}
-
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 3 %}
-
-                                    {% for bank in banks %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                {% endif %}
-
-                                <li class="list-group-item"><a href="{% url 'construction' %}"><i class="ti-plus"></i> Link a Card or an Account</a></li>
-                            </ul>
-                        </div>
-                        </div>
-                    
-                        <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-20">
                             <div class="transaction-list table-responsive">
                                 {% include 'main/partials/transaction_table.html' %}
                                 <div class="centered mt-30">
@@ -231,49 +177,7 @@
           <section class="section-padding-sm-2 blue-bg-2">
             <div class="container">
                 <div class="row justify-content-center">
-
-                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-20">
-                        <div class="card mb-30">
-                            <div class="card-header">
-                                Cards and Banks
-                            </div>
-                            <ul class="list-group list-group-flush">
-
-                                {% if cardsAndBanksStatus == 0 %}
-
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i>Cards and Banks here!</li>
-
-                                {% elif cardsAndBanksStatus == 1 %}
-
-                                    {% for bank in banks %}
-                                        <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 2 %}
-
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 3 %}
-
-                                    {% for bank in banks %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                {% endif %}
-
-                                <li class="list-group-item"><a href="{% url 'construction' %}"><i class="ti-plus"></i> Link a Card or an Account</a></li>
-                            </ul>
-                        </div>
-                        </div>
-                    
-                        <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-20">
                             <div class="transaction-list table-responsive">
                                 {% include 'main/partials/transaction_table.html' %}
                                 <div class="centered mt-30">
@@ -347,49 +251,8 @@
           <section class="section-padding-sm-2 blue-bg-2">
             <div class="container">
                 <div class="row justify-content-center">
-
-                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-20">
-                        <div class="card mb-30">
-                            <div class="card-header">
-                                Cards and Banks
-                            </div>
-                            <ul class="list-group list-group-flush">
-
-                                {% if cardsAndBanksStatus == 0 %}
-
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i>Cards and Banks here!</li>
-
-                                {% elif cardsAndBanksStatus == 1 %}
-
-                                    {% for bank in banks %}
-                                        <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 2 %}
-
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 3 %}
-
-                                    {% for bank in banks %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                {% endif %}
-
-                                <li class="list-group-item"><a href="{% url 'construction' %}"><i class="ti-plus"></i> Link a Card or an Account</a></li>
-                            </ul>
-                        </div>
-                        </div>
                     
-                        <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-20">
                             <div class="transaction-list table-responsive">
                                 {% include 'main/partials/transaction_table.html' %}
                                 <div class="centered mt-30">
@@ -461,49 +324,7 @@
           <section class="section-padding-sm-2 blue-bg-2">
             <div class="container">
                 <div class="row justify-content-center">
-
-                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-20">
-                        <div class="card mb-30">
-                            <div class="card-header">
-                                Cards and Banks
-                            </div>
-                            <ul class="list-group list-group-flush">
-
-                                {% if cardsAndBanksStatus == 0 %}
-
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i>Cards and Banks here!</li>
-
-                                {% elif cardsAndBanksStatus == 1 %}
-
-                                    {% for bank in banks %}
-                                        <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 2 %}
-
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 3 %}
-
-                                    {% for bank in banks %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                {% endif %}
-
-                                <li class="list-group-item"><a href="{% url 'construction' %}"><i class="ti-plus"></i> Link a Card or an Account</a></li>
-                            </ul>
-                        </div>
-                        </div>
-                    
-                        <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-20">
                             <div class="transaction-list table-responsive">
                                 {% include 'main/partials/transaction_table.html' %}
                                 <div class="centered mt-30">
@@ -576,49 +397,7 @@
           <section class="section-padding-sm-2 blue-bg-2">
             <div class="container">
                 <div class="row justify-content-center">
-
-                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-20">
-                        <div class="card mb-30">
-                            <div class="card-header">
-                                Cards and Banks
-                            </div>
-                            <ul class="list-group list-group-flush">
-
-                                {% if cardsAndBanksStatus == 0 %}
-
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i>Cards and Banks here!</li>
-
-                                {% elif cardsAndBanksStatus == 1 %}
-
-                                    {% for bank in banks %}
-                                        <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 2 %}
-
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 3 %}
-
-                                    {% for bank in banks %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                {% endif %}
-
-                                <li class="list-group-item"><a href="{% url 'construction' %}"><i class="ti-plus"></i> Link a Card or an Account</a></li>
-                            </ul>
-                        </div>
-                        </div>
-                    
-                        <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-20">
                             <div class="transaction-list table-responsive">
                                 {% include 'main/partials/transaction_table.html' %}
                                 <div class="centered mt-30">
@@ -692,49 +471,7 @@
           <section class="section-padding-sm-2 blue-bg-2">
             <div class="container">
                 <div class="row justify-content-center">
-
-                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-20">
-                        <div class="card mb-30">
-                            <div class="card-header">
-                                Cards and Banks
-                            </div>
-                            <ul class="list-group list-group-flush">
-
-                                {% if cardsAndBanksStatus == 0 %}
-
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i>Cards and Banks here!</li>
-
-                                {% elif cardsAndBanksStatus == 1 %}
-
-                                    {% for bank in banks %}
-                                        <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 2 %}
-
-
-                                    {% for card in cards %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{card.card_type}}</li>
-                                    {% endfor %}
-
-                                {% elif cardsAndBanksStatus == 3 %}
-
-                                    {% for bank in banks %}
-                                    <li class="list-group-item"><i class="ti-check cl-primary"></i> {{bank.bank}}</li>
-                                    {% endfor %}
-
-                                {% endif %}
-
-                                <li class="list-group-item"><a href="{% url 'construction' %}"><i class="ti-plus"></i> Link a Card or an Account</a></li>
-                            </ul>
-                        </div>
-                        </div>
-                    
-                        <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-20">
                             <div class="transaction-list table-responsive">
                                 {% include 'main/partials/transaction_table.html' %}
                                 <div class="centered mt-30">
