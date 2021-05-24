@@ -13,7 +13,7 @@
                     </div>
                     <div class="card-body">
                         <div class="site-form mb-30">
-                            <form action="{% url 'new-wallet' %}" method="POST">
+                            <form action="{% url 'main:new-wallet' %}" method="POST">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-sm-12 mb-10">
@@ -45,7 +45,7 @@
                                         <div class="card text-white bg-secondary mb-3" style="max-width: 100%;">
                                             <div class="card-body">
                                               <h5 id="wallet-note-title" class="card-title">Additional Information</h5>
-                                              <p id="wallet_note" class="card-text">Goto <a href="{% url 'wallets' %}">wallets</a> to find additional information regarding the type of wallet you want to create.</p>
+                                              <p id="wallet_note" class="card-text">Goto <a href="{% url 'main:wallets' %}">wallets</a> to find additional information regarding the type of wallet you want to create.</p>
                                             </div>
                                           </div>
                                         <!-- <label for="fee-generate">Note</label>

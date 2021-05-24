@@ -28,61 +28,29 @@
         <div class="left-sidenav">
             <!-- LOGO -->
             <div class="brand">
-                <a href="{% url 'shadeboard:index' %}" class="logo">
+                <a href="{% url 'main:index' %}" class="logo">
                     <span>
                         <img style="width: 70%; height: 55%;" src="{% static '/shadeboard/assets/images/logo-dark.png' %}" alt="logo-large" class="logo-lg logo-dark">
                     </span>
                 </a>
             </div>
             <!--end logo-->
-            {% if user.is_staff %}
-            <div class="menu-content h-100" data-simplebar>
-                <ul class="metismenu left-sidenav-menu">
-                    <li class="menu-label mt-0">Admin</li>
-                    <li>
-                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Transaction Requests</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:card-requests' %}"><i class="ti-control-record"></i>Card Requests</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:cardless-requests' %}"><i class="ti-control-record"></i>Cardless Requests</a></li>
-                        </ul>
-                    </li>    
-
-                    <li>
-                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Transaction Recipts</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:recipts' %}"><i class="ti-control-record"></i>Recipts</a></li>
-                        </ul>
-                    </li> 
-                </ul>
-
-                <hr>
-                
-                <ul class="metismenu left-sidenav-menu">
-                    <li class="menu-label mt-0">Main</li>
-                    <li>
-                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Business Wallet</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:index' %}"><i class="ti-control-record"></i>Overview</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:apidetails' %}"><i class="ti-control-record"></i>API</a></li>
-                        </ul>
-                    </li>    
-                </ul>
-
-            </div>
-            {% else %}
+            
             <div class="menu-content h-100" data-simplebar>
                 <ul class="metismenu left-sidenav-menu">
                     <li class="menu-label mt-0">Main</li>
                     <li>
-                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Business Wallet</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Wallet Overview</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
                             <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:index' %}"><i class="ti-control-record"></i>Overview</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:apidetails' %}"><i class="ti-control-record"></i>API</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:business-information' %}"><i class="ti-control-record"></i>Update Information</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shadeboard:apidetails' %}"><i class="ti-control-record"></i>Developer Information</a></li>
                         </ul>
-                    </li>    
+                    </li>  
+                    
                 </ul>
             </div>
-            {% endif %}
+
         </div>
         <!-- end left-sidenav-->
         
@@ -101,7 +69,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-divider mb-0"></div>
-                                <a class="dropdown-item" href="#"><i data-feather="power" class="align-self-center icon-xs icon-dual mr-1"></i> Logout</a>
+                                <a class="dropdown-item" href="{% url 'main:logout' %}"><i data-feather="power" class="align-self-center icon-xs icon-dual mr-1"></i> Logout</a>
                             </div>
                         </li>
                     </ul><!--end topbar-nav-->
@@ -119,8 +87,11 @@
             <!-- Top Bar End -->
 
             <!-- Page Content-->
+            
             <div class="page-content">
-              
+
+                {% include 'shadeboard/partials/messages.html' %}
+                
                 {% block body%}
                 {% endblock %}
                     

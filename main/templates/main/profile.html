@@ -58,16 +58,12 @@
                                 <div class="row">
                                     <div class="col-sm-3 col-3">
                                         <div class="left-info text-right">
-                                            <p>Individual Wallet</p>
-                                            <p>Business Wallet</p>
-                                            <p>Saving Wallet</p>
+                                            <p>Wallet Address</p>
                                         </div>
                                     </div>
                                     <div class="col-sm-9 col-9">
                                         <div class="right-info">
-                                            <p>{{individual_wallet}}</p>
                                             <p>{{business_wallet}}</p>
-                                            <p>{{saving_wallet}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +72,7 @@
                     </div>
                     <div class="card mb-30">
                         <div class="card-header">
-                            Contact Info <a href="{% url 'update-profile' 1 %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Contact info"><i class="ti-pencil"></i></a>
+                            Contact Info <a href="{% url 'main:update-profile' 1 %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Contact info"><i class="ti-pencil"></i></a>
                         </div>
                         <div class="card-body">
                             <div class="profile-card-body">
@@ -99,7 +95,7 @@
                     </div>
                     <div class="card mb-30">
                         <div class="card-header">
-                            Shipping Info<a href="{% url 'update-profile' 2 %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Shipping info"><i class="ti-pencil"></i></a>
+                            Shipping Info<a href="{% url 'main:update-profile' 2 %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Shipping info"><i class="ti-pencil"></i></a>
                         </div>
                         <div class="card-body">
                             <div class="profile-card-body">
@@ -113,7 +109,7 @@
                                     <div class="col-sm-9 col-9">
                                         <div class="right-info">
                                             <p>{{address}}</p>
-                                            <p>{{billing_address}}</p>
+                                            <p>{{address}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -122,25 +118,18 @@
                     </div>
                     <div class="card mb-30">
                         <div class="card-header">
-                            User Verification Info<a href="{% url 'update-profile' 3 %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Verification info"><i class="ti-pencil"></i></a>
+                            User Verification Info
                         </div>
                         <div class="card-body">
                             <div class="profile-card-body">
                                 <div class="row">
                                     <div class="col-sm-3 col-3">
                                         <div class="left-info text-right">
-                                            <p>National ID</p>
                                             <p>Verification Status</p>
                                         </div>
                                     </div>
                                     <div class="col-sm-9 col-9">
                                         <div class="right-info">
-                                            {% if nin == "" %}
-                                                <p><i class="ti-close cl-red"></i> {{nin}}</p>
-                                            {% else %}
-                                                <p>{{nin}}</p>
-                                            {% endif %}
-
                                             {% if is_nin_verified == "Verified" %}
                                                 <p><i class="ti-heart cl-primary"></i> {{is_nin_verified}}</p>
                                             {% else %}
@@ -232,7 +221,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="site-form mb-30">
-                                                    <form action="{% url 'deactivate-account' %}" method="POST">
+                                                    <form action="{% url 'main:deactivate-account' %}" method="POST">
                                                         {% csrf_token %}
                                                         <div class="row">
                                                             <div class="col-xl-12 col-lg-12 col-sm-12 mb-10">

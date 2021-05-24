@@ -1,0 +1,172 @@
+{% extends "staffboard/layout.html" %}
+{% block body %}
+
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- Page-Title -->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">Admin portal</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Shadepay</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">admin</a></li>
+                                    <li class="breadcrumb-item active">{{request.user}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">                                        
+                            <div class="media mb-3">                                  
+                                <div class="media-body align-self-center text-truncate">                                            
+                                    <h4 class="m-0 font-weight-semibold text-dark font-15">Transaction Request Details</h4>   
+                                    <p class="text-muted  mb-0 font-13"><span class="text-dark">User : </span>{{transaction.user}}</p>                                         
+                                </div><!--end media-body-->
+                            </div>   
+                            <hr class="hr-dashed">
+                            <div class="d-flex justify-content-between mb-3">  
+                                <h6 class="font-weight-semibold m-0">Recieving Individual Wallet : <span class="text-muted font-weight-normal"> {{transaction.individual_wallet.address}}</span></h6>
+                                <h6 class="font-weight-semibold m-0">Transaction Date : <span class="text-muted font-weight-normal"> {{transaction.date}}</span></h6>                          
+                            </div> 
+                            <div class="d-flex justify-content-between mb-3">  
+                                <h6 class="font-weight-semibold m-0">Recieving Business Wallet : <span class="text-muted font-weight-normal"> {{transaction.business_wallet.address}}</span></h6>                        
+                            </div> 
+
+                            <div class="d-flex justify-content-between mb-3">  
+                                <h6 class="font-weight-semibold m-0">Recieving Saving Wallet : <span class="text-muted font-weight-normal"> {{transaction.saving_wallet.address}}</span></h6>                      
+                            </div> 
+
+                            
+                            <div class="row">
+                                <div class="col">
+                                    <div>
+                                        <h5 class="font-16 m-0 font-weight-bold">NGN {{transaction.amount}}</h5>
+                                        <p class="mb-0 font-weight-semibold">Total Amount</p>                                        
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-auto align-self-center">
+                                    <h5 class="font-14 m-0 font-weight-bold">1.25% <span class="font-12 text-muted font-weight-normal">Transaction Cost</span></h5>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                            
+                            <div> 
+                                <p class="text-muted mt-2 mb-1">
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="font-weight-semibold">Card: <span class="text-muted font-weight-normal"> {{transaction.card_first_six}} ******* {{transaction.card_last_four}}</span></h6>
+                                    <h6 class="font-weight-semibold">Status : <span class="text-muted font-weight-normal"> </span>{{transaction.status}}</span></h6>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="font-weight-semibold">Mobile: <span class="text-muted font-weight-normal"> {{transaction.mobile}}</span></h6>
+                                </div>
+                                <p class="text-muted text-right mb-1">{{transaction.raw_data}}</p>
+                                <div class="progress mb-4" style="height: 4px;">
+                                    <div class="progress-bar bg-purple" role="progressbar" style="width: 100%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                  
+                                    <ul class="list-inline mb-0 align-self-center">                                                                    
+                                        <li class="list-item d-inline-block mr-2">
+                                            <a class="" href="#">
+                                                <h6 class="font-weight-semibold">Success Record: <span class="text-muted font-weight-normal"> {{transaction.is_successful}}</span></h6>
+                                            </a>
+                                            <a class="" href="#">
+                                                <h6 class="font-weight-semibold">Transaction Reference: <span class="text-muted font-weight-normal"> {{transaction.reference}}</span></h6>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>                                        
+                            </div><!--end task-box-->                                                                  
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">                                        
+                            <div class="media mb-3">                                  
+                                <div class="media-body align-self-center text-truncate">                                            
+                                    <h4 class="m-0 font-weight-semibold text-dark font-15">Transaction Details</h4>   
+                                    <p class="text-muted  mb-0 font-13"><span class="text-dark">Date : </span>{{s_transaction.date}}</p>                                         
+                                </div><!--end media-body-->
+                            </div>   
+                            <hr class="hr-dashed">
+                            <div class="d-flex justify-content-between mb-3">  
+                                <h6 class="font-weight-semibold m-0">Sender: <span class="text-muted font-weight-normal"> {{s_transaction.sender}}</span></h6>
+                                <h6 class="font-weight-semibold m-0">Reciever : <span class="text-muted font-weight-normal"> {{s_transaction.reciever}}</span></h6>                          
+                            </div> 
+                            <div class="d-flex justify-content-between mb-3">  
+                                <h6 class="font-weight-semibold m-0">Sender Individual Wallet : <span class="text-muted font-weight-normal"> {{s_transaction.sender_individual_wallet.address}}</span></h6>
+                                <h6 class="font-weight-semibold m-0">Recieving Individual Wallet : <span class="text-muted font-weight-normal"> {{s_transaction.reciever_individual_wallet.address}}</span></h6>                          
+                            </div> 
+                            <div class="d-flex justify-content-between mb-3">  
+                                <h6 class="font-weight-semibold m-0">Sender Business Wallet : <span class="text-muted font-weight-normal"> {{s_transaction.sender_business_wallet.address}}</span></h6>
+                                <h6 class="font-weight-semibold m-0">Recieving Business Wallet : <span class="text-muted font-weight-normal"> {{s_transaction.reciever_business_wallet.address}}</span></h6>                          
+                            </div> 
+                            <div class="d-flex justify-content-between mb-3">  
+                                <h6 class="font-weight-semibold m-0">Sender Saving Wallet : <span class="text-muted font-weight-normal"> {{s_transaction.sender_saving_wallet.address}}</span></h6>
+                                <h6 class="font-weight-semibold m-0">Recieving Saving Wallet : <span class="text-muted font-weight-normal"> {{s_transaction.reciever_saving_wallet.address}}</span></h6>                          
+                            </div> 
+                            <hr>
+                           
+                            <div class="row">
+                                <div class="col">
+                                    <div>
+                                        <h5 class="font-16 m-0 font-weight-bold">NGN {{s_transaction.amount}}</h5>
+                                        <p class="mb-0 font-weight-semibold">Total Amount</p>                                        
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-auto align-self-center">
+                                    <h5 class="font-14 m-0 font-weight-bold">1.25% <span class="font-12 text-muted font-weight-normal">Transaction Cost</span></h5>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                            
+                            <div> 
+                                <p class="text-muted mt-2 mb-1">
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="font-weight-semibold">Status Code: <span class="text-muted font-weight-normal"> {{s_transaction.status_code}}</span></h6>
+                                    <h6 class="font-weight-semibold">Status : <span class="text-muted font-weight-normal"> </span>{{s_transaction.status}}</span></h6>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="font-weight-semibold">Mobile: <span class="text-muted font-weight-normal"> {{s_transaction.mobile}}</span></h6>
+                                </div>
+                                <div class="progress mb-4" style="height: 4px;">
+                                    <div class="progress-bar bg-purple" role="progressbar" style="width: 100%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                  
+                                    <ul class="list-inline mb-0 align-self-center">                                                                    
+                                        <li class="list-item d-inline-block mr-2">
+                                            <a class="" href="#">
+                                                <h6 class="font-weight-semibold">Transaction Description: <span class="text-muted font-weight-normal"> {{s_transaction.description}}</span></h6>
+                                            </a>
+                                            <a class="" href="#">
+                                                <h6 class="font-weight-semibold">Transaction Reference: <span class="text-muted font-weight-normal"> {{s_transaction.reference}}</span></h6>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>                                        
+                            </div><!--end task-box-->                                                                  
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+    
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

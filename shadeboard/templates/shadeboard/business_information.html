@@ -1,0 +1,249 @@
+{% extends 'shadeboard/layout.html'%}
+{% load static %}
+
+{% block body %}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- Page-Title -->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">Shadepay Business Information</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Shadepay</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">shadeboard</a></li>
+                                    <li class="breadcrumb-item active">{{request.user}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">                      
+                                    <h4 class="card-title">Business Information</h4>                      
+                                    <p class="text-muted mb-0">View and Update your business information according to your satisfaction.</p> 
+                                </div><!--end col-->                                        
+                            </div>  <!--end row-->                                  
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="row">
+                                 <div class="col-lg-5  align-self-center">
+                                    
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Current Business Information</h4>
+                                            <p class="text-muted mb-0">Click on the information you want to confirm to view the existing information</p>
+                                        </div><!--end card-header-->
+
+                                        <div class="card-body">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card border mb-1 shadow-none">
+                                                    <div class="card-header custom-accordion  rounded-0" id="headingOne">
+                                                        <a href="" class="text-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                            Business Name
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                        <p class="mb-0 text-muted">
+                                                            {{details.business_name}}
+                                                        </p> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card mb-1 border shadow-none">
+                                                    <div class="card-header  rounded-0" id="headingTwo">
+                                                        <a href="" class="collapsed text-dark" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                            Business Status
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <p class="mb-0 text-muted">
+                                                                {{biz_status}}
+                                                            </p> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card mb-0 border shadow-none">
+                                                    <div class="card-header  rounded-0" id="headingThree">
+                                                        <a href="" class="collapsed text-dark" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                            Business Address
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <p class="mb-0 text-muted">
+                                                                {{details.business_address}}
+                                                            </p> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card mb-0 border shadow-none">
+                                                    <div class="card-header  rounded-0" id="headingFour">
+                                                        <a href="" class="collapsed text-dark" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                            Business Phone
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <p class="mb-0 text-muted">
+                                                                {{details.business_phone}}
+                                                            </p> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card mb-0 border shadow-none">
+                                                    <div class="card-header  rounded-0" id="headingFive">
+                                                        <a href="" class="collapsed text-dark" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                            Business Email
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <p class="mb-0 text-muted">
+                                                                {{details.business_email}}
+                                                            </p> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card mb-0 border shadow-none">
+                                                    <div class="card-header  rounded-0" id="headingSix">
+                                                        <a href="" class="collapsed text-dark" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                                            Business Nature
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <p class="mb-0 text-muted">
+                                                                {{details.business_nature}}
+                                                            </p> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                        </div><!--end card-body-->
+          
+                                    </div><!--end card-->
+
+                                </div><!--end col-->
+                                
+                                <div class="col-lg-6 ml-auto ">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Update Business Information</h4>
+                                            <!-- <p class="text-muted mb-0">Click on the information you want to confirm to view the existing information</p> -->
+                                        </div><!--end card-header-->
+
+                                        <div class="card-body"> 
+                                            <form action="{% url 'shadeboard:business-information' %}" method="POST">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label for="projectName">Business Name :</label>
+                                                    <input type="text" class="form-control" id="business_name" name="business_name" aria-describedby="emailHelp" value="{{details.business_name}}">
+                                                </div><!--end form-group-->
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-6 mb-2 mb-lg-0">
+                                                            <label for="pro-start-date">Phone Number :</label>
+                                                            <input type="text" class="form-control" name="business_phone" id="pro-start-date" value="{{details.business_phone}}">
+                                                        </div><!--end col-->
+                                                        <div class="col-lg-3 col-6 mb-2 mb-lg-0">
+                                                            <label for="pro-end-date">Email :</label>
+                                                            <input type="text" class="form-control" name="business_email" id="pro-end-date" value="{{details.business_email}}">
+                                                        </div><!--end col-->
+                                                        <div class="col-lg-6 col-6">
+                                                            <label for="pro-end-date">Business status</label>
+                                                            <select class="form-control" name="business_status">
+                                                                <option value="True">I am a business</option>
+                                                                <option value="False"> I am not a business</option>
+                                                            </select>
+                                                        </div><!--end col-->                                                        
+                                                    </div><!--end row-->
+                                                </div><!--end form-group-->
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label for="projectName">Business Address :</label>
+                                                        <input type="text" class="form-control" id="projectName" name="business_address" aria-describedby="emailHelp" value="{{details.business_address}}">
+                                                    </div><!--end form-group-->
+                                                </div><!--end form-group-->
+
+                                                <div class="form-group">
+                                                    <label for="pro-message">Business Nature</label>
+                                                    <input type="text" class="form-control" id="projectName"  name="business_nature" aria-describedby="emailHelp" value="{{details.business_nature}}">
+                                                </div><!--end form-group-->
+                                                
+                                                <button type="submit" class="btn btn-soft-primary btn-sm">Update business information</button>
+                                            </form>  <!--end form-->
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                               
+                            </div><!--end row-->                                                                              
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+            </div><!--end row-->
+         
+    </div>
+</div>
+
+{% endblock %}
+
+
+<!-- <div class="col-sm-3">
+    <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link waves-effect waves-light active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Business Name</a>
+        <a class="nav-link waves-effect waves-light" id="v-pills-status-tab" data-toggle="pill" href="#v-pills-status" role="tab" aria-controls="v-pills-status" aria-selected="false">Business Status</a>
+        <a class="nav-link waves-effect waves-light" id="v-pills-address-tab" data-toggle="pill" href="#v-pills-address" role="tab" aria-controls="v-pills-address" aria-selected="false">Business Address</a>
+        <a class="nav-link waves-effect waves-light" id="v-pills-phone-tab" data-toggle="pill" href="#v-pills-phone" role="tab" aria-controls="v-pills-phone" aria-selected="false">Business Phone</a>
+        <a class="nav-link waves-effect waves-light" id="v-pills-email-tab" data-toggle="pill" href="#v-pills-email" role="tab" aria-controls="v-pills-email" aria-selected="false">Business Email</a>   
+        <a class="nav-link waves-effect waves-light" id="v-pills-nature-tab" data-toggle="pill" href="#v-pills-nature" role="tab" aria-controls="v-pills-nature" aria-selected="false">Business Nature</a>                                                     
+    </div>
+</div>
+<div class="col-sm-9">
+    <div class="tab-content mo-mt-2" id="v-pills-tabContent">
+        <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <p class="text-muted mb-0">
+               {{details.business_name}}
+            </p>
+        </div>
+        <div class="tab-pane fade active show" id="v-pills-status" role="tabpanel" aria-labelledby="v-pills-status-tab">
+            <p class="text-muted mb-0">
+               {{details.business_name}}
+            </p>
+        </div>
+        <div class="tab-pane fade active show" id="v-pills-address" role="tabpanel" aria-labelledby="v-pills-address-tab">
+            <p class="text-muted mb-0">
+               {{details.business_address}}
+            </p>
+        </div>
+        <div class="tab-pane fade active show" id="v-pills-phone" role="tabpanel" aria-labelledby="v-pills-phone-tab">
+            <p class="text-muted mb-0">
+               {{details.business_phone}}
+            </p>
+        </div>
+        <div class="tab-pane fade active show" id="v-pills-email" role="tabpanel" aria-labelledby="v-pills-email-tab">
+            <p class="text-muted mb-0">
+               {{details.business_email}}
+            </p>
+        </div>
+      
+        <div class="tab-pane fade active show" id="v-pills-nature" role="tabpanel" aria-labelledby="v-pills-nature-tab">
+            <p class="text-muted mb-0">
+               {{details.business_nature}}
+            </p>
+        </div>
+        -->

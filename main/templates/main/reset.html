@@ -31,7 +31,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                     <div class="site-form mb-30">
-                        <form action="{% url 'password-reset' uuid token %}" method="POST">
+                        <form action="{% url 'main:password-reset' uuid token %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-sm-12">

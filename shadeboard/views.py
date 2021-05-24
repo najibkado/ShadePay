@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from main.models import BusinessWallet, DeveloperInformation, Developer, ProcessCardRequest, ProcessPayattitudeRequest, Transaction, Recipt
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+from django.urls import reverse
 
 # Create your views here.
 
@@ -10,7 +13,13 @@ def index(request):
     try:
         wallet = BusinessWallet.objects.get(user=loggedin_user)
     except:
-        pass
+        return render(request, "shadeboard/index.html", {
+        "balance": "Please Create a wallet to see balance",
+        "address": "Please Create a wallet to see wallet address",
+        "business_name": "Please Create a wallet to see business name",
+        "business_address": "Please Create a wallet to see business address",
+        "business_contact": "Please Create a wallet to see business contact"
+        })
     
     try:
         dev = Developer.objects.get(wallet=wallet)
@@ -27,8 +36,9 @@ def index(request):
         "address": wallet.address,
         "business_name": dev_info.business_name,
         "business_address": dev_info.business_address,
-        "business_contact": dev_info.business_email + " | " + dev_info.business_phone
-
+        "business_contact": dev_info.business_email + " | " + dev_info.business_phone,
+        "int_key": dev.api_key,
+        "payment_link": wallet.link
     })
 
 @login_required
@@ -55,142 +65,42 @@ def apidetails(request):
 
 
 @login_required
-def admin(request):
+def business_information(request):
     loggedin_user = request.user
 
-    if loggedin_user.is_staff:
-        return render(request, "shadeboard/admin/admin.html")
+    if request.method == "GET":
+        dev_info = loggedin_user.business_wallet.get().developer_wallet_details.get().developer_details.get()
+        biz_status = "Registered as a business" if loggedin_user.profile.get().is_business else "Not registered as a business, you can change to business any time you wish."
 
-@login_required
-def card_requests(request):
-    loggedin_user = request.user
-
-    all_requests = ProcessCardRequest.objects.all()
-    all_requests = reversed(all_requests)
-
-    if loggedin_user.is_staff:
-        return render(request, "shadeboard/admin/card_requests.html", {
-            "all_requests": all_requests
+        return render(request, "shadeboard/business_information.html", {
+            "details": dev_info,
+            "biz_status": biz_status
         })
 
-@login_required
-def cardless_requests(request):
-    loggedin_user = request.user
+    if request.method == "POST":
 
-    if loggedin_user.is_staff:
+        business_name = request.POST['business_name']
+        business_phone = request.POST['business_phone']
+        business_email = request.POST['business_email']
+        business_status = request.POST['business_status']
+        business_address = request.POST['business_address']
+        business_nature = request.POST['business_nature']
 
-        all_requests = ProcessPayattitudeRequest.objects.all()
-        all_requests = reversed(all_requests)
+        if business_name == "" or business_phone == "" or business_email == "" or business_status == "" or business_address == "" or business_nature == "":
+            messages.error(request, "Please fill in the information to update")
+            return HttpResponseRedirect(reverse("shadeboard:business-information"))
 
-        return render(request, "shadeboard/admin/cardless_requests.html", {
-             "all_requests": all_requests
-        })
+        dev_info = loggedin_user.business_wallet.get().developer_wallet_details.get().developer_details.get()
 
+        dev_info.business_name = business_name
+        dev_info.business_phone = business_phone
+        dev_info.business_address = business_address
+        dev_info.business_email = business_email
+        dev_info.business_nature = business_nature
+        dev_info.save()
 
-@login_required
-def card_request(request, id):
-    loggedin_user = request.user
+        add_info = loggedin_user.profile.get()
+        add_info.is_business = True if bool(business_status) else False
+        add_info.save()
 
-    if loggedin_user.is_staff:
-
-        try:
-            transaction = ProcessCardRequest.objects.get(pk=id)
-        except ProcessCardRequest.DoesNotExist:
-            pass
-
-        return render(request, "shadeboard/admin/request_details.html", {
-            "transaction": transaction
-        })
-
-@login_required
-def cardless_request(request, id):
-    loggedin_user = request.user
-
-    if loggedin_user.is_staff:
-
-        try:
-            transaction = ProcessPayattitudeRequest.objects.get(pk=id)
-        except ProcessCardRequest.DoesNotExist:
-            pass
-
-        return render(request, "shadeboard/admin/request_details.html", {
-            "transaction": transaction
-        })
-
-@login_required
-def recipts(request):
-    loggedin_user = request.user
-
-    if loggedin_user.is_staff:
-
-        try:
-            recipts = Recipt.objects.all()
-        except Recipt.DoesNotExist:
-            pass
-
-        recipts = reversed(recipts)
-
-        return render(request, "shadeboard/admin/recipts.html", {
-            "recipts": recipts
-        })
-
-@login_required
-def recipt(request, id):
-    loggedin_user = request.user
-
-    if loggedin_user.is_staff:
-
-        try:
-            recipt = Recipt.objects.get(pk=id)
-        except Recipt.DoesNotExist:
-            recipt = ""
-
-        return render(request, "shadeboard/admin/recipt.html", {
-            "recipt": recipt
-        })
-
-@login_required
-def card_request_reference(request, id):
-    loggedin_user = request.user
-
-    if loggedin_user.is_staff:
-
-        try:
-            transaction = ProcessCardRequest.objects.get(pk=id)
-        except ProcessCardRequest.DoesNotExist:
-            pass
-
-        try:
-            s_transaction = Transaction.objects.get(reference=transaction.reference)
-        except Transaction.DoesNotExist:
-            s_transaction = {
-
-            }
-
-        return render(request, "shadeboard/admin/reference.html", {
-            "transaction": transaction,
-            "s_transaction": s_transaction
-        })
-
-@login_required
-def cardless_request_reference(request, id):
-    loggedin_user = request.user
-
-    if loggedin_user.is_staff:
-
-        try:
-            transaction = ProcessPayattitudeRequest.objects.get(pk=id)
-        except ProcessCardRequest.DoesNotExist:
-            pass
-
-        try:
-            s_transaction = Transaction.objects.get(reference=transaction.reference)
-        except Transaction.DoesNotExist:
-            s_transaction = {
-                
-            }
-
-        return render(request, "shadeboard/admin/reference.html", {
-            "transaction": transaction,
-            "s_transaction": s_transaction
-        })
+        return HttpResponseRedirect(reverse("shadeboard:business-information"))

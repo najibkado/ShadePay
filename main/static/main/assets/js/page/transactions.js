@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(res => res.json())
             .then(result => {
 
+                console.log(result);
+
                 if (user_id === result.transaction.sender_id) {
                     
                     document.querySelector("#trnsaction_reciever").innerHTML = result.transaction.reciever
@@ -25,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 document.querySelector("#transaction-amount").innerHTML = result.transaction.amount
 
-                document.querySelector("#transaction-date").innerHTML = result.transaction.date
+                document.querySelector("#transaction-date").innerHTML = formatDate(result.transaction.date)
 
 
                 if (result.transaction.status_code == 1) {
@@ -50,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 } 
 
+                
 
 
                 document.querySelector("#tin").innerHTML = result.transaction.transaction_id
@@ -60,7 +63,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 document.querySelector("#display-amount").innerHTML = result.transaction.amount
 
-                document.querySelector("#description").innerHTML = ""
+                document.querySelector("#description").innerHTML = result.transaction.transaction_charges
+
+                document.querySelector("#ref").innerHTML = result.transaction.reference
+
+                document.querySelector("#frmw").innerHTML = result.transaction.sender_business_wallet
+
+                document.querySelector("#tow").innerHTML = result.transaction.reciever_business_wallet
+
+                document.querySelector("#ship-to").innerHTML = result.shipping.shipping
+
+                document.querySelector("#state").innerHTML = result.shipping.state
+
+                document.querySelector("#country").innerHTML = result.shipping.country
+
+                document.querySelector("#display-amount-to-recieve").innerHTML = result.toRecieve
 
 
             })
@@ -72,3 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 })
+
+function formatDate(date) {
+    var x = new Date(date)
+    var dd = x.getDate()
+    var mm = x.getMonth()
+    var yy = x.getFullYear()
+    var hh = x.getUTCHours()
+    var mi = x.getUTCMinutes()
+    return dd + "-" +mm+"-"+yy+" "+ hh+":"+mi
+}

@@ -17,6 +17,14 @@
         <link href="{% static '/api/css/materialdesignicons.min.css' %}" rel="stylesheet" type="text/css" />
 	    <!-- Custom  Css -->
 	    <link rel="stylesheet" type="text/css" href="{% static '/api/css/style.css' %}" />
+
+		<!-- App favicon -->
+		<link rel="shortcut icon" href="{% static '/shadeboard/assets/images/favicon.ico' %}">
+
+		<!-- App css -->
+		<link href="{% static '/api/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+
+
 	</head>
 
 	<body>
@@ -41,6 +49,12 @@
 				        <ul class="navbar-nav nav flex-column">
 				            <li class="nav-item active">
 				                <a class="nav-link" href="#Introduction"><i class="mdi mdi-account-circle-outline mr-2"></i>Introduction</a>
+				            </li>
+							<li class="nav-item">
+				                <a class="nav-link" href="#Card-payment"><i class="mdi mdi-credit-card-multiple mr-2"></i>Card payment</a>
+				            </li>
+							<li class="nav-item">
+				                <a class="nav-link" href="#Shadepay-payment"><i class="mdi mdi-credit-card-multiple mr-2"></i>Shadepay payment</a>
 				            </li>
 				        </ul>
 				    </div>
@@ -99,7 +113,176 @@
 			</section>
 			<!-- Introduction END-->
 
+			<!-- Card payment START-->
+			
+			<section class="section-sm" id="Card-payment">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">							
+							<div class="card">
+								<div class="card-body">
+									<h4 class="header-title">Accept Card Payments</h4>
+									<hr class="hr-dashed">
+											<p>This api lets you accept payments with credit cards.</p>
+
+											<div class="input-group">
+												<input type="text" class="form-control" id="clipboardInput" value="https://www.shadepay.com/api/merchant/request">
+												<div class="input-group-append">
+													<button type="button" class="btn btn-secondary btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboardInput"><i class="far fa-copy mr-2"></i>Copy</button>
+													<!-- <button type="button" class="btn btn-primary  btn-clipboard" data-clipboard-action="cut" data-clipboard-target="#clipboardInput"><i class="fas fa-cut mr-2"></i>Cut</button> -->
+												</div>
+											</div>   
+
+											<hr class="hr-dashed">
+
+											<p class="text-muted mb-0">-X POST</p>
+											<p class="text-muted mb-0">-H "Authorization: Bearer YOUR_SECRET_KEY"</p>
+	
+											<div class="row p-t-20">
+												<div class="col-sm-12">
+													      
+													<hr class="hr-dashed">
+
+													<div class="card">
+														<div class="card-body">
+															<h4 class="header-title">Sample POST data</h4>
+															<hr class="hr-dashed">
+															<p class="text-muted mb-0">wallet: your wallet address - String</p>
+															<p class="text-muted mb-0">amount: amount - String NB: Amount will be converted to decimal, if it contains any value other than int float or decimal, it will be result into getting an error</p>
+															<p class="text-muted mb-0">description: description of payment - String</p>
+															<p class="text-muted mb-0">status: initiated - String</p>
+															<p class="text-muted mb-0">ip: your customer ip address - IpV4</p>
+															<p class="text-muted mb-0">returnUrl: your return url - String</p>
+															<hr class="hr-dashed">
+															<p>
+																<img src="{% static '/api/images/card-requst-sample.png' %}" alt="" class="img-fluid">
+															</p>
+														</div><!--end card-body-->
+													</div><!--end card-->	
+
+													
+													
+													<hr class="hr-dashed">
+
+													<div class="card">
+														<div class="card-body">
+															<h4 class="header-title">Sample Response</h4>
+															<p>You will recieve a response like below if there is no error. <span style="color: rgb(38, 129, 214);">Proceed to redirect your user to the checkout url to complete payment</span></p>
+															<hr class="hr-dashed">
+															<p>
+																<img src="{% static '/api/images/card-requst-sample-response.png' %}" alt="" class="img-fluid">
+															</p>
+														</div><!--end card-body-->
+													</div><!--end card-->	
+
+
+													<hr class="hr-dashed">
+
+													<div class="card">
+														<div class="card-body">
+															<h4 class="header-title">On finish</h4>
+															<hr class="hr-dashed">
+															<p>You will get a POST request to your return url with <span style="color: green;">.successful</span> alongside transaction data.</p>													
+															<p>If transaction is successful or <span style="color: red;">.unsuccessful</span> if transaction is unsuccessful alongside transaction data and error message.</p>
+														</div><!--end card-body-->
+													</div><!--end card-->	
+
+													<hr class="hr-dashed">
+
+													<div class="card">
+														<div class="card-body">
+															<h4 class="header-title">Pricing</h4>
+															<hr class="hr-dashed">
+															<p class="text-muted mb-0">Max charges: NGN 3,500</p>
+															<p>
+																Transaction endpoint cost 1.25% + NGN 100.
+															</p>
+														</div><!--end card-body-->
+													</div><!--end card-->	
+
+
+								</div><!--end card-body-->
+							</div><!--end card-->							
+						</div><!--end col-->
+					</div><!--end row-->
+				</div><!--end container-->
+			</section>
 		
+			<!-- Card payment  END-->
+
+
+			<!-- Shadepay payment START-->
+
+			<section class="section-sm" id="Shadepay-payment">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">							
+							<div class="card">
+								<div class="card-body">
+									<h4 class="header-title">Accept Shadepay payments</h4>
+									<hr class="hr-dashed">
+											<p>This api lets you accept payments with shadepay internal payment services.</p>
+
+											<div class="input-group">
+												<input type="text" class="form-control" id="clipboardInput" value="https://www.shadepay.com/api/shadepay/request">
+												<div class="input-group-append">
+													<button type="button" class="btn btn-secondary btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboardInput"><i class="far fa-copy mr-2"></i>Copy</button>
+													<!-- <button type="button" class="btn btn-primary  btn-clipboard" data-clipboard-action="cut" data-clipboard-target="#clipboardInput"><i class="fas fa-cut mr-2"></i>Cut</button> -->
+												</div>
+											</div>  
+											 
+											<hr class="hr-dashed">
+
+											<p class="text-muted mb-0">-X POST</p>
+											<p class="text-muted mb-0">-H "Authorization: Bearer YOUR_SECRET_KEY"</p>
+	
+
+											<hr class="hr-dashed">
+
+											<div class="card">
+												<div class="card-body">
+													<h4 class="header-title">Sample POST data</h4>
+													<hr class="hr-dashed">
+													<p class="text-muted mb-0">wallet: your wallet address - String</p>
+													<p class="text-muted mb-0">amount: amount - String NB: Amount will be converted to decimal, if it contains any value other than int float or decimal, it will be result into getting an error</p>
+													<p class="text-muted mb-0">products: an array of JSON objects containig products details</p>
+													<p class="text-muted mb-0">product JSON objects: {"item": "item name", "amount": "amount", "quantity": "quantity"}</p>
+													<p class="text-muted mb-0">products_description: an array of STRING/STRINGS containig description of each products </p>
+													<p class="text-muted mb-0">product_description JSON objects: {"item": "item name", "description": "description"}</p>
+													<p class="text-muted mb-0">status: initiated - String</p>
+													<p class="text-muted mb-0">returnUrl: your return url - String</p>
+													<hr class="hr-dashed">
+													<p>
+														<img src="{% static '/api/images/shadepay-request-sample.png' %}" alt="" class="img-fluid">
+													</p>
+												</div><!--end card-body-->
+											</div><!--end card-->	
+
+
+
+
+
+
+											<div class="card">
+												<div class="card-body">
+													<h4 class="header-title">Pricing</h4>
+													<hr class="hr-dashed">
+													<p class="text-muted mb-0">Max charges: NGN 3,500</p>
+													<p>
+														Transaction endpoint cost 1.25% + NGN 100.
+													</p>
+												</div><!--end card-body-->
+											</div><!--end card-->	
+
+
+								</div><!--end card-body-->
+							</div><!--end card-->							
+						</div><!--end col-->
+					</div><!--end row-->
+				</div><!--end container-->
+			</section>
+		
+			<!-- Shadepay payment  END-->
 
 
 			<!-- Footer Start -->
@@ -124,6 +307,12 @@
 			<script src="{% static '/api/js/scrollspy.min.js' %}"></script>
 		    <!-- Custom -->
 			<script src="{% static '/api/js/app.js' %}"></script>
+
+ 			<script src="{% static '/api/assets/plugins/clipboard/clipboard.min.js' %}"></script>
+			<script src="{% static '/api/assets/pages/jquery.clipboard.init.js' %}"></script>
+	
+			<!-- App js -->
+			<script src="{% static '/api/assets/js/app.js' %}"></script>
 		</div>		
 	</body>
 </html>

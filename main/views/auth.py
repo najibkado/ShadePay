@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.db import IntegrityError
 from django.core.mail import EmailMessage
 from django.urls import reverse
-from main.models import User, IndividualWallet, SavingWallet, BusinessWallet, Card, Bank, AdditionalInformation, Developer, Transaction, Logs
+from main.models import User, BusinessWallet, Card, Bank, AdditionalInformation, Developer, Transaction, Logs
 from main.utils import email_token_generator
 from django.contrib.auth import authenticate, login, logout
 from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
@@ -64,34 +64,34 @@ def register(request):
         #Verify User Data
         if first_name == "" or last_name == "" or email == "" or username == "" or password == "" or re_password == "":
             messages.error(request, "Fields can't be empty")
-            return HttpResponseRedirect(reverse("register"))
+            return HttpResponseRedirect(reverse("main:register"))
 
         if validate(email):
             pass
         else:
             messages.error(request, "Please enter a correct email")
-            return HttpResponseRedirect(reverse("register"))
+            return HttpResponseRedirect(reverse("main:register"))
 
         #Verify User Password
         if password != re_password:
             messages.error(request, "Passworrd did not match")
-            return HttpResponseRedirect(reverse("register"))
+            return HttpResponseRedirect(reverse("main:register"))
 
         #Verify Password Length
         if len(password) < 6:
             messages.error(request, "Password too short")
-            return HttpResponseRedirect(reverse("register"))
+            return HttpResponseRedirect(reverse("main:register"))
 
         #Ensure User Email Does not Exist
         if User.objects.filter(email=email).exists():
 
             messages.error(request, "Unable to create account, please try again")
-            return HttpResponseRedirect(reverse("register"))
+            return HttpResponseRedirect(reverse("main:register"))
 
         elif User.objects.filter(username=username).exists():
             
             messages.error(request, "Unable to create account, please try again")
-            return HttpResponseRedirect(reverse("register"))
+            return HttpResponseRedirect(reverse("main:register"))
 
         else:
             #Create New User
@@ -106,13 +106,13 @@ def register(request):
                 new_user.save()
             except IntegrityError:
                 messages.error(request, "Unable to create account, please try again")
-                return HttpResponseRedirect(reverse("register"))
+                return HttpResponseRedirect(reverse("main:register"))
 
             #Generate verification link
             uuid = urlsafe_base64_encode(force_bytes(new_user.pk))
             token = email_token_generator.make_token(new_user)
             domain = get_current_site(request).domain
-            verification_link = reverse('verify', kwargs = {'uuid' : uuid, 'token' : token})
+            verification_link = reverse('main:verify', kwargs = {'uuid' : uuid, 'token' : token})
             verification_url = 'https://' + domain + verification_link
 
             #Send User Email Verification Mail
@@ -166,7 +166,7 @@ def register(request):
 
             #Redirect User To Dashboard
 
-            return HttpResponseRedirect(reverse("dashboard"))
+            return HttpResponseRedirect(reverse("main:dashboard"))
 
 def verify(request, uuid, token):
     """
@@ -179,18 +179,18 @@ def verify(request, uuid, token):
         user = User.objects.get(pk=id)
 
         if user.is_active:
-            return HttpResponseRedirect(reverse('login'))
+            return HttpResponseRedirect(reverse('main:login'))
 
         else:
             user.is_active = True
             user.save()
 
 
-            return HttpResponseRedirect(reverse('login'))
+            return HttpResponseRedirect(reverse('main:login'))
 
     except User.DoesNotExist: #Will be able crash the system if it gets a different exception
         messages.error(request, "User not found, register as a new user please")
-        return HttpResponseRedirect(reverse("register"))
+        return HttpResponseRedirect(reverse("main:register"))
 
 @login_required
 def unverified(request):
@@ -216,7 +216,7 @@ def login_view(request):
 
             #Return an error message if not verified
             messages.error(request, "Enter username and password")
-            return HttpResponseRedirect(reverse("login"))
+            return HttpResponseRedirect(reverse("main:login"))
 
          #Authenticate user
         authenticated_user = authenticate(request, username=username, password=password)
@@ -261,13 +261,13 @@ def login_view(request):
                 log.save()
 
             #Redirect user to dashboard
-            return HttpResponseRedirect(reverse("dashboard"))
+            return HttpResponseRedirect(reverse("main:dashboard"))
 
         else:
 
             #Return an error message if not verified
             messages.error(request, "Invalid user credentials")
-            return HttpResponseRedirect(reverse("login"))
+            return HttpResponseRedirect(reverse("main:login"))
             
 @login_required
 def logout_view(request):
@@ -275,7 +275,7 @@ def logout_view(request):
     Logout Module
     """
     logout(request)
-    return HttpResponseRedirect(reverse("index"))
+    return HttpResponseRedirect(reverse("main:index"))
 
 def recover(request):
     """
@@ -298,13 +298,13 @@ def recover(request):
                 user = User.objects.get(email=email)
             except User.DoesNotExist:
                 messages.success(request, "Recovery link has been sent to your email.")
-                return HttpResponseRedirect(reverse("recover"))
+                return HttpResponseRedirect(reverse("main:recover"))
 
             #Generate verification link
             uuid = urlsafe_base64_encode(force_bytes(user.pk))
             token = PasswordResetTokenGenerator().make_token(user)
             domain = get_current_site(request).domain
-            reset_link = reverse('password-reset', kwargs = {'uuid' : uuid, 'token' : token})
+            reset_link = reverse('main:password-reset', kwargs = {'uuid' : uuid, 'token' : token})
             reset_url = 'https://' + domain + reset_link
 
             #Send User Email Verification Mail
@@ -322,12 +322,12 @@ def recover(request):
             EmailThread(reset_email).start()
 
             messages.success(request, "Recovery link has been sent to your email.")
-            return HttpResponseRedirect(reverse("recover"))
+            return HttpResponseRedirect(reverse("main:recover"))
 
         else:
 
             messages.error(request, "Enter a valid email.")
-            return HttpResponseRedirect(reverse("recover"))
+            return HttpResponseRedirect(reverse("main:recover"))
 
 def password_reset(request, uuid, token):
     """
@@ -393,8 +393,8 @@ def password_reset(request, uuid, token):
             user.save()
 
             messages.success(request, "Password reset successful, Login")
-            return HttpResponseRedirect(reverse("login"))
+            return HttpResponseRedirect(reverse("main:login"))
 
         except User.DoesNotExist: #Will be able crash the system if it gets a different exception
             messages.error(request, "Unable to reset your password, Get a recovery link again.")
-            return HttpResponseRedirect(reverse("recover"))
+            return HttpResponseRedirect(reverse("main:recover"))

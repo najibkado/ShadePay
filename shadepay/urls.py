@@ -20,5 +20,6 @@ urlpatterns = [
     path('shadeadmin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('shadeboard/', include('shadeboard.urls')),
+    path('staffboard/', include('staffboard.urls')),
     path('', include('main.urls')),   
 ]

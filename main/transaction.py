@@ -3,7 +3,7 @@ import hashlib
 from decouple import config
 from Crypto.Cipher import AES
 import asyncio
-from .models import ProcessCardRequest, ProcessPayattitudeRequest, IndividualWallet, BusinessWallet, SavingWallet
+from .models import ProcessCardRequest, ProcessPayattitudeRequest, BusinessWallet
 from .models import Transaction as Trans
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -69,7 +69,6 @@ class Transaction:
             "count":0
         }
 
-        print(context.items())
 
         headers = {
             "Accept": "application/json"
@@ -85,7 +84,7 @@ class Transaction:
             try:
                 requested_payattitude_process = ProcessPayattitudeRequest.objects.get(pk=self.process_payattitude_id)
             except ProcessCardRequest.DoesNotExist:
-                return HttpResponseRedirect(reverse("notfound"))
+                return HttpResponseRedirect(reverse("main:notfound"))
 
             requested_payattitude_process.reference = res
             requested_payattitude_process.save()
@@ -160,7 +159,7 @@ class Transaction:
             try:
                 requested_card_process = ProcessCardRequest.objects.get(pk=self.process_card_id)
             except ProcessCardRequest.DoesNotExist:
-                return HttpResponseRedirect(reverse("notfound"))
+                return HttpResponseRedirect(reverse("main:notfound"))
 
             requested_card_process.reference = res
             requested_card_process.save()
@@ -203,122 +202,12 @@ class Transaction:
         else:
             return None
 
-
-    def send_internal_indiv_to_indiv(self):
-        """
-        Transaction Code 01 = Send Internal With Individual Wallet  -- Individual Wallet to Individual Wallet
-        """
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_individual_wallet = self.sender_individual_wallet,
-                reciever_individual_wallet = self.reciever_individual_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "0",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 20,
-                transaction_charges = get_internal_tc(self.amount)
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
-
-    def request_internal_indiv_to_indiv(self):
-        """
-        02 = Request Internal with Individual Wallet  -- Individual Wallet to Individual Wallet
-        """
-        try:
-            new_request = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_individual_wallet = self.sender_individual_wallet,
-                reciever_individual_wallet = self.reciever_individual_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_request.save()
-            return new_request
-        except IntegrityError:
-            return False
-
-    def pay_with_card_to_biz(self):
-        """
-        03 = Pay With Card  -- Card to Business Wallet
-        """
-        pass
-
     
     def pay_with_bank_to_biz(self):
         """
         04 = Pay With Bank  -- Bank to Business Wallet
         """
         pass
-
-    def deposit_with_card_to_indiv(self):
-        """
-        05 = Deposit To Individual Wallet   -- Card to Individual Wallet
-        """
-
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                reciever_individual_wallet = self.reciever_individual_wallet,
-                currency = self.currency,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "1.25%",
-                cost_of_transaction = get_cot(self.amount),
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
-
-
-    def deposit_with_card_to_savin(self):
-        """
-        06 = Deposit To Saving Wallet  -- Card to Saving Wallet
-        """
-
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                reciever_saving_wallet = self.reciever_saving_wallet,
-                currency = self.currency,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "1.25%",
-                cost_of_transaction = get_cot(self.amount),
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
 
 
     def deposit_with_card_to_biz(self):
@@ -374,32 +263,6 @@ class Transaction:
             return False
 
 
-    def send_indiv_to_biz(self):        
-        """
-        08 = Pay With Individual Wallet  -- Individual Wallet to Business Wallet
-        """
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_individual_wallet = self.sender_individual_wallet,
-                reciever_business_wallet = self.reciever_business_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "0",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 20,
-                transaction_charges = get_internal_tc(self.amount)
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
- 
-
     def send_biz_to_biz(self):
         """
         09 = Pay With Business Wallet  -- Business Wallet to Business Wallet
@@ -425,11 +288,6 @@ class Transaction:
         except IntegrityError:
             return False
 
-    def withdraw_from_savin(self):
-        """
-        10 = Withdraw From Saving Wallet  -- Saving wallet to Bank
-        """
-        pass
 
     def withdraw_from_biz(self):
         """
@@ -437,111 +295,6 @@ class Transaction:
         """
         pass
 
-    def withdraw_from_indiv(self):
-        """
-        12 = Withdraw From Individual Wallet  -- Individual wallet to Bank
-        """
-        pass
-
-    def send_indiv_to_savin(self):
-        """
-        13 = Pay With Individual Wallet2  -- Individual Wallet to Saving Wallet
-        """
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_individual_wallet = self.sender_individual_wallet,
-                reciever_saving_wallet = self.reciever_saving_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "0",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 20,
-                transaction_charges = get_internal_tc(self.amount)
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
-
-    def send_biz_to_savin(self):
-        """
-        14 = Pay With Business Wallet2  -- Business Wallet to Saving Wallet
-        """
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_business_wallet = self.sender_business_wallet,
-                reciever_saving_wallet = self.reciever_saving_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "0",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 20,
-                transaction_charges = get_internal_tc(self.amount)
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
-
-    def send_biz_to_indiv(self):
-        """
-        15 = Pay With Business Wallet3  -- Business Wallet to Individual Wallet
-        """
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_business_wallet = self.sender_business_wallet,
-                reciever_individual_wallet = self.reciever_individual_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "0",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 20,
-                transaction_charges = get_internal_tc(self.amount)
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
-
-    def request_indiv_to_biz(self):
-        """
-        16 = Request Internal with Individual Wallet  -- Individual Wallet to Business Wallet
-        """
-        try:
-            new_request = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_individual_wallet = self.sender_individual_wallet,
-                reciever_business_wallet = self.reciever_business_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_request.save()
-            return new_request
-        except IntegrityError:
-            return False
 
     def request_biz_to_biz(self):
         """
@@ -568,82 +321,6 @@ class Transaction:
         except IntegrityError:
             return False
 
-    def request_biz_to_indiv(self):
-        """
-        18 = Request Internal with Business Wallet  -- Business Wallet to Individual Wallet
-        """
-        try:
-            new_request = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_business_wallet = self.sender_business_wallet,
-                reciever_individual_wallet = self.reciever_individual_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_request.save()
-            return new_request
-        except IntegrityError:
-            return False
-
-    def deposit_pat_to_indiv(self):
-        """
-        19 = Deposit Cardless with PayAttitude  -- Cardless to Individual Wallet
-        """
-
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                reciever_individual_wallet = self.reciever_individual_wallet,
-                mobile = self.mobile,
-                status = self.status,
-                status_code = self.status_code,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "1.25%",
-                cost_of_transaction = get_cot(self.amount),
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
-
-    def deposit_pat_to_savin(self):
-        """
-        20 = Deposit Cardless with PayAttitude  -- Cardless to Saving Wallet
-        """
-
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                reciever_saving_wallet = self.reciever_saving_wallet,
-                mobile = self.mobile,
-                status = self.status,
-                status_code = self.status_code,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "1.25%",
-                cost_of_transaction = get_cot(self.amount),
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
 
     def deposit_pat_to_biz(self):
         """
@@ -668,206 +345,6 @@ class Transaction:
             )
             new_transaction.save()
             return new_transaction
-        except IntegrityError:
-            return False
-
-    def send_savin_to_indiv(self):
-        """
-        22 = Send saving wallet -- saving wallet to individual wallet
-        """
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_saving_wallet = self.sender_saving_wallet,
-                reciever_individual_wallet = self.reciever_individual_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "0",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 20,
-                transaction_charges = get_internal_tc(self.amount)
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
-
-    def send_savin_to_biz(self):
-        """
-        23 = Send saving wallet -- saving wallet to business wallet
-        """
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_saving_wallet = self.sender_saving_wallet,
-                reciever_business_wallet = self.reciever_business_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "0",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 20,
-                transaction_charges = get_internal_tc(self.amount)
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
-
-    def send_savin_to_savin(self):
-        """
-        24 = Send saving wallet -- saving wallet to saving wallet
-        """
-        try:
-            new_transaction = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_saving_wallet = self.sender_saving_wallet,
-                reciever_saving_wallet = self.reciever_saving_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "0",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 20,
-                transaction_charges = get_internal_tc(self.amount)
-            )
-            new_transaction.save()
-            return new_transaction
-        except IntegrityError:
-            return False
-
-    def request_indiv_to_savin(self):
-        """
-        26 = Request Individual -- Request individual wallet to saving wallet
-        """
-        try:
-            new_request = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_individual_wallet = self.sender_individual_wallet,
-                reciever_saving_wallet = self.reciever_saving_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_request.save()
-            return new_request
-        except IntegrityError:
-            return False
-
-    def request_biz_to_savin(self):
-        """
-        27 = Request Business -- Request Business wallet to saving wallet
-        """
-        try:
-            new_request = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_business_wallet = self.sender_business_wallet,
-                reciever_saving_wallet = self.reciever_saving_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_request.save()
-            return new_request
-        except IntegrityError:
-            return False
-
-    def request_savin_to_indiv(self):
-        """
-        28 = Request Saving -- Request Saving wallet to individual wallet
-        """
-        try:
-            new_request = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_saving_wallet = self.sender_saving_wallet,
-                reciever_individual_wallet = self.reciever_individual_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_request.save()
-            return new_request
-        except IntegrityError:
-            return False
-
-    def request_savin_to_biz(self):
-        """
-        29 = Request Saving -- Request Saving wallet to business wallet
-        """
-        try:
-            new_request = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_saving_wallet = self.sender_saving_wallet,
-                reciever_business_wallet = self.reciever_business_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_request.save()
-            return new_request
-        except IntegrityError:
-            return False
-
-    def request_savin_to_savin(self):
-        """
-        29 = Request Saving -- Request Saving wallet to business wallet
-        """
-        try:
-            new_request = Trans(
-                sender = self.sender,
-                reciever = self.reciever,
-                transaction_code = self.transaction_code,
-                amount = self.amount,
-                sender_saving_wallet = self.sender_saving_wallet,
-                reciever_saving_wallet = self.reciever_saving_wallet,
-                status_code = self.status_code,
-                status = self.status,
-                reference = self.ref,
-                rate_of_cost_of_transaction = "",
-                cost_of_transaction = 0,
-                rate_of_transaction_charges = 0,
-                transaction_charges = 0
-            )
-            new_request.save()
-            return new_request
         except IntegrityError:
             return False
 

@@ -13,17 +13,11 @@
                         <div class="section-title centered">
                             <h4><span>Additional Information</span>Submit the following information before you can create a wallet</h4>
                         </div>
-                        <form action="{% url 'additional_information' %}" method="POST">
+                        <form action="{% url 'main:additional_information' %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-sm-12">
-                                    <input type="text" name="nin" placeholder="National ID Number" required>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-sm-12">
-                                    <input type="phone" name="phone" placeholder="Phone" required>
-                                </div>
                                 <div class="col-xl-12 col-lg-12 col-sm-12">
-                                    <input type="text" name="billing-addr" placeholder="Billing Address" required>
+                                    <input type="phone" name="phone" placeholder="Phone" required>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-sm-12">
                                     <input type="text" name="shipping-addr" placeholder="Shipping Address">
@@ -74,6 +68,13 @@
                                         <option value="">Nigeria</option>
                                     </select>
                                 </div>
+                                <div class="col-xl-6 col-lg-6 col-sm-12 form-check">
+                                    <br>
+                                    <input class="form-check-input" name="business" type="checkbox" value="1" id="flexCheckDefaultBusiness">
+                                    <label class="form-check-label" for="flexCheckDefaultBusiness">
+                                        Are you a business owner
+                                    </label>
+                                </div>
                                 <div class="col-xl-12 col-lg-12 col-sm-12 form-check">
                                     <br>
                                     <input class="form-check-input" name="agree" type="checkbox" value="1" id="flexCheckDefault">
@@ -88,6 +89,10 @@
                             </div>
                         </form>
                     </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                 </div>
             </div>
         </div>

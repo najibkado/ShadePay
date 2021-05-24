@@ -15,7 +15,7 @@ class EmailVerificationTokenGenerator(PasswordResetTokenGenerator):
 email_token_generator = EmailVerificationTokenGenerator()
 
 def get_domain(request):
-    return "https://" + get_current_site(request).domain
+    return "http://" + get_current_site(request).domain
 
 def validate(e):
     try:
@@ -90,21 +90,26 @@ def get_cot(amount):
 
 def get_tc(amount):
     """
-    Returns the transaction charges = NGN 20
+    Returns the transaction charges = NGN 100
     """
-    return 20
+    return 100
 
 
 def get_internal_tc(amount):
     """
-    Returns the transaction charges for internal transactions = 1.25% + NGN 20
+    Returns the transaction charges for internal transactions = 1.25% + NGN 100 for transactions above 3000 and 1.5% for transactions below 3000
     """
 
-    cot = (amount / 100) * decimal.Decimal(1.25)
+    if amount >= 3000:
+        cot = (amount / 100) * decimal.Decimal(1.25)
 
-    tc = cot + 20
+        tc = cot + 100
 
-    return decimal.Decimal(3500) if tc >= decimal.Decimal(3500) else tc
+        return decimal.Decimal(3500) if tc >= decimal.Decimal(3500) else tc
+
+    elif amount < 3000 and amount > 1:
+        tc = (amount / 100) * decimal.Decimal(1.5)
+        return tc
 
 
 

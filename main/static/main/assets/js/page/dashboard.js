@@ -13,8 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(res => res.json())
             .then(result => {
 
- 
-
+                
                 if (user_id === result.transaction.sender_id) {
                     
                     document.querySelector("#trnsaction_reciever").innerHTML = result.transaction.reciever
@@ -63,9 +62,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 document.querySelector("#display-amount").innerHTML = result.transaction.amount
 
-                document.querySelector("#description").innerHTML = result.transaction.desc
+                document.querySelector("#description").innerHTML = result.transaction.transaction_charges
 
                 document.querySelector("#ref").innerHTML = result.transaction.reference
+
+                document.querySelector("#frmw").innerHTML = result.transaction.sender_business_wallet
+
+                document.querySelector("#tow").innerHTML = result.transaction.reciever_business_wallet
+
+                document.querySelector("#ship-to").innerHTML = result.shipping.shipping
+
+                document.querySelector("#state").innerHTML = result.shipping.state
+
+                document.querySelector("#country").innerHTML = result.shipping.country
+
+                document.querySelector("#display-amount-to-recieve").innerHTML = result.toRecieve
+
 
 
             })
@@ -98,43 +110,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     })
 
-    document.querySelector("#send-wallet").addEventListener("change", (e) => {
-        wallet_type = e.target.value
-
-        if (wallet_type == 1){
-            balance = document.querySelector("#individual-wallet-balance").value
-            document.querySelector("#send-wallet-balance").value = balance
-
-        }else if (wallet_type == 3) {
-            balance = document.querySelector("#saving-wallet-balance").value
-            document.querySelector("#send-wallet-balance").value = balance
-            
-        }else if (wallet_type == 2) {
-            balance = document.querySelector("#business-wallet-balance").value
-            document.querySelector("#send-wallet-balance").value = balance
-
-        }
-
-        if (balance < 100) {
-            document.querySelector("#send-wallet-balance").value = "Insufficient Balance";
-            document.querySelector("#send-button").disabled = true;
-        } else {
-            document.querySelector("#send-button").disabled = false;
-        }
-
-    })
-
     amount = document.querySelector("#send-amount")
 
     amount.addEventListener("keyup", () => {
-        val = (amount.value / 100) * 1.25;
-        fees = val += 20;
 
-        if (fees <= 3500 ){
-            document.querySelector("#send-transaction-fee").value = fees;
-        } else {
-            document.querySelector("#send-transaction-fee").value = 3500;
+        if (amount.value >= 3000 ){
+            val = (amount.value / 100) * 1.25;
+            fees = val += 100;
+
+            if (fees <= 3500 ){
+                document.querySelector("#send-transaction-fee").value = fees;
+            } else {
+                document.querySelector("#send-transaction-fee").value = 3500;
+            }
+
+        }else if (amount.value >= 100 && amount.value < 3000) {
+            val = (amount.value / 100) * 1.50;
+            fees = val;
+
+            if (fees <= 3500 ){
+                document.querySelector("#send-transaction-fee").value = fees;
+            } else {
+                document.querySelector("#send-transaction-fee").value = 3500;
+            }
+            
         }
+        
+        
 
         
         if (amount.value >= 100) {
@@ -165,13 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#request-recipient-wallet-address").addEventListener("keyup", (e) => {
         request_recipient_wallet_addr = e.target.value
 
-        if (request_recipient_wallet_addr.endsWith(".siw")){
-            get_request_wallet_name(request_recipient_wallet_addr, 1)
-        } else if (request_recipient_wallet_addr.endsWith(".ssw")){
-            get_request_wallet_name(request_recipient_wallet_addr, 2)
-        } else if (request_recipient_wallet_addr.endsWith(".sbw")){
-            get_request_wallet_name(request_recipient_wallet_addr, 3)
-        }
+        get_request_wallet_name(request_recipient_wallet_addr, 3)
 
     })
 

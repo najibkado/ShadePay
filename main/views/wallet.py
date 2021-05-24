@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
-from main.models import IndividualWallet, AdditionalInformation, BusinessWallet, SavingWallet, Developer, DeveloperInformation
+from main.models import AdditionalInformation, BusinessWallet, Developer, DeveloperInformation
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
@@ -31,120 +31,6 @@ API Auth Codes
 """
 
 @login_required
-def create_wallet(request):
-
-    loggedin_user = request.user
-
-    if request.method == "GET":
-        try:
-            info = AdditionalInformation.objects.get(user = loggedin_user)
-            if loggedin_user.is_active:
-                
-                #Check for Individual Wallet
-                try:
-                    individual_wallet = IndividualWallet.objects.get(user=loggedin_user)
-                except IndividualWallet.DoesNotExist:
-                    individual_wallet = None
-
-                #Check for Saving Wallet
-                try:
-                    saving_wallet = SavingWallet.objects.get(user=loggedin_user)
-                except SavingWallet.DoesNotExist:
-                    saving_wallet = None
-
-                #Check for Business Wallet
-                try:
-                    business_wallet = BusinessWallet.objects.get(user=loggedin_user)
-                except BusinessWallet.DoesNotExist:
-                    business_wallet = None
-
-                #Check for availability
-                if individual_wallet is not None and saving_wallet is not None and business_wallet is not None:
-                    status = 1
-                elif individual_wallet is not None and saving_wallet is None and business_wallet is None:
-                    status = 2
-                elif individual_wallet is not None and saving_wallet is not None and business_wallet is None:
-                    status = 3
-                elif individual_wallet is not None and business_wallet is not None and saving_wallet is None:
-                    status = 4
-                elif business_wallet is not None and saving_wallet is None and individual_wallet is None:
-                    status = 5
-                elif business_wallet is not None and saving_wallet is not None and individual_wallet is None:
-                    status = 6
-                else:
-                    status = 0
-                    
-            else:
-                messages.info(request, "Verify your email address please")
-                return HttpResponseRedirect(reverse("unverified"))
-        except AdditionalInformation.DoesNotExist:
-            messages.warning(request, 'Additional Information required before you can create a wallet ')
-            return HttpResponseRedirect(reverse("additional_information"))
-
-        return render(request, "main/new_wallet.html", {"status": status})
-
-    if request.method == "POST":
-        
-        wallet_type = request.POST["wallet-type"]
-
-        try:
-            info = AdditionalInformation.objects.get(user = loggedin_user)
-            if loggedin_user.is_active:
-                pass
-            else:
-                return HttpResponseRedirect(reverse("unverified"))
-        except AdditionalInformation.DoesNotExist:
-            return HttpResponseRedirect(reverse("additional_information"))
-
-        domain = get_domain(request)
-
-        if wallet_type == "001":
-            
-            try:
-                wallet = IndividualWallet.objects.get(user = loggedin_user)
-                messages.warning(request, "You cannot create individual wallet twice")
-                return HttpResponseRedirect(reverse("dashboard"))
-            except IndividualWallet.DoesNotExist:
-                try:
-                    wallet = IndividualWallet(
-                        user = loggedin_user,
-                        address = loggedin_user.username + ".siw",
-                        link = domain + f"/pay/{loggedin_user.username}.siw",
-                        balance = 0.00,
-                    )
-                    wallet.save()
-                except IntegrityError:
-                    messages.error(request, "Unable to create individual wallet, Please try again later")
-                    return HttpResponseRedirect(reverse("dashboard"))
-                messages.success(request, "Individual wallet created successfully")
-                return HttpResponseRedirect(reverse("dashboard"))
-
-        elif wallet_type == "002":
-            
-            try:
-                wallet = SavingWallet.objects.get(user = loggedin_user)
-                messages.warning(request, "You cannot create saving wallet twice")
-                return HttpResponseRedirect(reverse("dashboard"))
-            except SavingWallet.DoesNotExist:
-                try:
-                    wallet = SavingWallet(
-                        user = loggedin_user,
-                        address = loggedin_user.username + ".ssw",
-                        link = domain + f"/pay/{loggedin_user.username}.ssw",
-                        balance = 0.00,
-                    )
-                    wallet.save()
-                except IntegrityError:
-                    messages.error(request, "Unable to create saving wallet, Please try again later")
-                    return HttpResponseRedirect(reverse("dashboard"))
-                messages.success(request, "Saving wallet created successfully")
-                return HttpResponseRedirect(reverse("dashboard"))
-
-        elif wallet_type == "003":
-            
-           return HttpResponseRedirect(reverse("create-business-wallet"))
-
-@login_required
 def create_business_wallet(request):
     loggedin_user = request.user
 
@@ -155,6 +41,55 @@ def create_business_wallet(request):
             wallet = BusinessWallet.objects.get(user = loggedin_user)
         except BusinessWallet.DoesNotExist:
             wallet = None
+
+        try:
+            info = AdditionalInformation.objects.get(user = loggedin_user)
+        except AdditionalInformation.DoesNotExist:
+            messages.error(request, "Information does not exist, please try creating a new wallet")
+            return HttpResponseRedirect(reverse("main:dashboard"))
+
+        if info.is_business:
+            pass
+        else:
+            #Create new wallet without filling business information if user is not a business owner
+            try:
+                nwallet = BusinessWallet(
+                            user = loggedin_user,
+                            address = loggedin_user.username + ".sbw",
+                            link = domain + f"/pay/{loggedin_user.username}.sbw",
+                            balance = 0.00
+                        )
+                nwallet.save()
+            except IntegrityError:
+                messages.error(request, "Unable to create your wallet at the moment, please try again later")
+                return HttpResponseRedirect(reverse("main:dashboard"))
+
+            api_key_generator_string = f"{nwallet.user.username} {nwallet.address}"
+            api_key_generator = hashlib.sha256()
+            api_key_generator.update(bytes(api_key_generator_string, encoding='utf-8'))
+            api_key = api_key_generator.hexdigest()
+            encoded = jwt.encode({"code": 2,"username": nwallet.user.username,"api_key": api_key}, settings.SECRET_KEY, algorithm="HS256")
+
+            dev_profile = Developer(
+                api_key = api_key,
+                secrete_key = encoded,
+                wallet = nwallet,
+            )
+            dev_profile.save()
+
+            dev_information  = DeveloperInformation(
+                developer = dev_profile,
+                business_name = loggedin_user.first_name + " " + loggedin_user.last_name,
+                business_address = info.shipping_address,
+                business_phone = info.mobile,
+                business_email = loggedin_user.email,
+                business_nature = "Not a business"
+            )
+            dev_information.save()
+            messages.success(request, "Wallet successfully created")
+            return HttpResponseRedirect(reverse("main:dashboard"))
+
+
 
         if wallet is not None:
             try:
@@ -168,7 +103,7 @@ def create_business_wallet(request):
                 except DeveloperInformation.DoesNotExist:
                     developer_information = None
                 messages.info(request, "Business wallet exist.")
-                return HttpResponseRedirect(reverse("dashboard"))
+                return HttpResponseRedirect(reverse("main:dashboard"))
 
         return render(request, "main/developerInfo.html")
 
@@ -185,11 +120,11 @@ def create_business_wallet(request):
             validate_email(b_email)
         except ValidationError:
             messages.error(request, "Please use a valid email address")
-            return HttpResponseRedirect(reverse("create-business-wallet"))
+            return HttpResponseRedirect(reverse("main:create-business-wallet"))
 
         if b_name is "" or b_email is "" or b_phone is "" or b_addr is "":
             messages.warning(request, "Fields can't be empty, Please fill the fields and try again")
-            return HttpResponseRedirect(reverse("create-business-wallet"))
+            return HttpResponseRedirect(reverse("main:create-business-wallet"))
 
 
         business_wallet_address = b_name
@@ -198,7 +133,7 @@ def create_business_wallet(request):
 
         if b_agreement is None:
             messages.warning(request, "You have to read and agree to our terms of services")
-            return HttpResponseRedirect(reverse("create-business-wallet"))
+            return HttpResponseRedirect(reverse("main:create-business-wallet"))
 
         try:
             business_wallet = BusinessWallet.objects.get(user=loggedin_user)
@@ -216,7 +151,7 @@ def create_business_wallet(request):
                 wallet.save()
             except IntegrityError:
                 messages.error(request, "Unabble to create business wallet, Please try again later")
-                return HttpResponseRedirect(reverse("create-business-wallet"))
+                return HttpResponseRedirect(reverse("main:create-business-wallet"))
 
             api_key_generator_string = f"{wallet.user.username} {wallet.address}"
             api_key_generator = hashlib.sha256()
@@ -241,15 +176,9 @@ def create_business_wallet(request):
             )
             dev_information.save()
             messages.success(request, "Business wallet successfully created")
-            return HttpResponseRedirect(reverse("dashboard"))
+            return HttpResponseRedirect(reverse("main:dashboard"))
 
         #TODO: Card Last Four Check
-
-def wallets_view(request):
-    """
-    This returns the page that displays information about wallets
-    """
-    return render(request, "main/wallets.html")
 
 
 

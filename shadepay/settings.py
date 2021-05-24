@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'api',
     'main',
     'shadeboard',
+    'staffboard',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',

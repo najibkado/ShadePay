@@ -11,7 +11,7 @@
                     <div class="page-title-box">
                         <div class="row">
                             <div class="col">
-                                <h4 class="page-title">Business Wallet</h4>
+                                <h4 class="page-title">Shadepay Wallet</h4>
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Shadepay</a></li>
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">shadeboard</a></li>
@@ -25,12 +25,11 @@
             </div><!--end row-->
 
 
-
             <div class="row">
                 <div class="col-lg-6">
                     <ul class="list-inline">
                         <li class="list-inline-item">
-                            <h5 class="mt-0 font-14">Here is an overview of your business wallet.</h5>
+                            <h5 class="mt-0 font-14">Here is an overview of your shadepay wallet.</h5>
                         </li>
                     </ul>
                 </div><!--end col-->
@@ -40,14 +39,28 @@
 
             <div class="row">
 
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="card team-card">
                         <div class="card-body">
                             
                             <div class="media align-items-center">                                                                                 
                                 <div class="media-body ml-3 align-self-center">
-                                    <h4 class="team-leader m-0">Wallet Balance</h4>
-                                    <p class="text-muted font-12 mb-0">{{balance}}</p>                                            
+                                    <h4 class="team-leader m-0">NGN {{balance}}</h4>
+                                    <p class="text-muted font-12 mb-0">Wallet balance</p>                                            
+                                </div>                                                                           
+                            </div> 
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+
+                <div class="col-lg-6">
+                    <div class="card team-card">
+                        <div class="card-body">
+                            
+                            <div class="media align-items-center">                                                                                 
+                                <div class="media-body ml-3 align-self-center">
+                                    <h4 class="team-leader m-0">{{payment_link}}</h4>
+                                    <p class="text-muted font-12 mb-0">My link</p>                                            
                                 </div>                                                                           
                             </div> 
                         </div><!--end card-body-->
@@ -60,22 +73,22 @@
                             
                             <div class="media align-items-center">                                                                                 
                                 <div class="media-body ml-3 align-self-center">
-                                    <h4 class="team-leader m-0">Wallet</h4>
-                                    <p class="text-muted font-12 mb-0">Business wallet</p>                                            
+                                    <h4 class="team-leader m-0">Shadepay wallet</h4>
+                                    <p class="text-muted font-12 mb-0">wallet type</p>                                            
                                 </div>                                                                           
                             </div> 
                             <hr class="hr-dashed my-4">
                             <div class="media align-items-center">                                                                                 
                                 <div class="media-body ml-3 align-self-center">
-                                    <h4 class="team-leader m-0">Address</h4>
-                                    <p class="text-muted font-12 mb-0">{{address}}</p>                                            
+                                    <h4 class="team-leader m-0">{{address}}</h4>
+                                    <p class="text-muted font-12 mb-0">Wallet address</p>                                            
                                 </div>                                                                           
                             </div>                                
                            <hr class="hr-dashed my-4">
                             <div class="media align-items-center">                                                
                                 <div class="media-body ml-3 align-self-center">
-                                    <h4 class="team-leader m-0">Currency</h4>
-                                    <p class="text-muted font-12 mb-0">NGN</p>                                            
+                                    <h4 class="team-leader m-0">NGN</h4>
+                                    <p class="text-muted font-12 mb-0">Currency</p>                                            
                                 </div>                                                                         
                             </div>     
                         </div><!--end card-body-->
@@ -88,28 +101,58 @@
                             
                             <div class="media align-items-center">                                                                                 
                                 <div class="media-body ml-3 align-self-center">
-                                    <h4 class="team-leader m-0">Company</h4>
-                                    <p class="text-muted font-12 mb-0">{{business_name}}</p>                                            
+                                    <h4 class="team-leader m-0">{{business_name}}</h4>
+                                    <p class="text-muted font-12 mb-0">Business name</p>                                            
                                 </div>                                                                           
                             </div> 
                             <hr class="hr-dashed my-4">
                             <div class="media align-items-center">                                                                                 
                                 <div class="media-body ml-3 align-self-center">
-                                    <h4 class="team-leader m-0">Address</h4>
-                                    <p class="text-muted font-12 mb-0">{{business_address}}</p>                                            
+                                    <h4 class="team-leader m-0">{{business_address}}</h4>
+                                    <p class="text-muted font-12 mb-0">Business physical address</p>                                            
                                 </div>                                                                           
                             </div>                                
                            <hr class="hr-dashed my-4">
                             <div class="media align-items-center">                                                
                                 <div class="media-body ml-3 align-self-center">
-                                    <h4 class="team-leader m-0">Contact</h4>
-                                    <p class="text-muted font-12 mb-0">{{business_contact}}</p>                                            
+                                    <h4 class="team-leader m-0">{{business_contact}}</h4>
+                                    <p class="text-muted font-12 mb-0">Business contact information</p>                                            
                                 </div>                                                                         
                             </div>     
                         </div><!--end card-body-->
                     </div><!--end card-->
                 </div><!--end col-->
+
+                <div class="col-lg-4">
+                    <div class="card team-card">
+                        <div class="card-body">
+                            
+                            <div class="media align-items-center">                                                                                 
+                                <div class="media-body ml-3 align-self-center">
+                                    <h4 class="team-leader m-0">Integration Key</h4>
+                                    <p class="text-muted font-12 mb-0">The key below is your shadepay integration key </p>                                            
+                                </div>                                                                           
+                            </div> 
+
+                            <div class="card-body">
+                                <p id="clipboardParagraph" class="border p-3">
+                                    {{int_key}}
+                                </p>
+                                <div class="mt-3">
+                                        <button type="button" class="btn btn-secondary btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboardParagraph"><i class="far fa-copy mr-2"></i>Copy</button>
+                                </div>
+
+                            </div>
+                            
+
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+
+                 
             </div>
+
+
 
 
     </div>

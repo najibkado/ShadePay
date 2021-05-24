@@ -11,6 +11,7 @@
 
                         <div class="col-xl-9 col-lg-9 col-md-12 mb-20">
                             <div class="transaction-list table-responsive">
+
                                 {% include 'main/partials/transaction_table.html' %}
 
                                 <div class="mt-20">
@@ -84,18 +85,29 @@
                                                                 <li>
                                                                     <a href="">Transaction details</a>
                                                                     <p>
-                                                                        <strong>From</strong> <br><span id="from"></span><br><br>
-                                                                        <strong>To</strong> <br><span id="to"></span><br><br>
-                                                                        <strong>Amount</strong> <br><span id="display-amount"></span><br><br>
-                                                                        <strong>Description</strong> <br><span id="description"></span>
+                                                                        <strong>From</strong> <br><span id="from">{{ transaction.sender.first_name }}  {{ transaction.sender.last_name }}</span><br><br>
+                                                                        <strong>To</strong> <br><span id="to">{{ transaction.reciever.first_name }}  {{ transaction.reciever.last_name }}</span><br><br>
+                                                                        <strong>Amount sent</strong> <br><span id="display-amount">{{ transaction.amount }}</span><br><br>
+                                                                        <strong>Amount recieved</strong> <br><span id="display-amount-to-recieve">{{ transaction.amount }}</span><br><br>
+                                                                        <strong>Transaction Charges</strong> <br><span id="description">{{ transaction.description }}</span>
                                                                         
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="">Shipping details</a>
+                                                                    <p>
+                                                                        <strong>Ship to</strong> <br><span id="ship-to"></span><br><br>
+                                                                        <strong>State</strong> <br><span id="state"></span><br><br>
+                                                                        <strong>Country</strong> <br><span id="country"></span><br><br>
                                                                     </p>
                                                                 </li>
                                                                 <li>
                                                                     <a href="">Reference details</a>
                                                                     <p>
-                                                                        <strong>TID</strong> <br><span id="tin"></span><br><br>
-                                                                        <strong>REF NO</strong> <br><span id="reference"></span><br><br>
+                                                                        <strong>Transaction id</strong> <br><span id="tin"></span><br><br>
+                                                                        <strong>Ref no</strong> <br><span id="ref"></span><br><br>
+                                                                        <strong>From wallet</strong> <br><span id="frmw"></span><br><br>
+                                                                        <strong>To wallet</strong> <br><span id="tow"></span><br><br>
                                                                     </p>
                                                                 </li>
                                                                 

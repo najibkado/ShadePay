@@ -31,7 +31,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12">
                     <div class="site-form mb-30">
-                        <form action="{% url 'login' %}" method="POST">
+                        <form action="{% url 'main:login' %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-sm-12">
@@ -46,8 +46,8 @@
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-sm-12">
                                     <div class="extra-links">
-                                        <a href="{% url 'register' %}" class="cl-white">Create new account</a>
-                                        <a href="{% url 'recover' %}" class="cl-white">Forget Password?</a>
+                                        <a href="{% url 'main:register' %}" class="cl-white">Create new account</a>
+                                        <a href="{% url 'main:recover' %}" class="cl-white">Forget Password?</a>
                                     </div>
                                 </div>
                             </div>

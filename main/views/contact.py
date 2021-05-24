@@ -54,7 +54,7 @@ def contact(request):
             except IntegrityError:
 
                 messages.error(request, "failed to send your please try again")
-                return HttpResponseRedirect(reverse("contact"))
+                return HttpResponseRedirect(reverse("main:contact"))
 
             
             #Send User Email Verification Mail
@@ -72,7 +72,7 @@ def contact(request):
             EmailThread(new_email).start()
 
             messages.success(request, "Your message has been sent successfully")
-            return HttpResponseRedirect(reverse("contact"))
+            return HttpResponseRedirect(reverse("main:contact"))
 
            
 

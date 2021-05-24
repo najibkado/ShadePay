@@ -1,7 +1,9 @@
 from django.urls import path, include
 from main.views import transactions, dashboard, support, auth, index, construction, about, fees, how, contact, profile
 from main.views import products, usage, privacy, terms, protection, overview, notfound, additional, wallet, news, checkout
-from main.views import individual_wallet, saving_wallet
+from main.views import pay
+
+app_name = "main"
 
 urlpatterns = [
     path("", index.index, name="index"),
@@ -28,6 +30,7 @@ urlpatterns = [
     path("profile", profile.profile_view, name="profile"),
     path("profile/deactivate", profile.deactivate_account, name="deactivate-account"),
     path("profile/update/<str:id>", profile.update_profile, name="update-profile"),
+    path("pay/<str:wallet>", pay.payment_view, name="payment"),
     path("topup", transactions.topUp, name="topup"),
     path("topup/return/<int:id>", transactions.returnTopUpUrl, name="returnUrl"),
     path("transactions", transactions.transactions, name="transactions"),
@@ -36,15 +39,15 @@ urlpatterns = [
     path("transactions/update/<int:id>/<int:rtype>", transactions.update_transaction, name="update_transaction"),
     path("request-funds", transactions.request_funds, name="request_funds"),
     path("cardless", transactions.cardless, name="cardless"),
+    path("return", checkout.test, name="return-test"),
     path("cardless/return/<int:id>", transactions.returnCardlessUrl, name="cardlessReturn"),
     path("send", transactions.send, name="send"),
     path("merchant/c/checkout/<int:id>", checkout.card_checkout, name="card_checkout"),
+    path("merchant/s/checkout/<int:id>", checkout.shadepay_checkout, name="shadepay_checkout"),
+    path("merchant/s/checkout/<int:id>/confirm-shadepayment", checkout.confirm_shadepayment, name="confirm-shadepayment"),
     path("additional_information", additional.additional_information, name="additional_information"),
-    path("wallet/create", wallet.create_wallet, name="new-wallet"),
+    path("wallet/create", wallet.create_business_wallet, name="new-wallet"),
     path("wallet/create/business", wallet.create_business_wallet, name="create-business-wallet"),
-    path("wallets", wallet.wallets_view, name="wallets"),
-    path("wallets/individual-wallet", individual_wallet.individual_wallet, name="individual-wallet"),
-    path("wallets/saving-wallet", saving_wallet.saving_wallet, name="saving-wallet"),
     path("input-validator", support.input_validator, name="input-validator"),
     path("transaction_details/<int:id>", support.transaction_details, name="transaction_details"),
     path("wallet/name/<int:wallet_type>", support.wallet_name, name="wallet_name"),

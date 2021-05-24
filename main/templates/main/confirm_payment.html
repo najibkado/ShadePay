@@ -1,0 +1,137 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="ShadePay">
+    <meta name="keywords" content="shadepay, sandshade, payment, make payment, pay to nigeria, how to send money to nigeria, money, nigeria, gateway, payment gateway, cheapest payment, integration, cheap, integrate payment">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        
+    <link rel="shortcut icon" href="{% static '/main/assets/images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static '/main/assets/images/favicon.ico' %}" type="image/x-icon">
+
+    <title>ShadePay - Payment Platform</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static '/main/assets/css/bootstrap.min.css' %}" rel="stylesheet">
+        
+    <link href="{% static '/main/assets/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static '/main/assets/css/magnific-popup.css' %}" rel="stylesheet">
+    <link href="{% static '/main/assets/css/jquery-ui.css' %}" rel="stylesheet">
+
+
+    <link href="{% static '/main/assets/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static '/main/assets/css/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static '/main/assets/css/themify-icons.css' %}" rel="stylesheet">
+
+
+    <!-- Main css -->
+    <link href="{% static '/main/assets/css/main.css' %}" rel="stylesheet">
+</head>
+
+{% include "main/partials/messages.html" %}
+<body>
+
+
+    <header class="header-area blue-bg-2">
+        <nav class="navbar navbar-expand-lg main-menu">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'main:index' %}"><img src="{% static '/main/assets/images/logo-2.png' %}" class="d-inline-block align-top" alt=""></a>
+            </div>
+        </nav>
+    </header><!--/Header Area-->
+
+    <!--breadcrumb area-->
+    <section class="breadcrumb-area gradient-overlay" style="background: url('/static/main/assets/images/banner/5.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="site-breadcrumb">
+                        <h4>Confirm payment</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/breadcrumb area-->
+
+    <section class="section-padding blue-bg-2 ">
+
+        <div class="row justify-content-center ">
+
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                <div class="card">
+                    <div class="modal-header col-xl-12 col-sm-12 justify-content-center">
+                        <h4><span>{{merchant.business_name}}</span></h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Hi {{ buyer.first_name }} {{ buyer.last_name }}</p>
+                        <hr>
+                        <p>Shipping address: {{buyer.profile.get.shipping_address}}</p>
+                        <hr>
+                        <p>Date: {{payment.date}}</p>
+                        <p>Amount: NGN {{payment.amount}}</p>
+                        
+                    </div>
+                </div>
+                <br>
+                <hr>
+
+                <div class="card">
+                    <div class="modal-header col-xl-12 col-sm-12">
+                        <h6><span>Payment</span> Breakdown</h6>
+                    </div>
+                    <div class="card-body">
+                        
+                        <p>Items: {{payment.products}}</p>  
+                        <p>Quantity: {{payment.quantity}}</p>
+                        <p>Amount: {{payment.amount}}</p>
+                        <p>Description: {{payment.products_description}}</p>
+                        
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="site-form mb-30">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                        
+                            <div class="col-xl-12 col-lg-12 col-sm-12">
+                                <button type="submit" class="bttn-mid btn-fill w-100">Proceed Payment</button>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12">
+                                <div class="extra-links justify-content-center" style="align-items: center;">
+                                    <a href="https://www.shadepay.com" class="cl-white" target="_blank">Powered by ShadePay </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    </section><!--/Signup Section-->
+
+
+<script src="{% static '/main/assets/js/page/register.js' %}"></script>
+
+
+</body>

@@ -25,7 +25,7 @@
                     
                     <div class="card-body">
                         <div class="site-form mb-30">
-                            <form action="{% url 'cardless' %}" method="POST">
+                            <form action="{% url 'main:cardless' %}" method="POST">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-sm-12 mb-10">
@@ -37,22 +37,7 @@
                                         <select name="wallet" class="custom-select" id="deposit-currency">
                                             {% if status == 0 %}
                                             {% elif status == 1 %}
-                                            <option value="1">Individual Wallet</option>
-                                            <option value="2">Saving Wallet</option>
-                                            <option value="3">Business Wallet</option>
-                                            {% elif status == 2 %}
-                                            <option value="1">Individual Wallet</option>
-                                            {% elif status == 3 %}
-                                            <option value="1">Individual Wallet</option>
-                                            <option value="2">Saving Wallet</option>
-                                            {% elif status == 4 %}
-                                            <option value="1">Individual Wallet</option>
-                                            <option value="3">Business Wallet</option>
-                                            {% elif status == 5 %}
-                                            <option value="3">Business Wallet</option>
-                                            {% elif status == 6 %}
-                                            <option value="2">Saving Wallet</option>
-                                            <option value="3">Business Wallet</option>
+                                            <option value="3">My Wallet</option>
                                             {% endif %}
                                         </select>
                                     </div>

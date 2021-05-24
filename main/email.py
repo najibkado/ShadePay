@@ -39,7 +39,7 @@ class EmailSender:
         # subject = 'ShadePay Account Activation'
         # body = 'Hello ' + new_user.username + ', Please click on the link below to verify your account.\n'+verification_url+'\n' + '\n' + '\n'+'Thankyou for choosing ShadePay'
         # sender_email = 'services@shadepay.com'
-        self.subject = "Transaction Alert"
+        self.subject = "Shadepay Transaction Alert"
 
         context = {
             "sender": self.body['sender'],
@@ -91,7 +91,7 @@ class EmailSender:
     def email_reciever(self):
 
 
-        self.subject = "Transaction Alert"
+        self.subject = "Shadepay Transaction Alert"
 
         context = {
             "sender": self.body['sender'],
@@ -141,7 +141,7 @@ class EmailSender:
 
     def email_top_up(self):
 
-        self.subject = "Topup Alert"
+        self.subject = "Shadepay Topup Alert"
 
         context = {
             "channel": self.body['channel'],
@@ -191,7 +191,7 @@ class EmailSender:
 
     def email_request(self):
 
-        self.subject = "Request Alert"
+        self.subject = "Shadepay Request Alert"
 
         context = {
             "sender": self.body['sender'],

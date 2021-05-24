@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Shadepay - Business Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static '/staffboard/assets/images/favicon.ico' %}">
+
+        <!-- App css -->
+        <link href="{% static '/staffboard/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/staffboard/assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/staffboard/assets/css/metisMenu.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/staffboard/assets/plugins/daterangepicker/daterangepicker.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/staffboard/assets/css/app.min.css' %}" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+        <!-- Left Sidenav -->
+        <div class="left-sidenav">
+            <!-- LOGO -->
+            <div class="brand">
+                <a href="{% url 'main:index' %}" class="logo">
+                    <span>
+                        <img style="width: 70%; height: 55%;" src="{% static '/staffboard/assets/images/logo-dark.png' %}" alt="logo-large" class="logo-lg logo-dark">
+                    </span>
+                </a>
+            </div>
+            <!--end logo-->
+      
+            <div class="menu-content h-100" data-simplebar>
+                <ul class="metismenu left-sidenav-menu">
+                    <li class="menu-label mt-0">Admin</li>
+                    <li>
+                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Transaction Requests</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'staffboard:card-requests' %}"><i class="ti-control-record"></i>Card Requests</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'staffboard:cardless-requests' %}"><i class="ti-control-record"></i>Cardless Requests</a></li>
+                        </ul>
+                    </li>    
+
+                    <li>
+                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Transaction Recipts</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'staffboard:recipts' %}"><i class="ti-control-record"></i>Recipts</a></li>
+                        </ul>
+                    </li> 
+                </ul>
+
+                <hr>
+
+            </div>
+
+        </div>
+        <!-- end left-sidenav-->
+        
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+            <div class="topbar">            
+                <!-- Navbar -->
+                <nav class="navbar-custom">    
+                    <ul class="list-unstyled topbar-nav float-right mb-0">  
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <span class="ml-1 nav-user-name hidden-sm">{{request.user}}</span>
+                                <img src="{% static 'staffboard/assets/images/users/user-5.jpg' %}" alt="profile-user" class="rounded-circle thumb-xs" />                                 
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-divider mb-0"></div>
+                                <a class="dropdown-item" href="{% url 'main:logout' %}"><i data-feather="power" class="align-self-center icon-xs icon-dual mr-1"></i> Logout</a>
+                            </div>
+                        </li>
+                    </ul><!--end topbar-nav-->
+        
+                    <ul class="list-unstyled topbar-nav mb-0">                        
+                        <li>
+                            <button class="nav-link button-menu-mobile">
+                                <i data-feather="menu" class="align-self-center topbar-icon"></i>
+                            </button>
+                        </li>                    
+                    </ul>
+                </nav>
+                <!-- end navbar-->
+            </div>
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+            
+            <div class="page-content">
+
+                {% include 'staffboard/partials/messages.html' %}
+                
+                {% block body%}
+                {% endblock %}
+                    
+
+                <footer class="footer text-center text-sm-left">
+                    Sandshade &copy; 2020 - 2021 <span class="d-none d-sm-inline-block float-right">All rights reserved Shadepay</span>
+                </footer><!--end footer-->
+            </div>
+            <!-- end page content -->
+        </div>
+        <!-- end page-wrapper -->
+
+        
+
+
+        <!-- jQuery  -->
+        <script src="{% static '/staffboard/assets/js/jquery.min.js' %}"></script>
+        <script src="{% static '/staffboard/assets/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static '/staffboard/assets/js/metismenu.min.js' %}"></script>
+        <script src="{% static '/staffboard/assets/js/waves.js' %}"></script>
+        <script src="{% static '/staffboard/assets/js/feather.min.js' %}"></script>
+        <script src="{% static '/staffboard/assets/js/simplebar.min.js' %}"></script>
+        <script src="{% static '/staffboard/assets/js/moment.js' %}"></script>
+        <script src="{% static '/staffboard/assets/plugins/daterangepicker/daterangepicker.js' %}"></script>
+
+        <script src="{% static '/staffboard/assets/plugins/apex-charts/apexcharts.min.js' %}"></script>
+        <script src="{% static '/staffboard/assets/pages/jquery.analytics_dashboard.init.js' %}"></script>
+        <script src="{% static '/staffboard/assets/plugins/clipboard/clipboard.min.js' %}"></script>
+        <script src="{% static '/staffboard/assets/pages/jquery.clipboard.init.js' %}"></script>
+
+        <!-- App js -->
+        <script src="{% static '/staffboard/assets/js/app.js' %}"></script>
+
+
+    </body>
+
+</html>

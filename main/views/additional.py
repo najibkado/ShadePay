@@ -17,34 +17,32 @@ def additional_information(request):
 
     if request.method == "POST":
         
-        nin = request.POST["nin"]
         phone = request.POST["phone"]
-        billing = request.POST["billing-addr"]
         shipping = request.POST["shipping-addr"]
         state = request.POST["state"]
         country = request.POST["country"]
         agree = request.POST.get("agree")
+        is_business = request.POST.get("business")
 
         if agree is not None:
             pass
         else:
             messages.error(request, "You have to read and agree to our terms of services, before you can get a wallet")
-            return HttpResponseRedirect(reverse("additional_information"))
+            return HttpResponseRedirect(reverse("main:additional_information"))
 
         try:
             information = AdditionalInformation.objects.get(user=loggedin_user)
-            return HttpResponseRedirect(reverse("new-wallet"))
+            return HttpResponseRedirect(reverse("main:new-wallet"))
         except AdditionalInformation.DoesNotExist:
             information = AdditionalInformation(
                 user = loggedin_user,
-                nin = nin,
                 accepted_terms = False if agree == None else True,
                 mobile = phone,
-                billing_address = billing,
                 shipping_address = shipping,
                 state = state,
-                country = country,
+                country = "Nigeria",
+                is_business = False if is_business == None else True
             )
             information.save()
-            return HttpResponseRedirect(reverse("new-wallet"))
+            return HttpResponseRedirect(reverse("main:new-wallet"))
         

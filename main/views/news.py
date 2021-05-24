@@ -26,10 +26,10 @@ def newsletter(request):
                 newsletter_register.save()
             except:
                 messages.error(request, "Unable to register your email to our news letter, Please try again.")
-                return HttpResponseRedirect(reverse("index"))
+                return HttpResponseRedirect(reverse("main:index"))
             
             messages.success(request, "You have successfully subscribed to our newsletter.")
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("main:index"))
         else:
             messages.error(request, "Please enter a valid email")
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("main:index"))

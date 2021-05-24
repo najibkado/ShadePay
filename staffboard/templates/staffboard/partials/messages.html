@@ -1,0 +1,19 @@
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <br>
+    <div class="col-lg-12">
+            <div class="card-body"> 
+                <div {% if message.tags %} class="alert alert-{{ message.tags }} border-0 b-round" {% endif %} role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="mdi mdi-close align-middle font-16"></i></span>
+                    </button>
+                    {{message}}
+                </div> 
+            </div><!--end card-body-->                                                          
+    </div><!--end col-->    
+    {% endfor %}
+</ul>
+{% endif %}
+
+

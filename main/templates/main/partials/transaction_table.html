@@ -6,7 +6,6 @@
         <th scope="col">Description</th>
         <th scope="col">Amount</th>
         <th scope="col">Status</th>
-        <th scope="col">Wallet</th>
         </tr>
     </thead>
     <tbody>
@@ -20,40 +19,32 @@
 
                     {% if request.user == transaction.sender %}
 
-                        {% if transaction.transaction_code == 1 or transaction.transaction_code == 13 or transaction.transaction_code == 14 or transaction.transaction_code == 15 or transaction.transaction_code == 22 or transaction.transaction_code == 23 or transaction.transaction_code == 24 or transaction.transaction_code == 25 %}
-                            <td><strong>{{ transaction.reciever }}</strong> <span>- Send</span></td>
-                        {% elif transaction.transaction_code == 2 or transaction.transaction_code == 16 or transaction.transaction_code == 17 or transaction.transaction_code == 18 or transaction.transaction_code == 26 or transaction.transaction_code == 27 or transaction.transaction_code == 28 or transaction.transaction_code == 29 or transaction.transaction_code == 30 %}
-                            <td><strong>{{ transaction.reciever }}</strong> <span>- Request</span></td>
+                        {% if transaction.transaction_code == 9 %}
+                            <td><strong>From {{ transaction.sender_business_wallet.developer_wallet_details.get.developer_details.get.business_name }} to {{ transaction.reciever_business_wallet.developer_wallet_details.get.developer_details.get.business_name }} </strong> <span>- Send</span></td>
+                        {% elif transaction.transaction_code == 17 %}
+                            <td><strong>From {{ transaction.sender_business_wallet.developer_wallet_details.get.developer_details.get.business_name }} to {{ transaction.reciever_business_wallet.developer_wallet_details.get.developer_details.get.business_name }}</strong> <span>- Request</span></td>
                         {% elif transaction.transaction_code == 3 %}
-                            <td><strong>{{ transaction.reciever }}</strong> <span>- Card pay</span></td>
-                        {% elif transaction.transaction_code == 4 %}
-                            <td><strong>{{ transaction.reciever }}</strong> <span>- Bank pay</span></td>
-                        {% elif transaction.transaction_code == 5 or transaction.transaction_code == 6 or transaction.transaction_code == 7 %}
-                            <td><strong>{{ transaction.reciever }}</strong> <span>- Topup</span></td>
-                        {% elif transaction.transaction_code == 8 or transaction.transaction_code == 9 %}
-                            <td><strong>{{ transaction.reciever }}</strong> <span>- Pay</span></td>
-                        {% elif transaction.transaction_code == 10 or transaction.transaction_code == 11 or transaction.transaction_code == 12 %}
-                            <td><strong>{{ transaction.reciever }}</strong> <span>- Withdraw</span></td>
-                        {% elif transaction.transaction_code == 19 or transaction.transaction_code == 20 or transaction.transaction_code == 21 %}
-                            <td><strong>{{ transaction.reciever }}</strong> <span>- Cardless Topup</span></td>
+                            <td><strong>Payment to {{ transaction.reciever_business_wallet.developer_wallet_details.get.developer_details.get.business_name }}</strong> <span>- Merchant payment</span></td>
+                        {% elif transaction.transaction_code == 7 %}
+                            <td><strong>Topup to {{ transaction.reciever_business_wallet.developer_wallet_details.get.developer_details.get.business_name }}</strong> <span>- Topup</span></td>
+                        {% elif transaction.transaction_code == 10 %}
+                        <td><strong>From {{ transaction.sender_business_wallet.developer_wallet_details.get.developer_details.get.business_name }} to {{ transaction.reciever_business_wallet.developer_wallet_details.get.developer_details.get.business_name }}</strong> <span>- Paid</span></td>
+                        {% elif transaction.transaction_code == 11 %}
+                            <td><strong>{{ transaction.reciever }}</strong> <span>- Merchant settlement</span></td>
+                        {% elif transaction.transaction_code == 21 %}
+                            <td><strong>Topup to {{ transaction.reciever_business_wallet.developer_wallet_details.get.developer_details.get.business_name }}</strong> <span>- Cardless Topup</span></td>
+                        {% elif transaction.transaction_code == 25 %}
+                            <td><strong>Payment to {{ transaction.reciever_business_wallet.developer_wallet_details.get.developer_details.get.business_name }}</strong> <span>- Merchant card payment</span></td>
                         {% endif %}
 
                     {% else %}
 
-                        {% if transaction.transaction_code == 1 or transaction.transaction_code == 13 or transaction.transaction_code == 14 or transaction.transaction_code == 15 or transaction.transaction_code == 22 or transaction.transaction_code == 23 or transaction.transaction_code == 24 or transaction.transaction_code == 25 %}
-                            <td><strong>{{ transaction.sender }}</strong> <span>- Recieved</span></td>
-                        {% elif transaction.transaction_code == 2 or transaction.transaction_code == 16 or transaction.transaction_code == 17 or transaction.transaction_code == 18 or transaction.transaction_code == 26 or transaction.transaction_code == 27 or transaction.transaction_code == 28 or transaction.transaction_code == 29 or transaction.transaction_code == 30 %}
-                            <td><strong>{{ transaction.sender }}</strong> <span>- Payment Request</span></td>
-                        {% elif transaction.transaction_code == 3 %}
-                            <td><strong>{{ transaction.sender }}</strong> <span>- Recieved </span></td>
-                        {% elif transaction.transaction_code == 4 %}
-                            <td><strong>{{ transaction.sender }}</strong> <span>- Recieved</span></td>
-                        {% elif transaction.transaction_code == 5 or transaction.transaction_code == 6 or transaction.transaction_code == 7 %}
-                            <td><strong>{{ transaction.sender }}</strong> <span>- Topup</span></td>
-                        {% elif transaction.transaction_code == 8 or transaction.transaction_code == 9 %}
-                            <td><strong>{{ transaction.sender }}</strong> <span>- Pay</span></td>
-                        {% elif transaction.transaction_code == 19 or transaction.transaction_code == 20 or transaction.transaction_code == 21 %}
-                            <td><strong>{{ transaction.sender }}</strong> <span>- Cardless Topup</span></td>
+                        {% if transaction.transaction_code == 9 %}
+                                <td><strong>From {{ transaction.sender_business_wallet.developer_wallet_details.get.developer_details.get.business_name  }} to {{ transaction.reciever_business_wallet.developer_wallet_details.get.developer_details.get.business_name  }}</strong> <span>- Recieved</span></td>
+                        {% elif transaction.transaction_code == 17  %} 
+                            <td><strong>From {{  transaction.sender_business_wallet.developer_wallet_details.get.developer_details.get.business_name }} to {{ transaction.reciever_business_wallet.developer_wallet_details.get.developer_details.get.business_name  }} </strong> <span>- Payment Request</span></td>
+                        {% elif transaction.transaction_code == 10 %}
+                            <td><strong>From {{ transaction.sender_business_wallet.developer_wallet_details.get.developer_details.get.business_name }} to {{ transaction.reciever_business_wallet.developer_wallet_details.get.developer_details.get.business_name }}</strong> <span>- Merchant payment</span></td>
                         {% endif %}
 
                     {% endif %}
@@ -74,240 +65,13 @@
                         <td><i class="ti-flag-alt cl-yellow" data-toggle="tooltip" data-placement="top" title="" data-original-title="Under Review"></i></td>
                     {% endif %}
 
-                    {% if request.user == transaction.sender %}
-
-                        {% if transaction.transaction_code == 1 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_individual_wallet.address }}</strong></td>
-        
-                        {% elif transaction.transaction_code == 2 %}
-                            
-                        <td><strong class="cl-primary">{{ transaction.sender_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 3 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-                            
-                        {% elif transaction.transaction_code == 4 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-                            
-                        {% elif transaction.transaction_code == 5 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 6 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 7 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-                            
-                        {% elif transaction.transaction_code == 8 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 9 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_business_wallet.address }}</strong></td>
-                            
-                        {% elif transaction.transaction_code == 10 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 11 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 12 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 13 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 14 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 15 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 16 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 17 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 18 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 19 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 20 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 21 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 22 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 23 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 24 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 25 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 26 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 27 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 28 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 29 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 30 %}
-
-                        <td><strong class="cl-primary">{{ transaction.sender_saving_wallet.address }}</strong></td>
-
-                        {% endif %}
-
-                    {% else %}
-
-                        {% if transaction.transaction_code == 1 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_individual_wallet.address }}</strong></td>
-        
-                        {% elif transaction.transaction_code == 2 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_individual_wallet.address }}</strong></td>
-                            
-                        {% elif transaction.transaction_code == 3 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-                            
-                        {% elif transaction.transaction_code == 4 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-                            
-                        {% elif transaction.transaction_code == 8 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 9 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 13 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 14 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 15 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 16 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 17 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 18 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 19 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 20 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 21 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 22 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 23 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 24 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 25 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 26 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 27 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_saving_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 28 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_individual_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 29 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_business_wallet.address }}</strong></td>
-
-                        {% elif transaction.transaction_code == 30 %}
-
-                        <td><strong class="cl-primary">{{ transaction.reciever_saving_wallet.address }}</strong></td>
-                            
-                        {% endif %}
-
-
-                    {% endif %}
-
+                    
                 </tr>
 
             {% endfor %}
 
         {% else %}
 
-                
                     
         {% endif %}
     </tbody>

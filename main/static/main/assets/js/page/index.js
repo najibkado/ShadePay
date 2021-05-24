@@ -5,9 +5,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (quote_amount != ""){
 
-        if (quote_amount >= 100){
+        if (quote_amount >= 3000){
             val = (quote_amount / 100) * 1.25
-            fee = val + 20
+            fee = val + 100
+            receipent_amount = quote_amount - fee
+            document.querySelector("#quoteAmountReceive").value = receipent_amount
+            if (fee <= 3500){
+                document.querySelector("#Quotefees").innerHTML = `Total fees - ${fee} NGN`
+            }else{
+                capped_amount = quote_amount - 3500
+                document.querySelector("#quoteAmountReceive").value = capped_amount
+                document.querySelector("#Quotefees").innerHTML = `Total fees - 3500 NGN`
+            }
+        }
+        else if (quote_amount >= 100 && quote_amount < 3000){
+            val = (quote_amount / 100) * 1.50
+            fee = val
             receipent_amount = quote_amount - fee
             document.querySelector("#quoteAmountReceive").value = receipent_amount
             if (fee <= 3500){

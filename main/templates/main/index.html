@@ -10,15 +10,16 @@
             <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
                 <div class="hero-content">
                     <h4><span>Shadepay</span> supports online businesses</h4>
-                    <h1>Receive Payments With Shadepay </h1>
+                    <h1>Receive Payments Easily </h1>
                     <ul>
+                        <li>Easy setup</li>
                         <li>Let's you pay for goods online</li>
-                        <li>Let's you have multiple wallets</li>
-                        <li>Let's you make payments with customer protection</li>
-                        <li>Let's you receive payments to nigeria from anywhere around the world</li>
+                        <li>Let's you automate your payments</li>
+                        <li>Let's you receive payments as an individual</li>
+                        <li>Let's you receive payments as a developer or a business owner</li>
                     </ul>
                     <div class="hero-btn">
-                        <a href="{% url 'about' %}" class="bttn-mid btn-fill"><i class="ti-crown"></i> Learn More</a>
+                        <a href="{% url 'main:register' %}" class="bttn-mid btn-fill"><i class="ti-crown"></i> Get started now</a>
                     </div>
                 </div>
             </div>
@@ -39,8 +40,10 @@
                         </div>
                         <input type="text" class="form-control" id="quoteAmountReceive" aria-describedby="inputGroupPrepend2" required>
                     </div>
-                    <p id="Quotefees"></p> <p>The current fee is 1.25% + NGN 20</p>
+                    <p id="Quotefees"></p> <p>The current fee is 1.25% + NGN 100</p>
+                    <p>1.5% for transactions below NGN 3,000</p>
                     <p>All fees are capped at NGN 3,500</p>
+                    <br>
                     <button class="bttn-mid btn-fill w-100 mt-20"><i class="ti-check"></i>Continue</button>
                 </form>
             </div>
@@ -87,9 +90,9 @@
                             <i class="flaticon-006-wallet"></i>
                         </div>
                         <div class="title">
-                            <h3>Multiple Wallet</h3>
+                            <h3>Multi Purpose Wallet</h3>
                         </div>
-                        <p>ShadePay lets you create wallets for different needs</p>
+                        <p>ShadePay lets you have flexiblity for your projects</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
@@ -98,9 +101,9 @@
                             <i class="flaticon-2991852"></i>
                         </div>
                         <div class="title">
-                            <h3>Multiple Currency</h3>
+                            <h3>Single Currency</h3>
                         </div>
-                        <p>ShadePay lets you accept money from all currencies</p>
+                        <p>ShadePay lets you accept money in nigerian naira</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
@@ -161,7 +164,9 @@
                         <h4><span>Top</span>What we do?</h4>
                         <h2>There is what we do</h2>
                     </div>
-                    <p class="cl-white-light">ShadePay will give you the ability to connect with your clients with peace of mind. This is done by providing both buyer and seller protection over their funds. For instance, Bar bought a mobile phone from Bazz. ShadePay will ensure the delivery of the mobile phone to Bar and deliver the funds to Bazz. ShadePay will refund bars' money fully except for ShadePay charges in case of no delivery or scam. ShadePay protects you and your funds.</p>
+                    <p class="cl-white-light">ShadePay will give you the ability to connect with your clients with peace of mind. We are commited
+                        to working day and night to ensure your payments are beign processed, In the process we put security at the core of our mind.
+                    </p>
                     <!-- <div class="row mb-20">
                         <div class="col-xl-6 col-md-12">
                             <h5 class="mb-10">Mission</h5>
@@ -173,7 +178,10 @@
                         </div>
                     </div>
                      -->
-                    <a href="{% url 'construction' %}" class="bttn-small btn-fill">Continue Reading</a>
+                     <br>
+                     <br>
+
+                    <a href="{% url 'main:construction' %}" class="bttn-small btn-fill">Continue Reading</a>
                 </div>
                 <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
                     <div class="about-img">
@@ -399,7 +407,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-xl-6 col-lg-6 col-sm-12">
                                     <div class="newslatter">
-                                        <form action="{% url 'newsletter' %}" method="POST">
+                                        <form action="{% url 'main:newsletter' %}" method="POST">
                                             {% csrf_token %}
                                             <input type="email" name="email" placeholder="Email Address" required>
                                             <button type="submit">Subscribe</button>
@@ -426,13 +434,14 @@
                 <div class="col-xl-8 centered">
                     <div class="section-title">
                         <h4><span>New</span>want to make purchases securely?</h4>
-                        <!-- <h2>Sign Up</h2> -->
-                        <h2>ShadePay is coming soon!</h2>
+                        <h2>Sign Up</h2>
+                        
                     </div>
                 </div>
+                <button class="bttn-mid btn-fill w-50 mt-20"><i class="ti-check"></i> <a href="{% url 'main:register' %}">Get started now</a> </button>
             </div>
             
-            <!-- <button class="bttn-mid btn-fill w-100 mt-20"><i class="ti-check"></i> <a href="{% url 'register' %}">Get started now</a> </button> -->
+            
 
         </div>
     </section><!--/User Signup Section-->  

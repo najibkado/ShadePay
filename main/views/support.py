@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.db import IntegrityError
 from django.core.mail import EmailMessage
 from django.urls import reverse
-from main.models import User, IndividualWallet, SavingWallet, BusinessWallet, Card, Bank, AdditionalInformation, Developer, Transaction, DeveloperInformation, Logs
+from main.models import User, BusinessWallet, Card, Bank, AdditionalInformation, Developer, Transaction, DeveloperInformation, Logs
 from main.utils import email_token_generator
 from django.contrib.auth import authenticate, login, logout
 from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
@@ -16,6 +16,8 @@ import threading
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
+from main.utils import get_internal_tc
+import decimal
 
 
 @csrf_exempt
@@ -87,12 +89,35 @@ def transaction_details(request, id):
     except Transaction.DoesNotExist:
         transaction = None
 
-
     if transaction is not None:
 
+        # #Get business wallet shipping information
+
+        try:
+            shipping = transaction.sender_business_wallet.user.profile.get().shipping_address
+            state = transaction.sender_business_wallet.user.profile.get().state
+            country = transaction.sender_business_wallet.user.profile.get().country
+        except:
+            shipping = transaction.reciever_business_wallet.user.profile.get().shipping_address
+            state = transaction.reciever_business_wallet.user.profile.get().state
+            country = transaction.reciever_business_wallet.user.profile.get().country
+
+        if transaction.transaction_code == 9 or transaction.transaction_code == 25:
+            toRecieve = get_internal_tc(transaction.amount)
+        else:
+            toRecieve = None
+
+
+        #To do for withdraw
         return JsonResponse({
             "message": "success",
-            "transaction": transaction.serialize()
+            "toRecieve": transaction.amount - toRecieve if toRecieve else transaction.amount,
+            "transaction": transaction.serialize(),
+            "shipping": {
+                "shipping": shipping,
+                "state": state,
+                "country": country
+            }
         })
 
     else:
@@ -105,17 +130,7 @@ def wallet_name(request, wallet_type):
 
     addr = request.GET["addr"]
 
-    if wallet_type == 1:
-        try:
-            wallet = IndividualWallet.objects.get(address=addr)
-        except IndividualWallet.DoesNotExist:
-            wallet = None
-    elif wallet_type == 2:
-        try:
-            wallet = SavingWallet.objects.get(address=addr)
-        except SavingWallet.DoesNotExist:
-            wallet = None
-    elif wallet_type == 3:
+    if wallet_type == 3:
         try:
             wallet = BusinessWallet.objects.get(address=addr)
             try:
@@ -134,7 +149,6 @@ def wallet_name(request, wallet_type):
 
     if wallet is not None:
         name = wallet.user.first_name + " " + wallet.user.last_name
-        print(wallet.address)
     else:
         name = "Unverified, Please write a correct recipient address"
 

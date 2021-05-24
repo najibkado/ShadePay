@@ -8,11 +8,10 @@ class User(AbstractUser):
 
 class AdditionalInformation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profile")
-    nin = models.IntegerField(unique=True)
     accepted_terms = models.BooleanField(default=True)
     mobile = models.CharField(max_length=255)
+    is_business = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=True)
-    billing_address = models.CharField(max_length=255)
     shipping_address = models.CharField(max_length=255) 
     state = models.CharField(max_length=255)
     country = models.CharField(max_length=255, default='Nigeria')
@@ -27,22 +26,6 @@ class Logs(models.Model):
     lat = models.CharField(max_length=255)
     login_device = models.CharField(max_length=255)
     date = models.DateField(auto_now=True)
-
-class IndividualWallet(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="wallet")
-    address = models.CharField(max_length=255, unique=True)
-    link = models.CharField(max_length=255)
-    balance = models.DecimalField(max_digits=255, decimal_places=2)
-    date_updated = models.DateTimeField(auto_now=True)
-
-class SavingWallet(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="savings_wallet")
-    address = models.CharField(max_length=255, unique=True)
-    link = models.CharField(max_length=255)
-    balance = models.DecimalField(max_digits=255, decimal_places=2)
-    date_updated = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField(default=False)
-    date_due = models.DateField(auto_now=True)
 
 class BusinessWallet(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="business_wallet")
@@ -96,8 +79,6 @@ class ProcessCardRequest(models.Model):
     card_first_six = models.CharField(max_length=255)
     card_last_four = models.CharField(max_length=255)
     card_type = models.CharField(max_length=255)
-    individual_wallet = models.ForeignKey(IndividualWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="topup_request_individual_walet")
-    saving_wallet = models.ForeignKey(SavingWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="topup_request_saving_walet")
     business_wallet = models.ForeignKey(BusinessWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="topup_request_business_walet")
     is_successful = models.BooleanField(default=False)
     status = models.CharField(max_length=255)
@@ -119,8 +100,6 @@ class ProcessPayattitudeRequest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="payattitude_request")
     amount = models.DecimalField(max_digits=255, decimal_places=2)
     mobile = models.CharField(max_length=255)
-    individual_wallet = models.ForeignKey(IndividualWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="payattitude_request_individual_walet")
-    saving_wallet = models.ForeignKey(SavingWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="payattitude_request_saving_walet")
     business_wallet = models.ForeignKey(BusinessWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="payattitude_request_business_walet")
     is_successful = models.BooleanField(default=False)
     status = models.CharField(max_length=255)
@@ -144,13 +123,9 @@ class Transaction(models.Model):
     amount = models.DecimalField(max_digits=255, decimal_places=2)
     rate_of_cost_of_transaction = models.CharField(max_length=255)
     cost_of_transaction = models.DecimalField(max_digits=255, decimal_places=2)
-    rate_of_transaction_charges = models.IntegerField(default=20)
+    rate_of_transaction_charges = models.CharField(max_length=255, default="1.25% + 20 : Max 3500")
     transaction_charges = models.DecimalField(max_digits=255, decimal_places=2)
-    sender_individual_wallet = models.ForeignKey(IndividualWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="source_individual_wallet")
-    sender_saving_wallet = models.ForeignKey(SavingWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="source_saving_wallet")
     sender_business_wallet = models.ForeignKey(BusinessWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="source_business_wallet")
-    reciever_individual_wallet = models.ForeignKey(IndividualWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="destination_individual_wallet")
-    reciever_saving_wallet = models.ForeignKey(SavingWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="destination_saving_wallet")
     reciever_business_wallet = models.ForeignKey(BusinessWallet, null=True, blank=True, on_delete=models.CASCADE, related_name="destination_business_wallet")
     sender_card = models.ForeignKey(Card, on_delete=models.CASCADE, null=True, blank=True, related_name="source_card")
     sender_bank = models.ForeignKey(Bank, on_delete=models.CASCADE, null=True, blank=True, related_name="source_bank")
@@ -177,8 +152,12 @@ class Transaction(models.Model):
             "currency" : self.currency,
             "date" : self.date,
             "desc" : self.description,
+            "code" : self.transaction_code,
             "status" : self.status,
-            "reference": self.reference
+            "reference": self.reference,
+            "transaction_charges": self.transaction_charges,
+            "sender_business_wallet": self.sender_business_wallet.address if self.sender_business_wallet else "",
+            "reciever_business_wallet": self.reciever_business_wallet.address if self.reciever_business_wallet else "",
         }
 
 class ContactUs(models.Model):

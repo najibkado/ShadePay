@@ -13,7 +13,7 @@
                         <div class="section-title centered">
                             <h4><span>Business Information</span>Submit the following information before you can create a business wallet</h4>
                         </div>
-                        <form action="{% url 'create-business-wallet' %}" method="POST">
+                        <form action="{% url 'main:create-business-wallet' %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-sm-12">
