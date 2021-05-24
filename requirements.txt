@@ -8,3 +8,4 @@ pycrypto
 pyjwt
 geoip2
 geopy
+psycopg2
